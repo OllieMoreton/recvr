@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
     // ── 3. Send confirmation via Resend ───────────────────────────────────
     if (process.env.RESEND_API_KEY) {
       const { error: emailError } = await resend.emails.send({
-        from: 'RECVR <hello@recvr.co>',
+        from: 'RECVR <onboarding@resend.dev>',
         to: email,
         subject: "You're on the RECVR waitlist",
         html: confirmationHtml(email),
