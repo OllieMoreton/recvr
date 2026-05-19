@@ -24,8 +24,9 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
         {venue.hero_image ? (
           <Image
             src={venue.hero_image}
-            alt={venue.name}
+            alt={`${venue.name} recovery venue in ${venue.city}`}
             fill
+            priority={variant === 'featured'}
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />

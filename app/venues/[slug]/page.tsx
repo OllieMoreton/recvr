@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import {
   ArrowLeft,
@@ -58,6 +59,12 @@ export async function generateMetadata({
   return {
     title: `${venue.name} — RECVR`,
     description: venue.description,
+    openGraph: {
+      title: `${venue.name} — RECVR`,
+      description: venue.description,
+      images: venue.hero_image ? [{ url: venue.hero_image, width: 1200, height: 630 }] : [],
+      url: `https://recvr.uk/venues/${venue.slug}`,
+    },
   }
 }
 
@@ -78,11 +85,13 @@ export default async function VenueProfilePage({
       <div className="relative h-72 md:h-96 w-full overflow-hidden">
         {/* Background */}
         {venue.hero_image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={venue.hero_image}
             alt={venue.name}
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-recvr-surface to-recvr-bg" />

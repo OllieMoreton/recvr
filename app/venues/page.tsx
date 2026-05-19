@@ -1,6 +1,19 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { createServerClient } from '@/lib/supabase'
+
+export const metadata: Metadata = {
+  title: 'Recovery Venues',
+  description:
+    'Find the best cryotherapy, infrared sauna, IV therapy, float tanks, cold plunge and more across London, Manchester, Edinburgh and Bristol.',
+  openGraph: {
+    title: 'Recovery Venues — RECVR',
+    description: 'Find vetted recovery venues near you. Filter by city and modality.',
+    url: 'https://recvr.uk/venues',
+  },
+  alternates: { canonical: 'https://recvr.uk/venues' },
+}
 import VenueCard from '@/components/VenueCard'
 import VenueFilters from '@/components/VenueFilters'
 import type { Venue } from '@/lib/types'
