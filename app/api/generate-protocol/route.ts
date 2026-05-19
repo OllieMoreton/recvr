@@ -1,7 +1,8 @@
 import { NextRequest } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 
-export const runtime = 'edge'
+// Node.js runtime — @anthropic-ai/sdk requires Node built-ins incompatible with edge
+export const runtime = 'nodejs'
 
 const SYSTEM_PROMPT = `You are RECVR's AI recovery protocol engine — a world-class sports
 performance specialist with deep expertise in exercise physiology and evidence-based
