@@ -132,7 +132,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
   return (
     <div
       id="protocol-section"
-      className="max-w-2xl mx-auto bg-recvr-surface border border-recvr-border rounded-2xl p-8"
+      className="max-w-2xl mx-auto bg-recvr-surface border border-recvr-border rounded-2xl p-5 sm:p-8"
     >
       {/* Progress bar */}
       <div className="mb-8">
@@ -154,7 +154,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
       </div>
 
       {/* Step content */}
-      <div className="min-h-[260px]">
+      <div className="min-h-[240px] sm:min-h-[260px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep}
@@ -220,7 +220,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
           <button
             onClick={handleSubmit}
             disabled={!hasSelection() || isLoading}
-            className="bg-recvr-cyan text-recvr-bg font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full sm:w-auto bg-recvr-cyan text-recvr-bg font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
             {isLoading ? 'Building...' : 'Build my recovery protocol →'}
           </button>

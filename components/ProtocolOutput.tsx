@@ -51,7 +51,7 @@ function VenueCard({ venue }: { venue: Venue }) {
       </div>
       <a
         href={`/venues/${venue.slug}`}
-        className="shrink-0 ml-3 text-xs text-recvr-cyan hover:text-recvr-blue transition-colors flex items-center gap-1"
+        className="shrink-0 ml-3 text-xs text-recvr-cyan hover:text-recvr-blue transition-colors flex items-center gap-1 min-h-[44px] py-2"
       >
         View venue <ExternalLink className="w-3 h-3" />
       </a>
@@ -157,7 +157,7 @@ function EmailCapture({ summary, city }: { summary: string; city: string }) {
           <p className="text-recvr-muted text-sm mb-5">
             Get notified when RECVR launches and we&apos;ll hold your slot at partnered venues.
           </p>
-          <form onSubmit={handleSubmit} className="flex gap-2 max-w-sm mx-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
             <input
               type="email"
               value={email}
@@ -169,7 +169,7 @@ function EmailCapture({ summary, city }: { summary: string; city: string }) {
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="px-5 py-2.5 rounded-xl bg-recvr-cyan text-recvr-bg text-sm font-semibold hover:bg-recvr-blue transition-colors disabled:opacity-60"
+              className="w-full sm:w-auto px-5 py-3 sm:py-2.5 min-h-[44px] rounded-xl bg-recvr-cyan text-recvr-bg text-sm font-semibold hover:bg-recvr-blue transition-colors disabled:opacity-60"
             >
               {status === 'loading' ? 'Saving...' : 'Notify me'}
             </button>

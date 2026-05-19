@@ -114,7 +114,7 @@ export default async function VenueProfilePage({
       </div>
 
       {/* ── 2. MAIN CONTENT ────────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="max-w-5xl mx-auto px-4 py-8 sm:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
           {/* LEFT COLUMN ──────────────────────────────────────────────── */}
@@ -188,7 +188,7 @@ export default async function VenueProfilePage({
           </div>
 
           {/* RIGHT COLUMN ─────────────────────────────────────────────── */}
-          <div className="lg:col-span-1 space-y-4 lg:sticky lg:top-24 self-start">
+          <div className="lg:col-span-1 space-y-4 lg:sticky lg:top-24 lg:self-start">
 
             {/* Booking card */}
             <div className="bg-recvr-surface border border-recvr-border rounded-2xl p-6 space-y-4">
@@ -268,7 +268,8 @@ export default async function VenueProfilePage({
           <h2 className="text-recvr-text font-semibold text-lg mb-4">Location</h2>
           <iframe
             src={`https://maps.google.com/maps?q=${encodeURIComponent(venue.postcode || venue.city)}&output=embed`}
-            className="w-full h-64 rounded-2xl border border-recvr-border"
+            className="w-full h-56 sm:h-64 rounded-2xl border border-recvr-border"
+          style={{ maxWidth: '100%' }}
             loading="lazy"
             title={`Map for ${venue.name}`}
           />

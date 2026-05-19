@@ -41,13 +41,15 @@ export default function VenueFilters() {
         : 'border-recvr-border text-recvr-muted hover:border-recvr-cyan/50 hover:text-recvr-text'
     }`
 
+  const scrollRow = 'flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden'
+
   return (
     <div className="space-y-3">
-      {/* City filters */}
-      <div className="flex flex-wrap gap-2">
+      {/* City filters — horizontal scroll on mobile */}
+      <div className={scrollRow}>
         <button
           onClick={() => setFilter('city', '')}
-          className={pill(!activeCity)}
+          className={`${pill(!activeCity)} whitespace-nowrap shrink-0`}
         >
           All cities
         </button>
@@ -55,18 +57,18 @@ export default function VenueFilters() {
           <button
             key={city}
             onClick={() => setFilter('city', activeCity === city ? '' : city)}
-            className={pill(activeCity === city)}
+            className={`${pill(activeCity === city)} whitespace-nowrap shrink-0`}
           >
             {city}
           </button>
         ))}
       </div>
 
-      {/* Modality filters */}
-      <div className="flex flex-wrap gap-2">
+      {/* Modality filters — horizontal scroll on mobile */}
+      <div className={scrollRow}>
         <button
           onClick={() => setFilter('modality', '')}
-          className={pill(!activeModality)}
+          className={`${pill(!activeModality)} whitespace-nowrap shrink-0`}
         >
           All modalities
         </button>
@@ -74,7 +76,7 @@ export default function VenueFilters() {
           <button
             key={key}
             onClick={() => setFilter('modality', activeModality === key ? '' : key)}
-            className={pill(activeModality === key)}
+            className={`${pill(activeModality === key)} whitespace-nowrap shrink-0`}
           >
             {label}
           </button>
