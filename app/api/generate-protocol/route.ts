@@ -64,16 +64,14 @@ export async function POST(request: NextRequest) {
     Generate a personalised 7-day recovery protocol for this athlete.
     `
 
-    // Use non-streaming to debug — swap back to stream once working
-    const response = await anthropic.messages.create({
+    const stream = await anthropic.messages.stream({
       model: 'claude-sonnet-4-5',
       max_tokens: 1024,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userMessage }],
     })
 
-    const text = response.content[0].type === 'text' ? response.content[0].text : ''
-    return new Response(text, { headers: { 'Content-Type': 'application/json' } })
+    return new Response(stream.toReadableStream())
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error)
     console.error('Protocol generation error:', message)
