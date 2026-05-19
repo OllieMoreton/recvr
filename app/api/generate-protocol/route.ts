@@ -1,6 +1,5 @@
 import { NextRequest } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
-import { createClient } from '@supabase/supabase-js'
 
 export const runtime = 'edge'
 
@@ -47,7 +46,6 @@ red_light, cold_plunge, contrast_therapy, compression, hyperbaric_oxygen, sports
 
 export async function POST(request: NextRequest) {
   try {
-    // Instantiate per-request so env vars are definitely resolved
     const anthropic = new Anthropic({
       apiKey: process.env.ANTHROPIC_API_KEY!,
     })
@@ -71,28 +69,6 @@ export async function POST(request: NextRequest) {
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userMessage }],
     })
-
-    // Log to Supabase async — don't block the stream
-    const logToSupabase = async () => {
-      try {
-        const supabase = createClient(
-          process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.SUPABASE_SERVICE_ROLE_KEY!
-        )
-        await supabase.from('protocol_logs').insert({
-          sport: Array.isArray(sport) ? sport : [sport],
-          training_load: trainingLoad,
-          issues: Array.isArray(issues) ? issues : [issues],
-          goal,
-          city,
-        })
-      } catch {
-        // Logging failure must never affect the response
-      }
-    }
-
-    // Fire and forget
-    logToSupabase()
 
     return new Response(stream.toReadableStream())
   } catch (error) {
