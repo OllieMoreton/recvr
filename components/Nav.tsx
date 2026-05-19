@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Nav() {
   const scrollToEmailCapture = () => {
-    const el = document.getElementById('email-capture')
+    const el = document.getElementById('early-access')
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
