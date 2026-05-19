@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
 
     // Use non-streaming to debug — swap back to stream once working
     const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-sonnet-4-5',
       max_tokens: 1024,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userMessage }],
