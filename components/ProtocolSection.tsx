@@ -11,17 +11,16 @@ import type { Protocol } from '@/lib/types'
 type Stage = 'form' | 'loading' | 'output' | 'error'
 
 function parseProtocolFromStream(raw: string): Protocol | null {
-  // Anthropic SSE: lines starting with "data: " containing JSON events
-  // We accumulate text_delta content and parse the final JSON
+  // anthropic SDK toReadableStream() emits newline-delimited JSON (NDJSON),
+  // one MessageStreamEvent object per line — NOT SSE "data: " format.
   let accumulated = ''
 
   const lines = raw.split('\n')
   for (const line of lines) {
-    if (!line.startsWith('data: ')) continue
-    const jsonStr = line.slice(6).trim()
-    if (jsonStr === '[DONE]') continue
+    const trimmed = line.trim()
+    if (!trimmed) continue
     try {
-      const event = JSON.parse(jsonStr)
+      const event = JSON.parse(trimmed)
       if (
         event.type === 'content_block_delta' &&
         event.delta?.type === 'text_delta'
