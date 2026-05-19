@@ -71,7 +71,7 @@ export default function Hero() {
 
         {/* Social proof hint */}
         <p className="text-sm text-recvr-muted/60">
-          12 vetted recovery venues · London, Manchester &amp; beyond
+          12 vetted recovery venues · London, Manchester, Edinburgh &amp; Bristol
         </p>
       </motion.div>
     </section>
