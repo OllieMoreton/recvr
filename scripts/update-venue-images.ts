@@ -15,57 +15,57 @@ const updates: { slug: string; hero_image: string }[] = [
   // ── London ──────────────────────────────────────────────────────────────
   {
     slug: 'londoncryo',
-    hero_image: u('photo-91-EaA_zrCk'), // ice / cold immersion
+    hero_image: u('photo-1712161321522-c24f686e4ace'), // cold plunge / ice bath
   },
   {
     slug: 'repose-space',
-    hero_image: u('photo-pu7s4tOegNQ'), // red light therapy bed
+    hero_image: u('photo-1761933401849-12dd7fe4dd35'), // red light therapy bed
   },
   {
     slug: 'sauna-and-plunge',
-    hero_image: u('photo-4NOd0__WVxk'), // two people in wooden sauna
+    hero_image: u('photo-1583417657209-d3dd44dc9c09'), // sauna interior
   },
   {
     slug: 'floatworks',
-    hero_image: u('photo-1cACY7-wizY'), // float / isolation pod
+    hero_image: u('photo-1605158743762-f887b36eef11'), // float / isolation pod
   },
   {
     slug: 'glow-bar',
-    hero_image: u('photo-lFcSN-izsxM'), // red light / glow aesthetic
+    hero_image: u('photo-1707248543225-fb0d00feaad6'), // red light glow
   },
   {
     slug: 'altitude-centre',
-    hero_image: u('photo-ZG7UzVg-UmQ'), // dark wellness / performance
+    hero_image: u('photo-1593351887122-1a38db91a164'), // red light / performance lab
   },
   {
     slug: 'form-recovery',
-    hero_image: u('photo-U9NE20ql_io'), // cold plunge / ice bath
+    hero_image: u('photo-1681980016814-0bac16721969'), // ice bath / cold plunge
   },
   {
     slug: 'recovery-lab-london',
-    hero_image: u('photo-1761284758997-1074f2a33114'), // sports massage
+    hero_image: u('photo-1649751361457-01d3a696c7e6'), // sports massage
   },
 
   // ── Manchester ───────────────────────────────────────────────────────────
   {
     slug: 'manchester-cryo',
-    hero_image: u('photo-YbQhnwrAUio'), // infrared sauna interior
+    hero_image: u('photo-1583416750470-965b2707b355'), // sauna / steam
   },
   {
     slug: 'float-manchester',
-    hero_image: u('photo-z8yBce_dXVs'), // float / water therapy
+    hero_image: u('photo-1593612561300-5460aec25658'), // float tank
   },
 
   // ── Edinburgh ────────────────────────────────────────────────────────────
   {
     slug: 'nordic-batch',
-    hero_image: u('photo-v8U1U6FVkeg'), // nordic / snow / sauna exterior
+    hero_image: u('photo-1583417267826-aebc4d1542e1'), // nordic sauna
   },
 
   // ── Bristol ──────────────────────────────────────────────────────────────
   {
     slug: 'restore-bristol',
-    hero_image: u('photo-1649751361457-01d3a696c7e6'), // sports massage / recovery
+    hero_image: u('photo-1591380666581-7e0e1cb5fc41'), // sports massage
   },
 ]
 
