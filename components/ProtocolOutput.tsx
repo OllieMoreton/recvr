@@ -46,7 +46,7 @@ function VenueCard({ venue }: { venue: Venue }) {
         <MapPin className="w-3.5 h-3.5 text-recvr-cyan shrink-0" />
         <div className="min-w-0">
           <p className="text-recvr-text text-sm font-medium truncate">{venue.name}</p>
-          <p className="text-recvr-muted text-xs">{venue.city} · from £{venue.price_from}</p>
+          <p className="text-recvr-muted text-xs">{venue.city} · from £{(venue.price_from / 100).toFixed(0)}</p>
         </div>
       </div>
       <a
@@ -59,7 +59,7 @@ function VenueCard({ venue }: { venue: Venue }) {
   )
 }
 
-function ProtocolCard({ item, index, city }: { item: ProtocolItem; index: number; city: string }) {
+function ProtocolCard({ item, index, city, isLast }: { item: ProtocolItem; index: number; city: string; isLast: boolean }) {
   const [venue, setVenue] = useState<Venue | null>(null)
   const config = MODALITIES[item.modality_key]
 
@@ -79,8 +79,8 @@ function ProtocolCard({ item, index, city }: { item: ProtocolItem; index: number
         <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${config?.colour ?? 'bg-recvr-border'}`}>
           <ModalityIcon modalityKey={item.modality_key} className={`w-5 h-5 ${config?.textColour ?? 'text-recvr-muted'}`} />
         </div>
-        {/* connector line — not shown for last item */}
-        <div className="w-px flex-1 bg-recvr-border mt-2" />
+        {/* connector line — hidden for last item */}
+        {!isLast && <div className="w-px flex-1 bg-recvr-border mt-2" />}
       </div>
 
       {/* Card */}
@@ -212,7 +212,13 @@ export default function ProtocolOutput({
       {/* Timeline */}
       <div>
         {protocol.protocol.map((item, i) => (
-          <ProtocolCard key={`${item.day}-${item.modality_key}`} item={item} index={i} city={city} />
+          <ProtocolCard
+            key={`${item.day}-${item.modality_key}`}
+            item={item}
+            index={i}
+            city={city}
+            isLast={i === protocol.protocol.length - 1}
+          />
         ))}
       </div>
 
