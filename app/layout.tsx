@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import Nav from '@/components/Nav'
 import './globals.css'
 
 const geistSans = Geist({
@@ -28,7 +29,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
     >
       <body className="min-h-screen bg-recvr-bg text-recvr-text">
-        <div className="min-h-screen bg-recvr-bg">{children}</div>
+        <Nav />
+        <div className="pt-16">{children}</div>
       </body>
     </html>
   )
