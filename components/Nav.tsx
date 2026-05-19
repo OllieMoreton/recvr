@@ -22,6 +22,12 @@ export default function Nav() {
         {/* Right side */}
         <div className="flex items-center gap-6">
           <Link
+            href="/protocol"
+            className="hidden sm:block text-sm text-recvr-muted hover:text-recvr-text transition-colors duration-200"
+          >
+            Protocol
+          </Link>
+          <Link
             href="/venues"
             className="hidden sm:block text-sm text-recvr-muted hover:text-recvr-text transition-colors duration-200"
           >
