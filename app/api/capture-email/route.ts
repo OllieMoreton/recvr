@@ -93,17 +93,19 @@ export async function POST(request: NextRequest) {
 
     // ── 2. Persist to Supabase ────────────────────────────────────────────
     const supabase = createServerClient()
-    const { error: dbError } = await supabase.from('email_captures').upsert(
-      {
-        email,
-        protocol_summary,
-        city,
-        source,
-        metadata,
-        captured_at: new Date().toISOString(),
-      },
-      { onConflict: 'email' }
-    )
+    // Build the record with only the guaranteed base columns first
+    const record: Record<string, unknown> = {
+      email,
+      captured_at: new Date().toISOString(),
+    }
+    if (protocol_summary) record.protocol_summary = protocol_summary
+    if (city) record.city = city
+    if (source) record.source = source
+    if (metadata) record.metadata = metadata
+
+    const { error: dbError } = await supabase
+      .from('email_captures')
+      .upsert(record, { onConflict: 'email' })
 
     if (dbError) {
       // Log but don't fail — still send the confirmation
