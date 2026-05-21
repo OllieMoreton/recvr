@@ -142,16 +142,7 @@ export default async function Home() {
               </div>
               <Link
                 href="/for-teams"
-                className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-semibold transition-colors duration-200"
-                style={{ background: 'rgba(196,129,58,0.1)', border: '1px solid rgba(196,129,58,0.3)', color: '#C4813A' }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = 'rgba(196,129,58,0.18)'
-                  ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,129,58,0.6)'
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = 'rgba(196,129,58,0.1)'
-                  ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,129,58,0.3)'
-                }}
+                className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-semibold transition-all duration-200 text-recvr-copper bg-recvr-copper/10 border border-recvr-copper/30 hover:bg-recvr-copper/20 hover:border-recvr-copper/60"
               >
                 Learn more →
               </Link>
