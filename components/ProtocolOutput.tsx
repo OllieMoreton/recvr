@@ -251,6 +251,7 @@ export default function ProtocolOutput({
 }) {
   const [displayedProtocol, setDisplayedProtocol] = useState<Protocol>(protocol)
   const [weekNumber, setWeekNumber] = useState(1)
+  const { hasEvent, eventDate } = formData
 
   const handleNewProtocol = (newProtocol: Protocol) => {
     setDisplayedProtocol(newProtocol)
@@ -263,6 +264,26 @@ export default function ProtocolOutput({
     <div className="max-w-2xl mx-auto">
       {/* Journey progress */}
       <JourneyProgress weekNumber={weekNumber} />
+
+      {/* Race countdown banner */}
+      {hasEvent && eventDate && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center justify-between px-4 py-3 rounded-xl border border-[#06B6D4]/20 bg-[#06B6D4]/5 mb-6"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-[#06B6D4] animate-pulse" />
+            <span className="text-sm text-[#F8FAFC] font-medium">Race countdown active</span>
+          </div>
+          <span className="text-sm font-mono text-[#06B6D4]">
+            {Math.ceil(
+              (new Date(eventDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 7)
+            )}{' '}
+            weeks to race day
+          </span>
+        </motion.div>
+      )}
 
       {/* Header */}
       <AnimatePresence mode="wait">

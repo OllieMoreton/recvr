@@ -75,10 +75,19 @@ const STEPS = [
   },
 ]
 
+const TOTAL_STEPS = 6
+
 const slideVariants = {
   enter: { opacity: 0, x: 20 },
   center: { opacity: 1, x: 0 },
   exit: { opacity: 0, x: -20 },
+}
+
+// Tomorrow's date as YYYY-MM-DD for min date on the date input
+function getTomorrow(): string {
+  const d = new Date()
+  d.setDate(d.getDate() + 1)
+  return d.toISOString().split('T')[0]
 }
 
 export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFormProps) {
@@ -89,18 +98,29 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
     issues: [],
     goal: '',
     city: '',
+    hasEvent: false,
   })
 
-  const step = STEPS[currentStep - 1]
+  // Step 6 — tracks whether the user has made a choice (distinguishes from default false)
+  const [hasEventSelected, setHasEventSelected] = useState(false)
 
-  const getValue = (field: typeof step.field): string | string[] => formData[field]
+  // ─── Steps 1–5 helpers ─────────────────────────────────────────────────────
 
-  const isSelected = (field: typeof step.field, option: string): boolean => {
+  const step = currentStep <= 5 ? STEPS[currentStep - 1] : null
+
+  const getValue = (field: (typeof STEPS)[number]['field']): string | string[] =>
+    formData[field]
+
+  const isSelected = (field: (typeof STEPS)[number]['field'], option: string): boolean => {
     const value = getValue(field)
     return Array.isArray(value) ? value.includes(option) : value === option
   }
 
-  const toggle = (field: typeof step.field, option: string, multi: boolean) => {
+  const toggle = (
+    field: (typeof STEPS)[number]['field'],
+    option: string,
+    multi: boolean
+  ) => {
     if (multi) {
       const current = formData[field] as string[]
       const updated = current.includes(option)
@@ -112,13 +132,26 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
     }
   }
 
+  // ─── Validation ────────────────────────────────────────────────────────────
+
   const hasSelection = (): boolean => {
+    if (currentStep === 6) return hasEventSelected
+    if (!step) return false
     const value = getValue(step.field)
     return Array.isArray(value) ? value.length > 0 : value !== ''
   }
 
+  // Step 6 submit button text
+  const submitLabel = (): string => {
+    if (isLoading) return 'Building...'
+    if (formData.hasEvent && formData.eventDate) return 'Build my race programme →'
+    return 'Start my programme →'
+  }
+
+  // ─── Navigation ────────────────────────────────────────────────────────────
+
   const handleNext = () => {
-    if (currentStep < 5) setCurrentStep((s) => s + 1)
+    if (currentStep < TOTAL_STEPS) setCurrentStep((s) => s + 1)
   }
 
   const handleBack = () => {
@@ -129,6 +162,20 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
     onSubmit(formData)
   }
 
+  // ─── Step 6 handlers ───────────────────────────────────────────────────────
+
+  const selectYes = () => {
+    setHasEventSelected(true)
+    setFormData((f) => ({ ...f, hasEvent: true }))
+  }
+
+  const selectNo = () => {
+    setHasEventSelected(true)
+    setFormData((f) => ({ ...f, hasEvent: false, eventDate: undefined }))
+  }
+
+  // ─── Render ────────────────────────────────────────────────────────────────
+
   return (
     <div
       id="protocol-section"
@@ -137,63 +184,145 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
       {/* Progress bar */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm text-recvr-muted">Step {currentStep} of 5</span>
+          <span className="text-sm text-recvr-muted">Step {currentStep} of {TOTAL_STEPS}</span>
         </div>
         <div className="flex gap-1.5">
-          {STEPS.map((s) => (
+          {Array.from({ length: TOTAL_STEPS }, (_, i) => i + 1).map((s) => (
             <div
-              key={s.id}
+              key={s}
               className="h-0.5 flex-1 rounded-full transition-colors duration-300"
-              style={{
-                backgroundColor:
-                  s.id <= currentStep ? '#06B6D4' : '#1E2433',
-              }}
+              style={{ backgroundColor: s <= currentStep ? '#06B6D4' : '#1E2433' }}
             />
           ))}
         </div>
       </div>
 
       {/* Step content */}
-      <div className="min-h-[240px] sm:min-h-[260px]">
+      <div className="min-h-[240px] sm:min-h-[280px]">
         <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStep}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
-          >
-            <h2 className="text-xl font-semibold text-recvr-text mb-6">
-              {step.question}
-            </h2>
-            <div className="flex flex-wrap gap-2.5">
-              {step.options.map((option) => {
-                const selected = isSelected(step.field, option)
-                return (
-                  <button
-                    key={option}
-                    onClick={() => toggle(step.field, option, step.multi)}
-                    className={`
-                      px-4 py-2 rounded-full text-sm border transition-all duration-150 cursor-pointer
-                      ${
-                        selected
-                          ? 'bg-recvr-cyan/10 border-recvr-cyan text-recvr-cyan'
-                          : 'border-recvr-border text-recvr-muted hover:border-cyan-500/50 hover:text-recvr-text'
-                      }
-                    `}
-                  >
-                    {option}
-                  </button>
-                )
-              })}
-            </div>
-            {step.multi && (
-              <p className="text-xs text-recvr-muted/60 mt-4">
-                Select all that apply
+          {/* Steps 1–5 — pill selection */}
+          {currentStep <= 5 && step && (
+            <motion.div
+              key={currentStep}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
+            >
+              <h2 className="text-xl font-semibold text-recvr-text mb-6">
+                {step.question}
+              </h2>
+              <div className="flex flex-wrap gap-2.5">
+                {step.options.map((option) => {
+                  const selected = isSelected(step.field, option)
+                  return (
+                    <button
+                      key={option}
+                      onClick={() => toggle(step.field, option, step.multi)}
+                      className={`
+                        px-4 py-2 rounded-full text-sm border transition-all duration-150 cursor-pointer
+                        ${
+                          selected
+                            ? 'bg-recvr-cyan/10 border-recvr-cyan text-recvr-cyan'
+                            : 'border-recvr-border text-recvr-muted hover:border-cyan-500/50 hover:text-recvr-text'
+                        }
+                      `}
+                    >
+                      {option}
+                    </button>
+                  )
+                })}
+              </div>
+              {step.multi && (
+                <p className="text-xs text-recvr-muted/60 mt-4">Select all that apply</p>
+              )}
+            </motion.div>
+          )}
+
+          {/* Step 6 — Race countdown */}
+          {currentStep === 6 && (
+            <motion.div
+              key={6}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
+            >
+              <h2 className="text-xl font-semibold text-recvr-text mb-1">
+                Do you have a race or event coming up?
+              </h2>
+              <p className="text-recvr-muted text-sm mb-6">
+                We&apos;ll tailor your programme around your race schedule.
               </p>
-            )}
-          </motion.div>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                {/* Yes option */}
+                <button
+                  onClick={selectYes}
+                  className={`flex-1 text-left p-4 rounded-2xl border transition-all duration-150 cursor-pointer ${
+                    formData.hasEvent && hasEventSelected
+                      ? 'bg-recvr-cyan/10 border-recvr-cyan'
+                      : 'border-recvr-border hover:border-cyan-500/50'
+                  }`}
+                >
+                  <p className={`font-semibold text-sm mb-0.5 ${formData.hasEvent && hasEventSelected ? 'text-recvr-cyan' : 'text-recvr-text'}`}>
+                    Yes, I have an event
+                  </p>
+                  <p className="text-recvr-muted text-xs">
+                    Programme will protect your race-day performance
+                  </p>
+                </button>
+
+                {/* No option */}
+                <button
+                  onClick={selectNo}
+                  className={`flex-1 text-left p-4 rounded-2xl border transition-all duration-150 cursor-pointer ${
+                    !formData.hasEvent && hasEventSelected
+                      ? 'bg-recvr-cyan/10 border-recvr-cyan'
+                      : 'border-recvr-border hover:border-cyan-500/50'
+                  }`}
+                >
+                  <p className={`font-semibold text-sm mb-0.5 ${!formData.hasEvent && hasEventSelected ? 'text-recvr-cyan' : 'text-recvr-text'}`}>
+                    No upcoming event
+                  </p>
+                  <p className="text-recvr-muted text-xs">
+                    Standard recovery optimisation
+                  </p>
+                </button>
+              </div>
+
+              {/* Date input — only shown when Yes is selected */}
+              <AnimatePresence>
+                {formData.hasEvent && hasEventSelected && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-4">
+                      <label className="block text-recvr-muted text-xs font-mono tracking-widest uppercase mb-2">
+                        When is it?
+                      </label>
+                      <input
+                        type="date"
+                        min={getTomorrow()}
+                        value={formData.eventDate ?? ''}
+                        onChange={(e) =>
+                          setFormData((f) => ({ ...f, eventDate: e.target.value || undefined }))
+                        }
+                        style={{ colorScheme: 'dark' }}
+                        className="w-full bg-recvr-surface border border-recvr-border text-recvr-text rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-recvr-cyan transition-colors"
+                      />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
 
@@ -208,7 +337,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
           ← Back
         </button>
 
-        {currentStep < 5 ? (
+        {currentStep < TOTAL_STEPS ? (
           <button
             onClick={handleNext}
             disabled={!hasSelection()}
@@ -222,7 +351,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
             disabled={!hasSelection() || isLoading}
             className="w-full sm:w-auto bg-recvr-cyan text-recvr-bg font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
-            {isLoading ? 'Building...' : 'Start my programme →'}
+            {submitLabel()}
           </button>
         )}
       </div>

@@ -60,4 +60,6 @@ export interface ProtocolFormData {
   issues: string[]
   goal: string
   city: string
+  hasEvent: boolean
+  eventDate?: string  // ISO date string e.g. "2026-08-15"
 }

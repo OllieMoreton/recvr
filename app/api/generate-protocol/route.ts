@@ -55,26 +55,33 @@ export async function POST(request: NextRequest) {
     })
 
     const body = await request.json()
-    const { sport, trainingLoad, issues, goal, city, isReturning, previousProtocolSummary, previousResponse } = body
+    const { sport, trainingLoad, issues, goal, city, isReturning, previousProtocolSummary, previousResponse, hasEvent, eventDate } = body
 
-    const baseContext = `
+    const weeksToEvent: number | null = hasEvent && eventDate
+      ? Math.ceil((new Date(eventDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 7))
+      : null
+
+    const userMessage = `
 Sport/activity: ${Array.isArray(sport) ? sport.join(', ') : sport}
 Training load this week: ${trainingLoad}
 Current issues: ${Array.isArray(issues) && issues.length > 0 ? issues.join(', ') : 'none specified'}
 Primary goal: ${goal}
-Location: ${city}`
+Location: ${city}
+${weeksToEvent !== null
+  ? `Race/event in: ${weeksToEvent} weeks (${eventDate})`
+  : 'No upcoming event'}
+${previousProtocolSummary ? `Last week's protocol: ${previousProtocolSummary}` : ''}
+${previousResponse ? `How they responded: ${previousResponse}` : ''}
 
-    const userMessage = isReturning && previousProtocolSummary
-      ? `${baseContext}
+${weeksToEvent !== null && weeksToEvent <= 2
+  ? 'CRITICAL: Athlete is within 2 weeks of their event. Prioritise low-stress, restorative modalities only. No heavy cold exposure within 5 days of race. Focus on parasympathetic activation and muscle priming. This protocol must protect race-day performance above all else.'
+  : weeksToEvent !== null && weeksToEvent <= 6
+  ? 'Athlete is in race build phase. Balance recovery intensity with maintaining training adaptation. Avoid excessive fatigue from recovery sessions themselves.'
+  : ''}
 
-RETURNING ATHLETE — Week 2 Programme:
-Previous week's programme summary: ${previousProtocolSummary}
-How recovery went: ${previousResponse ?? 'not specified'}
-
-Build a Week 2 programme that intelligently progresses from Week 1. Adapt the modality selection and sequencing based on their feedback. If recovery went well, introduce a new complementary modality. If they struggled, consolidate and reduce intensity. Reference the progression explicitly in your summary.`
-      : `${baseContext}
-
-Generate a personalised 7-day recovery programme for this athlete.`
+${isReturning
+  ? 'This is a returning athlete. Adapt the protocol based on how they responded last week.'
+  : 'Generate a personalised 7-day recovery programme for this athlete.'}`
 
     const stream = await anthropic.messages.stream({
       model: 'claude-sonnet-4-5',
