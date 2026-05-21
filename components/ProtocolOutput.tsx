@@ -116,10 +116,10 @@ function ProtocolCard({ item, index, city, isLast }: { item: ProtocolItem; index
         <div className="bg-recvr-surface border border-recvr-border rounded-2xl p-5">
           <div className="flex items-start justify-between gap-3 mb-3">
             <div>
-              <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-1">
+              <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-copper mb-1">
                 {item.day_label}
               </p>
-              <h3 className="text-recvr-text font-semibold text-lg leading-tight">
+              <h3 className="font-sohne font-semibold text-recvr-text text-lg leading-tight">
                 {item.modality}
               </h3>
             </div>
@@ -128,7 +128,7 @@ function ProtocolCard({ item, index, city, isLast }: { item: ProtocolItem; index
                 <Clock className="w-3 h-3" />
                 <span>{item.duration_minutes} min</span>
               </div>
-              <p className="text-recvr-cyan text-sm font-medium mt-0.5">from £{item.price_from}</p>
+              <p className="font-mono text-[13px] text-recvr-copper mt-0.5">From £{item.price_from}</p>
             </div>
           </div>
 
@@ -326,10 +326,10 @@ export default function ProtocolOutput({
           transition={{ duration: 0.5 }}
           className="mb-10 text-center"
         >
-          <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
+          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-3">
             Week {weekNumber} recovery programme
           </p>
-          <p className="text-recvr-text text-lg leading-relaxed max-w-xl mx-auto">
+          <p className="font-tiempos font-normal italic text-[22px] md:text-[26px] leading-snug text-recvr-text max-w-[640px] mx-auto mb-8">
             {displayedProtocol.summary}
           </p>
         </motion.div>

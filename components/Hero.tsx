@@ -38,23 +38,20 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        {/* Badge */}
-        <div className="inline-flex items-center bg-recvr-copper-dim border border-recvr-copper/20 text-recvr-copper text-xs uppercase tracking-widest rounded-full px-4 py-1.5 mb-8">
-          AI Recovery Coach
-        </div>
+        {/* Eyebrow */}
+        <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-4">
+          AI Recovery Protocols
+        </p>
 
         {/* Headline */}
-        <h1
-          className="text-5xl md:text-6xl lg:text-7xl font-bold text-recvr-text mb-6 leading-[1.05]"
-          style={{ letterSpacing: '-0.02em' }}
-        >
-          Recovery without guesswork.
+        <h1 className="font-tiempos font-normal text-[48px] md:text-[72px] leading-none tracking-[-0.03em] text-recvr-text mb-6">
+          Recover by design.
         </h1>
 
         {/* Subheadline */}
-        <p className="text-lg md:text-xl text-recvr-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-          The AI recovery coach for serious athletes. Tell us how you&apos;re training — we&apos;ll
-          build your personalised weekly programme and match you to the best venues near you.
+        <p className="font-sohne text-[18px] leading-relaxed text-recvr-text-secondary max-w-[480px] mx-auto mb-10">
+          Tell us about your week. We&apos;ll build a personalised recovery
+          protocol matched to UK venues you can book today.
         </p>
 
         {/* CTAs */}
