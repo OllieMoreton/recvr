@@ -12,11 +12,6 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToEmailCapture = () => {
-    const el = document.getElementById('early-access')
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 h-[72px] bg-recvr-bg/80 backdrop-blur-md transition-colors duration-300"
@@ -57,12 +52,12 @@ export default function Nav() {
           >
             For teams
           </Link>
-          <button
-            onClick={scrollToEmailCapture}
+          <Link
+            href="/#early-access"
             className="text-sm font-semibold bg-recvr-copper text-recvr-bg px-5 py-2 rounded-md hover:bg-recvr-copper-light transition-colors duration-200"
           >
             Get early access
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
