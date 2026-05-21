@@ -149,14 +149,20 @@ function WeekLockScreen() {
 function VenueScreen() {
   return (
     <div className="h-full flex flex-col">
-      {/* Image placeholder — warm gradient */}
-      <div
-        className="h-24 w-full shrink-0"
-        style={{
-          background:
-            'linear-gradient(135deg, rgba(120,53,15,0.45) 0%, rgba(20,20,20,1) 100%)',
-        }}
-      />
+      {/* Sauna image */}
+      <div className="h-24 w-full shrink-0 overflow-hidden relative">
+        <img
+          src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&q=75&auto=format&fit=crop"
+          alt="Sauna interior"
+          className="w-full h-full object-cover"
+          style={{ filter: 'brightness(0.75) saturate(0.9)' }}
+        />
+        {/* Subtle gradient fade into card body */}
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to bottom, transparent 40%, #0D0B09 100%)' }}
+        />
+      </div>
 
       {/* Venue info */}
       <div className="px-2 pt-2 pb-3 flex flex-col flex-1 min-h-0">
