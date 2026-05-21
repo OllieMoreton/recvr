@@ -40,13 +40,11 @@ export const metadata: Metadata = {
     description:
       'Tell us how you\'re training — we\'ll build your personalised weekly recovery programme and match you to the best venues.',
     url: 'https://recvr.uk',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'RECVR' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'RECVR — AI Recovery Coach for Serious Athletes',
     description: 'Personalised recovery programmes. Vetted venues. AI-powered.',
-    images: ['/og-image.png'],
   },
   alternates: {
     canonical: 'https://recvr.uk',

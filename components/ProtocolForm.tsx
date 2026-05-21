@@ -71,7 +71,7 @@ const STEPS = [
     question: 'Where are you based?',
     field: 'city' as const,
     multi: false,
-    options: ['London', 'Manchester', 'Bristol', 'Edinburgh', 'Other UK'],
+    options: ['London', 'Manchester', 'Bristol', 'Edinburgh'],
   },
   {
     id: 6,
