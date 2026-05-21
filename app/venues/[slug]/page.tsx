@@ -20,6 +20,7 @@ import { getModalityConfig } from '@/lib/modality-config'
 import type { Venue, Modality } from '@/lib/types'
 import VenueBundles from '@/components/VenueBundles'
 import VenueCard from '@/components/VenueCard'
+import VenueHeroImage from '@/components/VenueHeroImage'
 
 // ─── Icon map ────────────────────────────────────────────────────────────────
 
@@ -142,15 +143,11 @@ export default async function VenueProfilePage({
 
       {/* ── FULL-WIDTH HERO ───────────────────────────────────────────────── */}
       <div className="w-full h-64 md:h-96 overflow-hidden">
-        {venue.hero_image ? (
-          <img
-            src={venue.hero_image}
-            alt={venue.name}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-recvr-surface to-recvr-bg" />
-        )}
+        <VenueHeroImage
+          heroImage={venue.hero_image}
+          name={venue.name}
+          modalities={venue.modalities}
+        />
       </div>
 
       {/* ── CONTENT CONTAINER ─────────────────────────────────────────────── */}
