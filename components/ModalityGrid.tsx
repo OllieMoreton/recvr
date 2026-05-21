@@ -14,6 +14,12 @@ const FEATURED_MODALITIES = [
   { key: 'cold_plunge',    tag: 'PLUNGE'   },
 ] as const
 
+const AT_HOME_CARD = {
+  tag: 'AT-HOME',
+  title: 'At-home protocols',
+  benefit: 'Guided breathwork, sleep hygiene, and mobility flows. Zero-cost protocols to regulate your nervous system from anywhere.',
+}
+
 const ease = [0.16, 1, 0.3, 1] as const
 
 export default function ModalityGrid() {
@@ -78,6 +84,28 @@ export default function ModalityGrid() {
               </motion.div>
             )
           })}
+
+          {/* At-home card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease, delay: FEATURED_MODALITIES.length * 0.1 }}
+          >
+            <div
+              className="flex flex-col items-start bg-recvr-surface border border-recvr-border"
+              style={{ borderRadius: '4px', padding: '28px' }}
+            >
+              <p className="font-mono text-[11px] uppercase tracking-widest text-recvr-copper mb-3">
+                {AT_HOME_CARD.tag}
+              </p>
+              <p className="font-tiempos font-semibold text-recvr-text mb-1" style={{ fontSize: '20px' }}>
+                {AT_HOME_CARD.title}
+              </p>
+              <p className="text-recvr-muted" style={{ fontSize: '15px', lineHeight: 1.7 }}>
+                {AT_HOME_CARD.benefit}
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

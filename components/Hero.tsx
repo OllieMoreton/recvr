@@ -271,7 +271,7 @@ export default function Hero() {
             style={{ color: '#C8BFB0', fontFamily: "'DM Serif Text', Georgia, serif", fontWeight: 300 }}
           >
             Every serious athlete has a training plan. RECVR gives you the recovery to match.
-            Tell us about your week and we&apos;ll build your protocol — matched to real venues you can book today.
+            Sync your data or tell us about your week, and we&apos;ll build your dynamic protocol — matched to premium venues near you, or guided at-home methods for when you&apos;re on the move.
           </motion.p>
 
           {/* CTAs */}

@@ -63,7 +63,7 @@ export default function EmailCapture() {
 
             {/* Sub-line */}
             <p className="mb-8" style={{ color: 'rgba(10,10,10,0.65)', fontSize: '17px', lineHeight: 1.7, maxWidth: '480px' }}>
-              Join athletes already training with RECVR. Early access includes your first protocol free.
+              Join the waitlist to test our protocol engine today. Plus, get priority access to RECVR Pro—featuring wearable integrations and venue discounts—launching soon.
             </p>
 
             {/* Form */}
