@@ -48,11 +48,7 @@ OUTPUT: Respond with valid JSON only. No markdown. No preamble. No explanation o
 Valid modality_key values: cryotherapy, infrared_sauna, iv_therapy, float_tank,
 red_light, cold_plunge, contrast_therapy, compression, hyperbaric_oxygen, sports_massage
 
-VENUE COVERAGE NOTE: Compression therapy has limited venue coverage outside of specialist
-centres. Only recommend compression when there is strong, specific clinical justification
-(e.g. acute oedema, post-surgery return, or severe venous pooling in ultra-distance athletes).
-For general leg fatigue and soreness in runners, prefer cold_plunge, contrast_therapy, or
-sports_massage which have better venue coverage across all UK cities.`
+- Only recommend compression therapy if the athlete has specifically mentioned leg fatigue or circulation issues AND their city has compression venue coverage. Do not recommend compression as a default Day 2 treatment.`
 
 export async function POST(request: NextRequest) {
   try {

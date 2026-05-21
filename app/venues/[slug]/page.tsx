@@ -377,25 +377,34 @@ export default async function VenueProfilePage({
         </div>
 
         {/* ── MAP ───────────────────────────────────────────────────────── */}
-        {venue.postcode && (
-          <div className="mt-10">
-            <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-text-secondary mb-4">
-              Location
-            </p>
-            <div className="relative w-full h-64 rounded-lg overflow-hidden border border-recvr-border">
-              <iframe
-                title={`${venue.name} location`}
-                src={`https://maps.google.com/maps?q=${encodeURIComponent(venue.postcode + ', UK')}&output=embed&z=15`}
-                width="100%"
-                height="100%"
-                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.85)' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+        <div className="mt-10">
+          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-text-secondary mb-4">
+            Location
+          </p>
+          <a
+            href={`https://maps.google.com/maps?q=${encodeURIComponent((venue.postcode ?? venue.city) + ', UK')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-recvr-text-secondary hover:text-recvr-text text-xs font-mono transition-colors mb-3"
+          >
+            Open in Maps →
+          </a>
+          <div className="relative w-full h-64 rounded-lg overflow-hidden bg-recvr-surface">
+            <iframe
+              title={`${venue.name} location`}
+              src={`https://maps.google.com/maps?q=${encodeURIComponent((venue.postcode ?? venue.city) + ', UK')}&output=embed&z=15`}
+              width="100%"
+              height="100%"
+              style={{
+                border: 0,
+                filter: 'invert(90%) hue-rotate(180deg) brightness(0.85)',
+              }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
-        )}
+        </div>
 
         {/* ── BOOKING CTA #2 — after map ─────────────────────────────────── */}
         <div className="mt-10">
