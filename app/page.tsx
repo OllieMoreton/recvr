@@ -1,5 +1,6 @@
 import { createServerClient } from '@/lib/supabase'
 import Hero from '@/components/Hero'
+import Ticker from '@/components/Ticker'
 import ProtocolSection from '@/components/ProtocolSection'
 import HowItWorks from '@/components/HowItWorks'
 import ModalityGrid from '@/components/ModalityGrid'
@@ -29,7 +30,20 @@ export default async function Home() {
         {/* Hero */}
         <Hero />
 
-        {/* Copper section divider — Hero → How It Works */}
+        {/* Copper section divider */}
+        <div
+          aria-hidden="true"
+          className="w-full"
+          style={{
+            height: '2px',
+            background: 'linear-gradient(90deg, transparent 0%, rgba(196,129,58,0.08) 25%, rgba(196,129,58,0.08) 75%, transparent 100%)',
+          }}
+        />
+
+        {/* Modality ticker */}
+        <Ticker />
+
+        {/* Copper section divider */}
         <div
           aria-hidden="true"
           className="w-full"
