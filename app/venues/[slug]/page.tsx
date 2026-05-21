@@ -129,6 +129,16 @@ export default async function VenueProfilePage({
           {/* LEFT COLUMN ──────────────────────────────────────────────── */}
           <div className="lg:col-span-2 space-y-8">
 
+            {/* Founding Partner badge */}
+            {venue.is_featured && (
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#06B6D4]/30 bg-[#06B6D4]/10 mb-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#06B6D4]" />
+                <span className="text-xs font-mono text-[#06B6D4] uppercase tracking-widest">
+                  RECVR Founding Partner
+                </span>
+              </div>
+            )}
+
             {/* Verified badge */}
             {venue.is_verified && (
               <div className="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-500/20">
@@ -221,6 +231,16 @@ export default async function VenueProfilePage({
                   {venue.review_count > 0 && (
                     <span>({venue.review_count} reviews)</span>
                   )}
+                </div>
+              )}
+
+              {venue.is_featured && (
+                <div className="rounded-xl border border-[#06B6D4]/20 bg-[#06B6D4]/5 p-4 mb-4">
+                  <p className="text-sm text-[#06B6D4] font-medium mb-1">RECVR member access</p>
+                  <p className="text-xs text-[#94A3B8] leading-relaxed">
+                    As a founding partner venue, {venue.name} prioritises RECVR-referred bookings.
+                    Mention RECVR when booking for preferred availability.
+                  </p>
                 </div>
               )}
 

@@ -45,6 +45,14 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
         <h3 className="text-lg font-semibold text-recvr-text leading-tight mb-1">
           {venue.name}
         </h3>
+        {venue.is_featured && (
+          <div className="flex items-center gap-1.5 mt-1 mb-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#06B6D4]" />
+            <span className="text-xs font-mono text-[#06B6D4] uppercase tracking-widest">
+              Founding Partner
+            </span>
+          </div>
+        )}
         <div className="flex items-center gap-1 text-recvr-muted text-sm mb-3">
           <MapPin className="w-3.5 h-3.5 shrink-0" />
           <span>{venue.city}{venue.postcode ? `, ${venue.postcode}` : ''}</span>
