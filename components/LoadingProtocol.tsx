@@ -59,7 +59,7 @@ export default function LoadingProtocol({ city }: { city?: string }) {
       </div>
 
       <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-6">
-        Building your protocol
+        Building your programme
       </p>
 
       {/* Rotating message */}

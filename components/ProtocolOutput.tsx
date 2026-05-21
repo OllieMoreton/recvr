@@ -1,15 +1,16 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Snowflake, Flame, Droplets, Waves, Sun, Thermometer,
   ArrowLeftRight, Wind, CircleDot, HandMetal,
   ExternalLink, Clock, MapPin, CheckCircle2,
 } from 'lucide-react'
-import type { Protocol, ProtocolItem, Venue, Modality } from '@/lib/types'
+import type { Protocol, ProtocolItem, Venue, Modality, ProtocolFormData } from '@/lib/types'
 import { MODALITIES } from '@/lib/modalities'
 import { supabase } from '@/lib/supabase'
+import WeeklyCheckin from './WeeklyCheckin'
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Snowflake, Flame, Droplets, Waves, Sun, Thermometer,
@@ -147,15 +148,15 @@ function EmailCapture({ summary, city }: { summary: string; city: string }) {
       {status === 'done' ? (
         <div className="flex flex-col items-center gap-3 py-2">
           <CheckCircle2 className="w-8 h-8 text-recvr-cyan" />
-          <p className="text-recvr-text font-medium">You&apos;re on the list.</p>
-          <p className="text-recvr-muted text-sm">We&apos;ll notify you when RECVR launches in your city.</p>
+          <p className="text-recvr-text font-medium">Programme saved.</p>
+          <p className="text-recvr-muted text-sm">We&apos;ll send it to your inbox and remind you when Week 2 is ready.</p>
         </div>
       ) : (
         <>
-          <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-2">Early access</p>
-          <h3 className="text-recvr-text text-xl font-semibold mb-1">Book this protocol</h3>
+          <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-2">Save your programme</p>
+          <h3 className="text-recvr-text text-xl font-semibold mb-1">Get this in your inbox</h3>
           <p className="text-recvr-muted text-sm mb-5">
-            Get notified when RECVR launches and we&apos;ll hold your slot at partnered venues.
+            We&apos;ll send you your Week 1 programme and check in when it&apos;s time to start Week 2.
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
             <input
@@ -171,7 +172,7 @@ function EmailCapture({ summary, city }: { summary: string; city: string }) {
               disabled={status === 'loading'}
               className="w-full sm:w-auto px-5 py-3 sm:py-2.5 min-h-[44px] rounded-xl bg-recvr-cyan text-recvr-bg text-sm font-semibold hover:bg-recvr-blue transition-colors disabled:opacity-60"
             >
-              {status === 'loading' ? 'Saving...' : 'Notify me'}
+              {status === 'loading' ? 'Saving...' : 'Save my programme →'}
             </button>
           </form>
           {status === 'error' && (
@@ -183,47 +184,117 @@ function EmailCapture({ summary, city }: { summary: string; city: string }) {
   )
 }
 
+function JourneyProgress({ weekNumber }: { weekNumber: number }) {
+  const weeks = [1, 2, 3]
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="flex items-center justify-center gap-3 mb-8"
+    >
+      <span className="text-recvr-muted text-xs font-mono tracking-widest uppercase">Your Recovery Journey</span>
+      <div className="flex items-center gap-1.5">
+        {weeks.map((w) => (
+          <div key={w} className="flex items-center gap-1.5">
+            <div
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
+                w < weekNumber
+                  ? 'bg-recvr-cyan/20 text-recvr-cyan border border-recvr-cyan/40'
+                  : w === weekNumber
+                  ? 'bg-recvr-cyan text-recvr-bg'
+                  : 'bg-recvr-surface border border-recvr-border text-recvr-muted'
+              }`}
+            >
+              {w < weekNumber && <CheckCircle2 className="w-3 h-3" />}
+              Week {w}
+            </div>
+            {w < 3 && (
+              <div className={`w-4 h-px ${w < weekNumber ? 'bg-recvr-cyan/40' : 'bg-recvr-border'}`} />
+            )}
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  )
+}
+
 export default function ProtocolOutput({
   protocol,
   city,
+  formData,
   onReset,
 }: {
   protocol: Protocol
   city: string
+  formData: ProtocolFormData
   onReset: () => void
 }) {
+  const [displayedProtocol, setDisplayedProtocol] = useState<Protocol>(protocol)
+  const [weekNumber, setWeekNumber] = useState(1)
+
+  const handleNewProtocol = (newProtocol: Protocol) => {
+    setDisplayedProtocol(newProtocol)
+    setWeekNumber((w) => w + 1)
+    // Scroll back to top of output
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <div className="max-w-2xl mx-auto">
+      {/* Journey progress */}
+      <JourneyProgress weekNumber={weekNumber} />
+
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-10 text-center"
-      >
-        <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
-          Your 7-day recovery protocol
-        </p>
-        <p className="text-recvr-text text-lg leading-relaxed max-w-xl mx-auto">
-          {protocol.summary}
-        </p>
-      </motion.div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`header-week-${weekNumber}`}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 text-center"
+        >
+          <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
+            Week {weekNumber} recovery programme
+          </p>
+          <p className="text-recvr-text text-lg leading-relaxed max-w-xl mx-auto">
+            {displayedProtocol.summary}
+          </p>
+        </motion.div>
+      </AnimatePresence>
 
       {/* Timeline */}
-      <div>
-        {protocol.protocol.map((item, i) => (
-          <ProtocolCard
-            key={`${item.day}-${item.modality_key}`}
-            item={item}
-            index={i}
-            city={city}
-            isLast={i === protocol.protocol.length - 1}
-          />
-        ))}
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`timeline-week-${weekNumber}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          {displayedProtocol.protocol.map((item, i) => (
+            <ProtocolCard
+              key={`${item.day}-${item.modality_key}-w${weekNumber}`}
+              item={item}
+              index={i}
+              city={city}
+              isLast={i === displayedProtocol.protocol.length - 1}
+            />
+          ))}
+        </motion.div>
+      </AnimatePresence>
 
       {/* Email capture */}
-      <EmailCapture summary={protocol.summary} city={city} />
+      <EmailCapture summary={displayedProtocol.summary} city={city} />
+
+      {/* Weekly check-in — only show for weeks 1 & 2 */}
+      {weekNumber < 3 && (
+        <WeeklyCheckin
+          formData={formData}
+          currentProtocol={displayedProtocol}
+          weekNumber={weekNumber}
+          onNewProtocol={handleNewProtocol}
+        />
+      )}
 
       {/* Reset */}
       <div className="mt-8 text-center">
@@ -231,7 +302,7 @@ export default function ProtocolOutput({
           onClick={onReset}
           className="text-recvr-muted text-sm hover:text-recvr-text transition-colors underline underline-offset-4"
         >
-          Generate a new protocol
+          Start a new programme
         </button>
       </div>
     </div>

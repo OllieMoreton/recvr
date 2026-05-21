@@ -4,10 +4,7 @@ import Anthropic from '@anthropic-ai/sdk'
 // Node.js runtime — @anthropic-ai/sdk requires Node built-ins incompatible with edge
 export const runtime = 'nodejs'
 
-const SYSTEM_PROMPT = `You are RECVR's AI recovery protocol engine — a world-class sports
-performance specialist with deep expertise in exercise physiology and evidence-based
-recovery modalities including cryotherapy, infrared sauna, IV therapy, float tanks,
-red light therapy, contrast therapy, compression therapy, and cold plunge.
+const SYSTEM_PROMPT = `You are RECVR's AI recovery coach — an ongoing performance recovery system that builds personalised weekly programmes and adapts based on how the athlete's body responds over time. You have deep expertise in exercise physiology and evidence-based recovery modalities including cryotherapy, infrared sauna, IV therapy, float tanks, red light therapy, contrast therapy, compression therapy, and cold plunge.
 
 When given a user's training context, generate a precise 7-day recovery protocol.
 
@@ -52,17 +49,26 @@ export async function POST(request: NextRequest) {
     })
 
     const body = await request.json()
-    const { sport, trainingLoad, issues, goal, city } = body
+    const { sport, trainingLoad, issues, goal, city, isReturning, previousProtocolSummary, previousResponse } = body
 
-    const userMessage = `
-    Sport/activity: ${Array.isArray(sport) ? sport.join(', ') : sport}
-    Training load this week: ${trainingLoad}
-    Current issues: ${Array.isArray(issues) && issues.length > 0 ? issues.join(', ') : 'none specified'}
-    Primary goal: ${goal}
-    Location: ${city}
+    const baseContext = `
+Sport/activity: ${Array.isArray(sport) ? sport.join(', ') : sport}
+Training load this week: ${trainingLoad}
+Current issues: ${Array.isArray(issues) && issues.length > 0 ? issues.join(', ') : 'none specified'}
+Primary goal: ${goal}
+Location: ${city}`
 
-    Generate a personalised 7-day recovery protocol for this athlete.
-    `
+    const userMessage = isReturning && previousProtocolSummary
+      ? `${baseContext}
+
+RETURNING ATHLETE — Week 2 Programme:
+Previous week's programme summary: ${previousProtocolSummary}
+How recovery went: ${previousResponse ?? 'not specified'}
+
+Build a Week 2 programme that intelligently progresses from Week 1. Adapt the modality selection and sequencing based on their feedback. If recovery went well, introduce a new complementary modality. If they struggled, consolidate and reduce intensity. Reference the progression explicitly in your summary.`
+      : `${baseContext}
+
+Generate a personalised 7-day recovery programme for this athlete.`
 
     const stream = await anthropic.messages.stream({
       model: 'claude-sonnet-4-5',

@@ -222,7 +222,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
             disabled={!hasSelection() || isLoading}
             className="w-full sm:w-auto bg-recvr-cyan text-recvr-bg font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
-            {isLoading ? 'Building...' : 'Build my recovery protocol →'}
+            {isLoading ? 'Building...' : 'Start my programme →'}
           </button>
         )}
       </div>

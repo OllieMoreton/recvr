@@ -59,7 +59,7 @@ export default function Hero() {
             onClick={scrollToProtocol}
             className="w-full sm:w-auto bg-recvr-cyan text-recvr-bg font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 transition-all duration-200"
           >
-            Build my recovery protocol →
+            Start my programme →
           </button>
           <Link
             href="/venues"

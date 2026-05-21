@@ -7,58 +7,19 @@ import LoadingProtocol from './LoadingProtocol'
 import ProtocolOutput from './ProtocolOutput'
 import type { ProtocolFormData } from '@/lib/types'
 import type { Protocol } from '@/lib/types'
+import { parseProtocolFromStream } from '@/lib/parseProtocol'
 
 type Stage = 'form' | 'loading' | 'output' | 'error'
-
-function parseProtocolFromStream(raw: string): Protocol | null {
-  // anthropic SDK toReadableStream() emits newline-delimited JSON (NDJSON),
-  // one MessageStreamEvent object per line — NOT SSE "data: " format.
-  let accumulated = ''
-
-  const lines = raw.split('\n')
-  for (const line of lines) {
-    const trimmed = line.trim()
-    if (!trimmed) continue
-    try {
-      const event = JSON.parse(trimmed)
-      if (
-        event.type === 'content_block_delta' &&
-        event.delta?.type === 'text_delta'
-      ) {
-        accumulated += event.delta.text
-      }
-    } catch {
-      // non-JSON line — skip
-    }
-  }
-
-  // Trim and parse accumulated JSON
-  const trimmed = accumulated.trim()
-  if (!trimmed) return null
-
-  try {
-    return JSON.parse(trimmed) as Protocol
-  } catch {
-    // Try to extract JSON object from the text (fallback for extra whitespace/BOM)
-    const match = trimmed.match(/\{[\s\S]*\}/)
-    if (match) {
-      try {
-        return JSON.parse(match[0]) as Protocol
-      } catch {
-        return null
-      }
-    }
-    return null
-  }
-}
 
 export default function ProtocolSection() {
   const [stage, setStage] = useState<Stage>('form')
   const [protocol, setProtocol] = useState<Protocol | null>(null)
+  const [formData, setFormData] = useState<ProtocolFormData | null>(null)
   const [city, setCity] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
 
   const handleFormSubmit = async (data: ProtocolFormData) => {
+    setFormData(data)
     setCity(data.city)
     setStage('loading')
 
@@ -131,7 +92,7 @@ export default function ProtocolSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            <ProtocolOutput protocol={protocol} city={city} onReset={handleReset} />
+            <ProtocolOutput protocol={protocol} city={city} formData={formData!} onReset={handleReset} />
           </motion.div>
         )}
 
