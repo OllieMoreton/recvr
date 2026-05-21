@@ -33,7 +33,7 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-recvr-bg to-recvr-surface" />
         )}
-        {venue.is_verified && (
+        {venue.is_verified && !venue.is_featured && (
           <div className="absolute top-3 right-3 bg-recvr-cyan/90 text-recvr-bg text-xs font-semibold px-2 py-0.5 rounded-full">
             Verified
           </div>

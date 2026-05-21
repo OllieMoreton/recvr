@@ -4,8 +4,6 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 import { getModalityConfig } from '@/lib/modality-config'
 
-const CITIES = ['London', 'Manchester', 'Bristol', 'Edinburgh']
-
 const MODALITY_FILTERS = [
   'cryotherapy',
   'infrared_sauna',
@@ -15,7 +13,11 @@ const MODALITY_FILTERS = [
   'cold_plunge',
 ]
 
-export default function VenueFilters() {
+interface VenueFiltersProps {
+  cities: string[]
+}
+
+export default function VenueFilters({ cities }: VenueFiltersProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -55,7 +57,7 @@ export default function VenueFilters() {
         >
           All cities
         </button>
-        {CITIES.map((city) => (
+        {cities.map((city) => (
           <button
             key={city}
             onClick={() => setFilter('city', activeCity === city ? '' : city)}

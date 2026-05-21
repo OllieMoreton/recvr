@@ -37,13 +37,23 @@ async function fetchVenues(city?: string, modality?: string): Promise<Venue[]> {
   return (data as Venue[]) ?? []
 }
 
+async function fetchCities(): Promise<string[]> {
+  const supabase = createServerClient()
+  const { data } = await supabase.from('venues').select('city')
+  if (!data) return []
+  return Array.from(new Set(data.map((r: { city: string }) => r.city))).sort() as string[]
+}
+
 interface PageProps {
   searchParams: Promise<{ city?: string; modality?: string }>
 }
 
 export default async function VenuesPage({ searchParams }: PageProps) {
   const { city, modality } = await searchParams
-  const venues = await fetchVenues(city, modality)
+  const [venues, cities] = await Promise.all([
+    fetchVenues(city, modality),
+    fetchCities(),
+  ])
 
   const hasFilters = !!city || !!modality
 
@@ -70,7 +80,7 @@ export default async function VenuesPage({ searchParams }: PageProps) {
         {/* Filters — client component, wrapped in Suspense for useSearchParams */}
         <div className="mb-8">
           <Suspense fallback={<div className="h-16 animate-pulse bg-recvr-surface rounded-xl" />}>
-            <VenueFilters />
+            <VenueFilters cities={cities} />
           </Suspense>
         </div>
 
