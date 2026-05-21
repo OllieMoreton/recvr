@@ -152,7 +152,7 @@ function VenueScreen() {
       {/* Sauna image */}
       <div className="h-24 w-full shrink-0 overflow-hidden relative">
         <img
-          src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&q=75&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1770625468096-ff53cd24ee38?w=400&q=75&auto=format&fit=crop"
           alt="Sauna interior"
           className="w-full h-full object-cover"
           style={{ filter: 'brightness(0.75) saturate(0.9)' }}
