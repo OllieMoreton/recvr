@@ -44,6 +44,7 @@ export interface ProtocolItem {
   duration_minutes: number
   price_from: number
   reason: string
+  not_instead_of: string
   venue_modality_match: Modality
   matched_venue?: Venue
 }

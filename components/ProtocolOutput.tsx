@@ -107,6 +107,17 @@ function ProtocolCard({ item, index, city, isLast }: { item: ProtocolItem; index
 
           <p className="text-recvr-muted text-sm leading-relaxed">{item.reason}</p>
 
+          {item.not_instead_of && (
+            <div className="mt-3 pt-3 border-t border-[#1E2433]">
+              <div className="flex items-start gap-2">
+                <span className="text-xs font-mono text-[#94A3B8] uppercase tracking-widest shrink-0 mt-0.5">Not instead</span>
+                <p className="text-xs text-[#94A3B8] leading-relaxed italic">
+                  {item.not_instead_of}
+                </p>
+              </div>
+            </div>
+          )}
+
           {venue && <VenueCard venue={venue} />}
         </div>
       </div>
