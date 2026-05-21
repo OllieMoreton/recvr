@@ -2,29 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  Snowflake, Flame, Droplets, Waves, Sun, Thermometer,
-  ArrowLeftRight, Wind, CircleDot, HandMetal,
-  ExternalLink, Clock, MapPin, CheckCircle2, Share2,
-} from 'lucide-react'
+import { CheckCircle2, Share2 } from 'lucide-react'
+import Link from 'next/link'
 import type { Protocol, ProtocolItem, Venue, Modality, ProtocolFormData } from '@/lib/types'
-import { MODALITIES } from '@/lib/modalities'
-import { getModalityConfig } from '@/lib/modality-config'
 import { supabase } from '@/lib/supabase'
+import { ModalityPill } from './ModalityPill'
 import WeeklyCheckin from './WeeklyCheckin'
 import RecoveryScore from './RecoveryScore'
 import ShareModal from './ShareModal'
 
-const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
-  Snowflake, Flame, Droplets, Waves, Sun, Thermometer,
-  ArrowLeftRight, Wind, CircleDot, HandMetal,
-}
-
-function ModalityIcon({ modalityKey, className }: { modalityKey: Modality; className?: string }) {
-  const config = MODALITIES[modalityKey]
-  const Icon = ICON_MAP[config?.icon ?? 'CircleDot'] ?? CircleDot
-  return <Icon className={className} />
-}
+// ─── Venue fetching ───────────────────────────────────────────────────────────
 
 async function fetchVenueMatch(modalityKey: Modality, city: string): Promise<Venue | null> {
   const { data } = await supabase
@@ -38,189 +25,25 @@ async function fetchVenueMatch(modalityKey: Modality, city: string): Promise<Ven
   return (data as Venue) ?? null
 }
 
-function VenueCard({ venue }: { venue: Venue }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="mt-3 flex items-center justify-between bg-recvr-bg border border-recvr-border rounded-xl px-4 py-3"
-    >
-      <div className="flex items-center gap-3 min-w-0">
-        <MapPin className="w-3.5 h-3.5 text-recvr-cyan shrink-0" />
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <p className="text-recvr-text text-sm font-medium truncate">{venue.name}</p>
-            {venue.is_featured && (
-              <span className="inline-flex items-center gap-1 text-xs font-mono text-[#C4813A] uppercase tracking-widest shrink-0">
-                <div className="w-1 h-1 rounded-full bg-[#C4813A]" />
-                Founding Partner
-              </span>
-            )}
-          </div>
-          <p className="text-recvr-muted text-xs">{venue.city} · from £{(venue.price_from / 100).toFixed(0)}</p>
-          {venue.bundles && venue.bundles.length > 0 && (
-            <div className="mt-1">
-              <span className="text-xs font-mono" style={{ color: '#C4813A' }}>
-                Bundle available — save up to £{Math.max(...venue.bundles.map((b) => b.saving))}{' '}→{' '}
-                <a href={`/venues/${venue.slug}`} className="underline underline-offset-2">
-                  View venue
-                </a>
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
-      <a
-        href={`/venues/${venue.slug}`}
-        className="shrink-0 ml-3 text-xs text-recvr-cyan hover:text-recvr-blue transition-colors flex items-center gap-1 min-h-[44px] py-2"
-      >
-        View venue <ExternalLink className="w-3 h-3" />
-      </a>
-    </motion.div>
-  )
+// ─── Animation variants ───────────────────────────────────────────────────────
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] as const },
+  },
 }
 
-function ProtocolCard({ item, index, city, isLast }: { item: ProtocolItem; index: number; city: string; isLast: boolean }) {
-  const [venue, setVenue] = useState<Venue | null>(null)
-  const config = MODALITIES[item.modality_key]
-  const colorConfig = getModalityConfig(item.modality_key)
-
-  useEffect(() => {
-    fetchVenueMatch(item.venue_modality_match, city).then(setVenue)
-  }, [item.venue_modality_match, city])
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -16 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="relative flex gap-5"
-    >
-      {/* Timeline spine */}
-      <div className="flex flex-col items-center">
-        <div
-          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-          style={{ backgroundColor: colorConfig.bg }}
-        >
-          <div style={{ color: colorConfig.color }}>
-            <ModalityIcon modalityKey={item.modality_key} className="w-5 h-5" />
-          </div>
-        </div>
-        {/* connector line — hidden for last item */}
-        {!isLast && <div className="w-px flex-1 bg-recvr-border mt-2" />}
-      </div>
-
-      {/* Card */}
-      <div className="flex-1 pb-8">
-        <div className="bg-recvr-surface border border-recvr-border rounded-2xl p-5">
-          <div className="flex items-start justify-between gap-3 mb-3">
-            <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-copper mb-1">
-                {item.day_label}
-              </p>
-              <h3 className="font-sohne font-semibold text-recvr-text text-lg leading-tight">
-                {item.modality}
-              </h3>
-            </div>
-            <div className="text-right shrink-0">
-              <div className="flex items-center gap-1 text-recvr-muted text-xs">
-                <Clock className="w-3 h-3" />
-                <span>{item.duration_minutes} min</span>
-              </div>
-              <p className="font-mono text-[13px] text-recvr-copper mt-0.5">From £{item.price_from}</p>
-            </div>
-          </div>
-
-          <p className="text-recvr-muted text-sm leading-relaxed">{item.reason}</p>
-
-          {item.not_instead_of && (
-            <div className="mt-3 pt-3 border-t border-[#1F1F1F]">
-              <div className="flex items-start gap-2">
-                <span className="text-xs font-mono text-[#8A8480] uppercase tracking-widest shrink-0 mt-0.5">Not instead</span>
-                <p className="text-xs text-[#8A8480] leading-relaxed italic">
-                  {item.not_instead_of}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {venue && <VenueCard venue={venue} />}
-        </div>
-      </div>
-    </motion.div>
-  )
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 },
+  },
 }
 
-function EmailCapture({ summary, city }: { summary: string; city: string }) {
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
-  const [errorMsg, setErrorMsg] = useState('')
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email.includes('@')) return
-    setStatus('loading')
-    try {
-      const res = await fetch('/api/capture-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, protocol_summary: summary, city }),
-      })
-      if (!res.ok) throw new Error('Failed')
-      setStatus('done')
-    } catch {
-      setErrorMsg('Something went wrong. Try again.')
-      setStatus('error')
-    }
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.3 }}
-      id="email-capture"
-      className="mt-6 bg-gradient-to-br from-recvr-surface to-recvr-bg border border-recvr-copper/30 rounded-2xl p-6 text-center"
-    >
-      {status === 'done' ? (
-        <div className="flex flex-col items-center gap-3 py-2">
-          <CheckCircle2 className="w-8 h-8 text-recvr-cyan" />
-          <p className="text-recvr-text font-medium">Programme saved.</p>
-          <p className="text-recvr-muted text-sm">We&apos;ll send it to your inbox and remind you when Week 2 is ready.</p>
-        </div>
-      ) : (
-        <>
-          <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-2">Save your programme</p>
-          <h3 className="text-recvr-text text-xl font-semibold mb-1">Get this in your inbox</h3>
-          <p className="text-recvr-muted text-sm mb-5">
-            We&apos;ll send you your Week 1 programme and check in when it&apos;s time to start Week 2.
-          </p>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
-              required
-              className="flex-1 bg-recvr-bg border border-recvr-border rounded-xl px-4 py-2.5 text-sm text-recvr-text placeholder:text-recvr-muted/50 focus:outline-none focus:border-recvr-cyan transition-colors"
-            />
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              className="w-full sm:w-auto px-5 py-3 sm:py-2.5 min-h-[44px] rounded-xl bg-recvr-cyan text-recvr-bg text-sm font-semibold hover:bg-recvr-blue transition-colors disabled:opacity-60"
-            >
-              {status === 'loading' ? 'Saving...' : 'Save my programme →'}
-            </button>
-          </form>
-          {status === 'error' && (
-            <p className="text-red-400 text-xs mt-2">{errorMsg}</p>
-          )}
-        </>
-      )}
-    </motion.div>
-  )
-}
+// ─── Journey progress ─────────────────────────────────────────────────────────
 
 function JourneyProgress({ weekNumber }: { weekNumber: number }) {
   const weeks = [1, 2, 3]
@@ -238,9 +61,9 @@ function JourneyProgress({ weekNumber }: { weekNumber: number }) {
             <div
               className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
                 w < weekNumber
-                  ? 'bg-recvr-copper/20 text-recvr-cyan border border-recvr-cyan/40'
+                  ? 'bg-recvr-copper/20 text-recvr-copper border border-recvr-copper/40'
                   : w === weekNumber
-                  ? 'bg-recvr-cyan text-recvr-bg'
+                  ? 'bg-recvr-copper text-recvr-bg'
                   : 'bg-recvr-surface border border-recvr-border text-recvr-muted'
               }`}
             >
@@ -248,7 +71,7 @@ function JourneyProgress({ weekNumber }: { weekNumber: number }) {
               Week {w}
             </div>
             {w < 3 && (
-              <div className={`w-4 h-px ${w < weekNumber ? 'bg-recvr-cyan/40' : 'bg-recvr-border'}`} />
+              <div className={`w-4 h-px ${w < weekNumber ? 'bg-recvr-copper/40' : 'bg-recvr-border'}`} />
             )}
           </div>
         ))}
@@ -256,6 +79,156 @@ function JourneyProgress({ weekNumber }: { weekNumber: number }) {
     </motion.div>
   )
 }
+
+// ─── Protocol item — document style ──────────────────────────────────────────
+
+function ProtocolItemRow({ item, city }: { item: ProtocolItem; city: string }) {
+  const [venue, setVenue] = useState<Venue | null>(null)
+
+  useEffect(() => {
+    fetchVenueMatch(item.venue_modality_match, city).then(setVenue)
+  }, [item.venue_modality_match, city])
+
+  return (
+    <div
+      className="
+        sm:bg-transparent sm:border-0 sm:rounded-none sm:p-0
+        bg-recvr-surface border border-recvr-border rounded-lg p-4
+      "
+    >
+      {/* Day label */}
+      <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-copper mb-3">
+        Day {item.day}
+      </p>
+
+      {/* Modality + duration + price — single row */}
+      <div className="flex items-baseline gap-4 flex-wrap mb-2">
+        <span className="text-[18px] font-medium text-recvr-text leading-tight">
+          {item.modality}
+        </span>
+        <span className="font-mono text-[13px] text-recvr-text-secondary">
+          {item.duration_minutes} min
+        </span>
+        <span className="font-mono text-[13px] text-recvr-copper">
+          From £{item.price_from}
+        </span>
+      </div>
+
+      {/* Venue line */}
+      {venue ? (
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-[13px] text-recvr-text-secondary">
+            {venue.name}
+            <span className="text-recvr-text-muted mx-1.5">·</span>
+            {venue.city}
+          </span>
+          <Link
+            href={`/venues/${venue.slug}`}
+            className="text-[13px] text-recvr-copper hover:text-recvr-copper-light transition-colors duration-150"
+          >
+            View venue →
+          </Link>
+        </div>
+      ) : (
+        <div className="mb-4">
+          <Link
+            href={`/venues?modality=${item.venue_modality_match}&city=${encodeURIComponent(city)}`}
+            className="text-[13px] text-recvr-text-muted hover:text-recvr-text transition-colors duration-150"
+          >
+            Search venues near you →
+          </Link>
+        </div>
+      )}
+
+      {/* Modality pill */}
+      <div className="mb-4">
+        <ModalityPill modality={item.modality_key} size="sm" />
+      </div>
+
+      {/* Physiological reason */}
+      <p className="text-[15px] text-recvr-text-secondary leading-relaxed max-w-[600px]">
+        {item.reason}
+      </p>
+
+      {/* Not-instead-of — subtle footnote */}
+      {item.not_instead_of && (
+        <p className="mt-3 text-[12px] text-recvr-text-muted italic leading-relaxed max-w-[560px]">
+          Not instead of: {item.not_instead_of}
+        </p>
+      )}
+    </div>
+  )
+}
+
+// ─── Email capture ────────────────────────────────────────────────────────────
+
+function EmailCapture({ summary, city }: { summary: string; city: string }) {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!email.includes('@')) return
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/capture-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, protocol_summary: summary, city, source: 'protocol_output' }),
+      })
+      if (!res.ok) throw new Error('Failed')
+      setStatus('done')
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  return (
+    <div>
+      <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-text-secondary mb-4">
+        Get this protocol by email
+      </p>
+      {status === 'done' ? (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-[14px] text-recvr-success"
+        >
+          Sent. Check your inbox.
+        </motion.p>
+      ) : (
+        <>
+          <form onSubmit={handleSubmit} className="flex gap-3 max-w-[420px]">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Your email"
+              required
+              className="flex-1 bg-recvr-surface border border-recvr-border rounded-md px-3 py-2
+                         text-[14px] text-recvr-text placeholder:text-recvr-text-muted
+                         focus:outline-none focus:border-recvr-border-active transition-colors"
+            />
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="px-4 py-2 bg-recvr-copper hover:bg-recvr-copper-light text-white
+                         rounded-md text-[13px] font-medium transition-colors duration-150 whitespace-nowrap
+                         disabled:opacity-60"
+            >
+              {status === 'loading' ? 'Sending…' : 'Send it →'}
+            </button>
+          </form>
+          {status === 'error' && (
+            <p className="text-red-400 text-[12px] mt-2">Something went wrong. Try again.</p>
+          )}
+        </>
+      )}
+    </div>
+  )
+}
+
+// ─── Main export ──────────────────────────────────────────────────────────────
 
 export default function ProtocolOutput({
   protocol,
@@ -284,7 +257,8 @@ export default function ProtocolOutput({
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="w-full max-w-[720px] mx-auto">
+
       {/* Recovery Readiness Score */}
       <RecoveryScore
         input={{
@@ -302,13 +276,13 @@ export default function ProtocolOutput({
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-between px-4 py-3 rounded-xl border border-[#C4813A]/20 bg-[#C4813A]/5 mb-6"
+          className="flex items-center justify-between px-4 py-3 rounded-xl border border-recvr-copper/20 bg-recvr-copper/5 mb-6"
         >
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-[#C4813A] animate-pulse" />
-            <span className="text-sm text-[#F5F1EB] font-medium">Race countdown active</span>
+            <div className="w-2 h-2 rounded-full bg-recvr-copper animate-pulse" />
+            <span className="text-sm text-recvr-text font-medium">Race countdown active</span>
           </div>
-          <span className="text-sm font-mono text-[#C4813A]">
+          <span className="text-sm font-mono text-recvr-copper">
             {Math.ceil(
               (new Date(eventDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 7)
             )}{' '}
@@ -323,48 +297,53 @@ export default function ProtocolOutput({
           key={`header-week-${weekNumber}`}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-10 text-center"
+          transition={{ duration: 0.4 }}
+          className="mb-8"
         >
-          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-3">
-            Week {weekNumber} recovery programme
+          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-4">
+            Week {weekNumber} — 7-Day Recovery Protocol
           </p>
-          <p className="font-tiempos font-normal italic text-[22px] md:text-[26px] leading-snug text-recvr-text max-w-[640px] mx-auto mb-8">
+          <p className="font-tiempos font-light italic text-[22px] md:text-[24px] leading-snug text-recvr-text">
             {displayedProtocol.summary}
           </p>
         </motion.div>
       </AnimatePresence>
 
-      {/* Timeline */}
+      {/* Top divider */}
+      <div className="border-t border-recvr-border mb-8" />
+
+      {/* Protocol items — document style */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={`timeline-week-${weekNumber}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
+          key={`items-week-${weekNumber}`}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          {displayedProtocol.protocol.map((item, i) => (
-            <ProtocolCard
-              key={`${item.day}-${item.modality_key}-w${weekNumber}`}
-              item={item}
-              index={i}
-              city={city}
-              isLast={i === displayedProtocol.protocol.length - 1}
-            />
+          {displayedProtocol.protocol.map((item, index) => (
+            <motion.div key={`${item.day}-${item.modality_key}-w${weekNumber}`} variants={itemVariants}>
+              <ProtocolItemRow item={item} city={city} />
+              {index < displayedProtocol.protocol.length - 1 && (
+                <div className="border-t border-recvr-border my-8" />
+              )}
+            </motion.div>
           ))}
         </motion.div>
       </AnimatePresence>
+
+      {/* Bottom divider */}
+      <div className="border-t border-recvr-border mt-8 mb-10" />
 
       {/* Share button */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-2 mb-6 flex justify-center"
+        className="mb-8"
       >
         <button
           onClick={() => setShareOpen(true)}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-recvr-border text-recvr-muted hover:border-recvr-cyan/50 hover:text-recvr-text transition-colors text-sm"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-recvr-border text-recvr-muted hover:border-recvr-copper/50 hover:text-recvr-text transition-colors text-sm"
         >
           <Share2 className="w-4 h-4" />
           Share this programme
@@ -372,7 +351,9 @@ export default function ProtocolOutput({
       </motion.div>
 
       {/* Email capture */}
-      <EmailCapture summary={displayedProtocol.summary} city={city} />
+      <div className="mb-10">
+        <EmailCapture summary={displayedProtocol.summary} city={city} />
+      </div>
 
       {/* Weekly check-in — only show for weeks 1 & 2 */}
       {weekNumber < 3 && (
@@ -386,12 +367,12 @@ export default function ProtocolOutput({
       )}
 
       {/* Reset */}
-      <div className="mt-8 text-center">
+      <div className="mt-8 mb-4">
         <button
           onClick={onReset}
-          className="text-recvr-muted text-sm hover:text-recvr-text transition-colors underline underline-offset-4"
+          className="text-[13px] text-recvr-text-secondary hover:text-recvr-text transition-colors duration-150"
         >
-          Start a new programme
+          ← Generate a new protocol
         </button>
       </div>
 
