@@ -191,7 +191,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
             <div
               key={s}
               className="h-0.5 flex-1 rounded-full transition-colors duration-300"
-              style={{ backgroundColor: s <= currentStep ? '#06B6D4' : '#1E2433' }}
+              style={{ backgroundColor: s <= currentStep ? '#C4813A' : '#1F1F1F' }}
             />
           ))}
         </div>
@@ -224,8 +224,8 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
                         px-4 py-2 rounded-full text-sm border transition-all duration-150 cursor-pointer
                         ${
                           selected
-                            ? 'bg-recvr-cyan/10 border-recvr-cyan text-recvr-cyan'
-                            : 'border-recvr-border text-recvr-muted hover:border-cyan-500/50 hover:text-recvr-text'
+                            ? 'bg-recvr-copper/10 border-recvr-cyan text-recvr-cyan'
+                            : 'border-recvr-border text-recvr-muted hover:border-recvr-copper/50 hover:text-recvr-text'
                         }
                       `}
                     >
@@ -263,8 +263,8 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
                   onClick={selectYes}
                   className={`flex-1 text-left p-4 rounded-2xl border transition-all duration-150 cursor-pointer ${
                     formData.hasEvent && hasEventSelected
-                      ? 'bg-recvr-cyan/10 border-recvr-cyan'
-                      : 'border-recvr-border hover:border-cyan-500/50'
+                      ? 'bg-recvr-copper/10 border-recvr-cyan'
+                      : 'border-recvr-border hover:border-recvr-copper/50'
                   }`}
                 >
                   <p className={`font-semibold text-sm mb-0.5 ${formData.hasEvent && hasEventSelected ? 'text-recvr-cyan' : 'text-recvr-text'}`}>
@@ -280,8 +280,8 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
                   onClick={selectNo}
                   className={`flex-1 text-left p-4 rounded-2xl border transition-all duration-150 cursor-pointer ${
                     !formData.hasEvent && hasEventSelected
-                      ? 'bg-recvr-cyan/10 border-recvr-cyan'
-                      : 'border-recvr-border hover:border-cyan-500/50'
+                      ? 'bg-recvr-copper/10 border-recvr-cyan'
+                      : 'border-recvr-border hover:border-recvr-copper/50'
                   }`}
                 >
                   <p className={`font-semibold text-sm mb-0.5 ${!formData.hasEvent && hasEventSelected ? 'text-recvr-cyan' : 'text-recvr-text'}`}>
@@ -341,7 +341,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
           <button
             onClick={handleNext}
             disabled={!hasSelection()}
-            className="bg-recvr-surface border border-recvr-border text-recvr-text text-sm px-6 py-2.5 rounded-full hover:border-cyan-500/50 hover:text-recvr-cyan transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="bg-recvr-surface border border-recvr-border text-recvr-text text-sm px-6 py-2.5 rounded-full hover:border-recvr-copper/50 hover:text-recvr-cyan transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             Next →
           </button>
@@ -349,7 +349,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
           <button
             onClick={handleSubmit}
             disabled={!hasSelection() || isLoading}
-            className="w-full sm:w-auto bg-recvr-cyan text-recvr-bg font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+            className="w-full sm:w-auto bg-recvr-cyan text-recvr-bg font-semibold px-8 py-4 rounded-full hover:bg-recvr-copper-light transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
             {submitLabel()}
           </button>

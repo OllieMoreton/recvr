@@ -67,7 +67,7 @@ export default function EmailCapture() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="bg-recvr-cyan text-recvr-bg font-semibold rounded-full px-6 py-3 text-sm hover:bg-cyan-400 transition-colors disabled:opacity-60 shrink-0"
+                  className="bg-recvr-cyan text-recvr-bg font-semibold rounded-full px-6 py-3 text-sm hover:bg-recvr-copper-light transition-colors disabled:opacity-60 shrink-0"
                 >
                   {status === 'loading' ? 'Joining...' : 'Join the waitlist →'}
                 </button>

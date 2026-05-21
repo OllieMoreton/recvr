@@ -40,12 +40,12 @@ export default function LoadingProtocol({ city }: { city?: string }) {
       {/* Animated orb */}
       <div className="relative w-24 h-24 mx-auto mb-10">
         <motion.div
-          className="absolute inset-0 rounded-full bg-recvr-cyan/20"
+          className="absolute inset-0 rounded-full bg-recvr-copper/20"
           animate={{ scale: [1, 1.4, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute inset-3 rounded-full bg-recvr-cyan/30"
+          className="absolute inset-3 rounded-full bg-recvr-copper/30"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
         />

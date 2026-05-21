@@ -52,8 +52,8 @@ function VenueCard({ venue }: { venue: Venue }) {
           <div className="flex items-center gap-2 flex-wrap">
             <p className="text-recvr-text text-sm font-medium truncate">{venue.name}</p>
             {venue.is_featured && (
-              <span className="inline-flex items-center gap-1 text-xs font-mono text-[#06B6D4] uppercase tracking-widest shrink-0">
-                <div className="w-1 h-1 rounded-full bg-[#06B6D4]" />
+              <span className="inline-flex items-center gap-1 text-xs font-mono text-[#C4813A] uppercase tracking-widest shrink-0">
+                <div className="w-1 h-1 rounded-full bg-[#C4813A]" />
                 Founding Partner
               </span>
             )}
@@ -61,7 +61,7 @@ function VenueCard({ venue }: { venue: Venue }) {
           <p className="text-recvr-muted text-xs">{venue.city} · from £{(venue.price_from / 100).toFixed(0)}</p>
           {venue.bundles && venue.bundles.length > 0 && (
             <div className="mt-1">
-              <span className="text-xs font-mono" style={{ color: '#06B6D4' }}>
+              <span className="text-xs font-mono" style={{ color: '#C4813A' }}>
                 Bundle available — save up to £{Math.max(...venue.bundles.map((b) => b.saving))}{' '}→{' '}
                 <a href={`/venues/${venue.slug}`} className="underline underline-offset-2">
                   View venue
@@ -135,10 +135,10 @@ function ProtocolCard({ item, index, city, isLast }: { item: ProtocolItem; index
           <p className="text-recvr-muted text-sm leading-relaxed">{item.reason}</p>
 
           {item.not_instead_of && (
-            <div className="mt-3 pt-3 border-t border-[#1E2433]">
+            <div className="mt-3 pt-3 border-t border-[#1F1F1F]">
               <div className="flex items-start gap-2">
-                <span className="text-xs font-mono text-[#94A3B8] uppercase tracking-widest shrink-0 mt-0.5">Not instead</span>
-                <p className="text-xs text-[#94A3B8] leading-relaxed italic">
+                <span className="text-xs font-mono text-[#8A8480] uppercase tracking-widest shrink-0 mt-0.5">Not instead</span>
+                <p className="text-xs text-[#8A8480] leading-relaxed italic">
                   {item.not_instead_of}
                 </p>
               </div>
@@ -181,7 +181,7 @@ function EmailCapture({ summary, city }: { summary: string; city: string }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
       id="email-capture"
-      className="mt-6 bg-gradient-to-br from-recvr-surface to-recvr-bg border border-recvr-cyan/30 rounded-2xl p-6 text-center"
+      className="mt-6 bg-gradient-to-br from-recvr-surface to-recvr-bg border border-recvr-copper/30 rounded-2xl p-6 text-center"
     >
       {status === 'done' ? (
         <div className="flex flex-col items-center gap-3 py-2">
@@ -238,7 +238,7 @@ function JourneyProgress({ weekNumber }: { weekNumber: number }) {
             <div
               className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
                 w < weekNumber
-                  ? 'bg-recvr-cyan/20 text-recvr-cyan border border-recvr-cyan/40'
+                  ? 'bg-recvr-copper/20 text-recvr-cyan border border-recvr-cyan/40'
                   : w === weekNumber
                   ? 'bg-recvr-cyan text-recvr-bg'
                   : 'bg-recvr-surface border border-recvr-border text-recvr-muted'
@@ -302,13 +302,13 @@ export default function ProtocolOutput({
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-between px-4 py-3 rounded-xl border border-[#06B6D4]/20 bg-[#06B6D4]/5 mb-6"
+          className="flex items-center justify-between px-4 py-3 rounded-xl border border-[#C4813A]/20 bg-[#C4813A]/5 mb-6"
         >
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-[#06B6D4] animate-pulse" />
-            <span className="text-sm text-[#F8FAFC] font-medium">Race countdown active</span>
+            <div className="w-2 h-2 rounded-full bg-[#C4813A] animate-pulse" />
+            <span className="text-sm text-[#F5F1EB] font-medium">Race countdown active</span>
           </div>
-          <span className="text-sm font-mono text-[#06B6D4]">
+          <span className="text-sm font-mono text-[#C4813A]">
             {Math.ceil(
               (new Date(eventDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 7)
             )}{' '}

@@ -49,8 +49,8 @@ export function calculateRecoveryScore(input: ScoreInput): ScoreResult {
 
   if (score >= 75) {
     label = 'Optimised'
-    color = '#06B6D4'
-    ringColor = '#06B6D4'
+    color = '#C4813A'
+    ringColor = '#C4813A'
   } else if (score >= 55) {
     label = 'Active Recovery'
     color = '#F59E0B'

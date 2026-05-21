@@ -132,28 +132,28 @@ export default async function VenueProfilePage({
 
             {/* Single consolidated badge */}
             {venue.is_featured ? (
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#06B6D4]/30 bg-[#06B6D4]/10 mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#C4813A]/30 bg-[#C4813A]/10 mb-4">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5L6 1Z"
-                        fill="#06B6D4"/>
+                        fill="#C4813A"/>
                 </svg>
-                <span className="text-xs font-mono text-[#06B6D4] uppercase tracking-widest">
+                <span className="text-xs font-mono text-[#C4813A] uppercase tracking-widest">
                   Founding Partner
                 </span>
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <circle cx="6" cy="6" r="5" stroke="#06B6D4" strokeWidth="1"/>
-                  <path d="M3.5 6L5 7.5L8.5 4" stroke="#06B6D4" strokeWidth="1.2"
+                  <circle cx="6" cy="6" r="5" stroke="#C4813A" strokeWidth="1"/>
+                  <path d="M3.5 6L5 7.5L8.5 4" stroke="#C4813A" strokeWidth="1.2"
                         strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             ) : (
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-[#1E2433] mb-4">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-[#1F1F1F] mb-4">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                  <circle cx="5" cy="5" r="4" stroke="#94A3B8" strokeWidth="1"/>
-                  <path d="M2.5 5L4 6.5L7.5 3" stroke="#94A3B8" strokeWidth="1"
+                  <circle cx="5" cy="5" r="4" stroke="#8A8480" strokeWidth="1"/>
+                  <path d="M2.5 5L4 6.5L7.5 3" stroke="#8A8480" strokeWidth="1"
                         strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span className="text-xs font-mono text-[#94A3B8] uppercase tracking-widest">
+                <span className="text-xs font-mono text-[#8A8480] uppercase tracking-widest">
                   Verified
                 </span>
               </div>
@@ -256,9 +256,9 @@ export default async function VenueProfilePage({
 
               {/* Preferential access callout for founding partners */}
               {venue.is_featured && (
-                <div className="rounded-xl border border-[#06B6D4]/20 bg-[#06B6D4]/5 p-4">
-                  <p className="text-sm text-[#06B6D4] font-medium mb-1">RECVR member access</p>
-                  <p className="text-xs text-[#94A3B8] leading-relaxed">
+                <div className="rounded-xl border border-[#C4813A]/20 bg-[#C4813A]/5 p-4">
+                  <p className="text-sm text-[#C4813A] font-medium mb-1">RECVR member access</p>
+                  <p className="text-xs text-[#8A8480] leading-relaxed">
                     As a founding partner venue, {venue.name} prioritises RECVR-referred bookings.
                     Mention RECVR when booking for preferred availability.
                   </p>
@@ -323,11 +323,11 @@ export default async function VenueProfilePage({
         {/* ── MAP — dark-themed iframe ──────────────────────────────────── */}
         {venue.postcode && (
           <div className="mt-8">
-            <h2 className="text-lg font-bold text-[#F8FAFC] mb-4"
+            <h2 className="text-lg font-bold text-[#F5F1EB] mb-4"
                 style={{ letterSpacing: '-0.02em' }}>
               Location
             </h2>
-            <div className="rounded-xl overflow-hidden border border-[#1E2433]" style={{ height: '280px' }}>
+            <div className="rounded-xl overflow-hidden border border-[#1F1F1F]" style={{ height: '280px' }}>
               <iframe
                 width="100%"
                 height="100%"

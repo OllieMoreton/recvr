@@ -172,8 +172,8 @@ export default function WeeklyCheckin({
                     onClick={() => setRating(r.value)}
                     className={`text-left p-3 rounded-xl border text-sm transition-all ${
                       rating === r.value
-                        ? 'border-recvr-cyan bg-recvr-cyan/10 text-recvr-text'
-                        : 'border-recvr-border text-recvr-muted hover:border-cyan-500/50 hover:text-recvr-text'
+                        ? 'border-recvr-cyan bg-recvr-copper/10 text-recvr-text'
+                        : 'border-recvr-border text-recvr-muted hover:border-recvr-copper/50 hover:text-recvr-text'
                     }`}
                   >
                     <span className="block font-medium mb-0.5">{r.label}</span>
@@ -193,8 +193,8 @@ export default function WeeklyCheckin({
                     onClick={() => toggleIssue(issue)}
                     className={`px-3 py-1.5 rounded-full text-xs border transition-all ${
                       newIssues.includes(issue)
-                        ? 'border-recvr-cyan bg-recvr-cyan/10 text-recvr-cyan'
-                        : 'border-recvr-border text-recvr-muted hover:border-cyan-500/50 hover:text-recvr-text'
+                        ? 'border-recvr-cyan bg-recvr-copper/10 text-recvr-cyan'
+                        : 'border-recvr-border text-recvr-muted hover:border-recvr-copper/50 hover:text-recvr-text'
                     }`}
                   >
                     {issue}
@@ -207,7 +207,7 @@ export default function WeeklyCheckin({
               <button
                 onClick={handleSubmit}
                 disabled={!rating || isLoading}
-                className="w-full bg-recvr-cyan text-recvr-bg font-semibold py-3 rounded-xl hover:bg-cyan-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                className="w-full bg-recvr-cyan text-recvr-bg font-semibold py-3 rounded-xl hover:bg-recvr-copper-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 {isLoading
                   ? `Building Week ${weekNumber + 1} programme...`
@@ -233,11 +233,11 @@ export default function WeeklyCheckin({
 
             {/* Score comparison banner */}
             {scoreDelta !== 0 && (
-              <div className="flex items-center justify-between p-4 rounded-xl border border-[#1E2433] bg-[#0F1117] mb-4">
-                <span className="text-sm text-[#94A3B8]">Recovery score</span>
+              <div className="flex items-center justify-between p-4 rounded-xl border border-[#1F1F1F] bg-[#111111] mb-4">
+                <span className="text-sm text-[#8A8480]">Recovery score</span>
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[#94A3B8]">{previousScore.score}</span>
-                  <span className="text-[#94A3B8]">→</span>
+                  <span className="font-mono text-[#8A8480]">{previousScore.score}</span>
+                  <span className="text-[#8A8480]">→</span>
                   <span
                     className="font-mono font-semibold"
                     style={{ color: scoreImproved ? '#10B981' : '#F97316' }}
@@ -257,7 +257,7 @@ export default function WeeklyCheckin({
 
             <button
               onClick={handleProceed}
-              className="w-full bg-recvr-cyan text-recvr-bg font-semibold py-3 rounded-xl hover:bg-cyan-400 transition-colors text-sm"
+              className="w-full bg-recvr-cyan text-recvr-bg font-semibold py-3 rounded-xl hover:bg-recvr-copper-light transition-colors text-sm"
             >
               View Week {weekNumber + 1} programme →
             </button>

@@ -21,10 +21,10 @@ export default function VenueBundles({ bundles, venueName, venueSlug }: VenueBun
     <>
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs font-mono text-[#06B6D4] uppercase tracking-widest">
+          <span className="text-xs font-mono text-[#C4813A] uppercase tracking-widest">
             RECVR Bundles
           </span>
-          <span className="text-xs text-[#94A3B8]">— exclusive to RECVR members</span>
+          <span className="text-xs text-[#8A8480]">— exclusive to RECVR members</span>
         </div>
         <div className="space-y-3">
           {bundles.map((bundle) => {
@@ -34,16 +34,16 @@ export default function VenueBundles({ bundles, venueName, venueSlug }: VenueBun
                 key={bundle.id}
                 className="flex items-center justify-between p-4 rounded-xl border transition-all cursor-pointer"
                 style={{
-                  borderColor: '#1E2433',
-                  backgroundColor: '#080A0F',
+                  borderColor: '#1F1F1F',
+                  backgroundColor: '#0A0A0A',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = `${config.color}40`
                   e.currentTarget.style.backgroundColor = `${config.color}05`
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#1E2433'
-                  e.currentTarget.style.backgroundColor = '#080A0F'
+                  e.currentTarget.style.borderColor = '#1F1F1F'
+                  e.currentTarget.style.backgroundColor = '#0A0A0A'
                 }}
                 onClick={() => {
                   setActiveBundle(bundle)
@@ -58,16 +58,16 @@ export default function VenueBundles({ bundles, venueName, venueSlug }: VenueBun
                     ×{bundle.sessions}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-[#F8FAFC]">
+                    <div className="text-sm font-semibold text-[#F5F1EB]">
                       {bundle.title}
                     </div>
-                    <div className="text-xs text-[#94A3B8] mt-0.5">
+                    <div className="text-xs text-[#8A8480] mt-0.5">
                       Valid {bundle.validity_days} days
                     </div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm font-bold font-mono text-[#F8FAFC]">
+                  <div className="text-sm font-bold font-mono text-[#F5F1EB]">
                     £{bundle.price_bundle}
                   </div>
                   <div className="text-xs font-mono" style={{ color: config.color }}>

@@ -51,13 +51,13 @@ export default function RecoveryScore({ input }: RecoveryScoreProps) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="mb-10 p-6 rounded-2xl border border-[#1E2433] bg-[#0F1117]"
+      className="mb-10 p-6 rounded-2xl border border-[#1F1F1F] bg-[#111111]"
     >
       <div className="flex items-center justify-between mb-1">
-        <span className="text-xs font-mono text-[#94A3B8] uppercase tracking-widest">
+        <span className="text-xs font-mono text-[#8A8480] uppercase tracking-widest">
           Recovery Readiness
         </span>
-        <span className="text-xs font-mono text-[#94A3B8]">This week</span>
+        <span className="text-xs font-mono text-[#8A8480]">This week</span>
       </div>
 
       {/* Ring + details — stacks on mobile */}
@@ -76,7 +76,7 @@ export default function RecoveryScore({ input }: RecoveryScoreProps) {
               cy={size / 2}
               r={radius}
               fill="none"
-              stroke="#1E2433"
+              stroke="#1F1F1F"
               strokeWidth={strokeWidth}
             />
             {/* Progress arc */}
@@ -103,7 +103,7 @@ export default function RecoveryScore({ input }: RecoveryScoreProps) {
             >
               {displayScore}
             </span>
-            <span className="text-xs text-[#94A3B8] mt-1">/ 100</span>
+            <span className="text-xs text-[#8A8480] mt-1">/ 100</span>
           </div>
         </div>
 
@@ -120,7 +120,7 @@ export default function RecoveryScore({ input }: RecoveryScoreProps) {
                   className="w-1 h-1 rounded-full mt-2 shrink-0"
                   style={{ backgroundColor: result.color }}
                 />
-                <span className="text-xs text-[#94A3B8] leading-relaxed text-left">
+                <span className="text-xs text-[#8A8480] leading-relaxed text-left">
                   {driver}
                 </span>
               </div>

@@ -13,40 +13,40 @@ const confirmationHtml = (email: string) => `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>You're on the RECVR waitlist</title>
 </head>
-<body style="margin:0;padding:0;background:#080A0F;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#080A0F;padding:40px 0;">
+<body style="margin:0;padding:0;background:#0A0A0A;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0A0A0A;padding:40px 0;">
     <tr>
       <td align="center">
-        <table width="560" cellpadding="0" cellspacing="0" style="background:#0F1117;border:1px solid #1E2433;border-radius:16px;overflow:hidden;max-width:560px;width:100%;">
+        <table width="560" cellpadding="0" cellspacing="0" style="background:#111111;border:1px solid #1F1F1F;border-radius:16px;overflow:hidden;max-width:560px;width:100%;">
 
           <!-- Header bar -->
           <tr>
-            <td style="background:#0F1117;padding:32px 40px 0;border-bottom:1px solid #1E2433;">
-              <p style="margin:0 0 24px;font-size:13px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#06B6D4;">RECVR</p>
+            <td style="background:#111111;padding:32px 40px 0;border-bottom:1px solid #1F1F1F;">
+              <p style="margin:0 0 24px;font-size:13px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#C4813A;">RECVR</p>
             </td>
           </tr>
 
           <!-- Body -->
           <tr>
             <td style="padding:36px 40px 40px;">
-              <h1 style="margin:0 0 8px;font-size:32px;font-weight:700;color:#F8FAFC;line-height:1.1;">
+              <h1 style="margin:0 0 8px;font-size:32px;font-weight:700;color:#F5F1EB;line-height:1.1;">
                 You're in.
               </h1>
-              <p style="margin:16px 0 0;font-size:16px;color:#94A3B8;line-height:1.6;">
+              <p style="margin:16px 0 0;font-size:16px;color:#8A8480;line-height:1.6;">
                 You're on the RECVR early access list. We'll be in touch when we open up founding member slots.
               </p>
               <p style="margin:12px 0 0;font-size:14px;color:#64748B;line-height:1.6;">
                 In the meantime, explore recovery venues at
-                <a href="https://recvr.uk/venues" style="color:#06B6D4;text-decoration:none;">recvr.uk/venues</a>
+                <a href="https://recvr.uk/venues" style="color:#C4813A;text-decoration:none;">recvr.uk/venues</a>
                 — or build your personalised recovery protocol at
-                <a href="https://recvr.uk" style="color:#06B6D4;text-decoration:none;">recvr.uk</a>.
+                <a href="https://recvr.uk" style="color:#C4813A;text-decoration:none;">recvr.uk</a>.
               </p>
 
               <!-- CTA button -->
               <table cellpadding="0" cellspacing="0" style="margin:28px 0 0;">
                 <tr>
-                  <td style="background:#06B6D4;border-radius:100px;">
-                    <a href="https://recvr.uk" style="display:inline-block;padding:12px 28px;font-size:14px;font-weight:600;color:#080A0F;text-decoration:none;">
+                  <td style="background:#C4813A;border-radius:100px;">
+                    <a href="https://recvr.uk" style="display:inline-block;padding:12px 28px;font-size:14px;font-weight:600;color:#0A0A0A;text-decoration:none;">
                       Build my recovery protocol →
                     </a>
                   </td>
@@ -57,7 +57,7 @@ const confirmationHtml = (email: string) => `<!DOCTYPE html>
 
           <!-- Footer -->
           <tr>
-            <td style="padding:20px 40px 28px;border-top:1px solid #1E2433;">
+            <td style="padding:20px 40px 28px;border-top:1px solid #1F1F1F;">
               <p style="margin:0;font-size:13px;color:#475569;line-height:1.6;">
                 — The RECVR team
               </p>

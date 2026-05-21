@@ -24,14 +24,14 @@ export default async function SharePage({ params }: Props) {
   if (!data) return notFound()
 
   const scoreColor =
-    data.score >= 75 ? '#06B6D4' : data.score >= 55 ? '#F59E0B' : '#F97316'
+    data.score >= 75 ? '#C4813A' : data.score >= 55 ? '#F59E0B' : '#F97316'
 
   return (
     <main
       className="min-h-screen flex flex-col items-center justify-center p-6"
       style={{
         background:
-          'radial-gradient(ellipse at 50% 0%, rgba(6,182,212,0.08) 0%, transparent 60%), #080A0F',
+          'radial-gradient(ellipse at 50% 0%, rgba(196,129,58,0.08) 0%, transparent 60%), #0A0A0A',
       }}
     >
       <div className="w-full max-w-lg">
@@ -39,7 +39,7 @@ export default async function SharePage({ params }: Props) {
         <div className="flex items-center gap-2.5 mb-8 justify-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-mark.svg" alt="" width={24} height={24} />
-          <span className="font-bold text-lg tracking-tight text-[#F8FAFC]">RECVR</span>
+          <span className="font-bold text-lg tracking-tight text-[#F5F1EB]">RECVR</span>
         </div>
 
         {/* Score */}
@@ -50,14 +50,14 @@ export default async function SharePage({ params }: Props) {
           >
             {data.score}
           </div>
-          <div className="text-[#94A3B8] text-sm">Recovery Readiness Score</div>
+          <div className="text-[#8A8480] text-sm">Recovery Readiness Score</div>
           <div
-            className="text-xs font-mono text-[#94A3B8] mt-2 uppercase tracking-widest"
+            className="text-xs font-mono text-[#8A8480] mt-2 uppercase tracking-widest"
             style={{ color: scoreColor }}
           >
             {data.scoreLabel}
           </div>
-          <div className="text-xs font-mono text-[#94A3B8] mt-1 uppercase tracking-widest">
+          <div className="text-xs font-mono text-[#8A8480] mt-1 uppercase tracking-widest">
             {data.sport.join(' · ')} · {data.trainingLoad.split(' ')[0]} load · {data.city}
           </div>
         </div>
@@ -69,7 +69,7 @@ export default async function SharePage({ params }: Props) {
             return (
               <div
                 key={i}
-                className="flex items-center gap-4 p-4 rounded-xl border border-[#1E2433] bg-[#0F1117]"
+                className="flex items-center gap-4 p-4 rounded-xl border border-[#1F1F1F] bg-[#111111]"
               >
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-mono font-bold shrink-0"
@@ -78,8 +78,8 @@ export default async function SharePage({ params }: Props) {
                   D{item.day}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold text-[#F8FAFC]">{item.modality}</div>
-                  <div className="text-xs text-[#94A3B8]">{item.duration_minutes} min</div>
+                  <div className="text-sm font-semibold text-[#F5F1EB]">{item.modality}</div>
+                  <div className="text-xs text-[#8A8480]">{item.duration_minutes} min</div>
                 </div>
                 <div className="text-xs font-mono shrink-0" style={{ color: config.color }}>
                   £{item.price_from}+
@@ -91,19 +91,19 @@ export default async function SharePage({ params }: Props) {
 
         {/* Summary */}
         {data.summary && (
-          <p className="text-sm text-[#94A3B8] leading-relaxed text-center mb-8 px-2">
+          <p className="text-sm text-[#8A8480] leading-relaxed text-center mb-8 px-2">
             {data.summary}
           </p>
         )}
 
         {/* CTA */}
         <div className="text-center">
-          <p className="text-sm text-[#94A3B8] mb-4">
+          <p className="text-sm text-[#8A8480] mb-4">
             Build your own recovery programme
           </p>
           <Link
             href="/protocol"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#06B6D4] text-[#080A0F] font-semibold text-sm hover:bg-cyan-400 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors"
           >
             Get my RECVR programme →
           </Link>

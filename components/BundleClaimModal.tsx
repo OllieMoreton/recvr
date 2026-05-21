@@ -77,7 +77,7 @@ export default function BundleClaimModal({
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
             <div
-              className="bg-[#0F1117] border border-[#1E2433] rounded-2xl p-6 w-full max-w-md"
+              className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6 w-full max-w-md"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-start justify-between mb-6">
@@ -88,14 +88,14 @@ export default function BundleClaimModal({
                   >
                     RECVR Bundle
                   </span>
-                  <h3 className="text-lg font-semibold text-[#F8FAFC] mt-1">
+                  <h3 className="text-lg font-semibold text-[#F5F1EB] mt-1">
                     {bundle.title}
                   </h3>
-                  <p className="text-sm text-[#94A3B8] mt-0.5">{venueName}</p>
+                  <p className="text-sm text-[#8A8480] mt-0.5">{venueName}</p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-lg hover:bg-[#1E2433] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+                  className="p-2 rounded-lg hover:bg-[#1F1F1F] text-[#8A8480] hover:text-[#F5F1EB] transition-colors"
                 >
                   <X size={18} />
                 </button>
@@ -112,15 +112,15 @@ export default function BundleClaimModal({
                     }}
                   >
                     <div>
-                      <div className="text-2xl font-bold font-mono text-[#F8FAFC]">
+                      <div className="text-2xl font-bold font-mono text-[#F5F1EB]">
                         £{bundle.price_bundle}
                       </div>
-                      <div className="text-xs text-[#94A3B8] mt-0.5">
+                      <div className="text-xs text-[#8A8480] mt-0.5">
                         for {bundle.sessions} sessions
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm text-[#94A3B8] line-through">
+                      <div className="text-sm text-[#8A8480] line-through">
                         £{bundle.price_direct} direct
                       </div>
                       <div
@@ -132,7 +132,7 @@ export default function BundleClaimModal({
                     </div>
                   </div>
 
-                  <p className="text-sm text-[#94A3B8] mb-5 leading-relaxed">
+                  <p className="text-sm text-[#8A8480] mb-5 leading-relaxed">
                     {bundle.description}
                     {' '}Valid for {bundle.validity_days} days from claim.
                   </p>
@@ -144,25 +144,25 @@ export default function BundleClaimModal({
                       placeholder="your@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl text-sm text-[#F8FAFC] placeholder:text-[#94A3B8] outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F1EB] placeholder:text-[#8A8480] outline-none transition-colors"
                       style={{
-                        background: '#080A0F',
-                        border: '1px solid #1E2433',
+                        background: '#0A0A0A',
+                        border: '1px solid #1F1F1F',
                       }}
-                      onFocus={(e) => (e.target.style.borderColor = '#06B6D4')}
-                      onBlur={(e) => (e.target.style.borderColor = '#1E2433')}
+                      onFocus={(e) => (e.target.style.borderColor = '#C4813A')}
+                      onBlur={(e) => (e.target.style.borderColor = '#1F1F1F')}
                     />
                     <button
                       type="submit"
                       disabled={loading || !email}
                       className="w-full py-3 rounded-xl text-sm font-semibold transition-colors disabled:opacity-40"
-                      style={{ backgroundColor: config.color, color: '#080A0F' }}
+                      style={{ backgroundColor: config.color, color: '#0A0A0A' }}
                     >
                       {loading ? 'Claiming...' : 'Claim this bundle →'}
                     </button>
                   </form>
 
-                  <p className="text-xs text-[#94A3B8] text-center mt-3">
+                  <p className="text-xs text-[#8A8480] text-center mt-3">
                     We&apos;ll send your redemption details within 24 hours.
                   </p>
                 </>
@@ -178,8 +178,8 @@ export default function BundleClaimModal({
                   >
                     <Check size={20} style={{ color: config.color }} />
                   </div>
-                  <h4 className="text-[#F8FAFC] font-semibold mb-2">Bundle claimed</h4>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed">
+                  <h4 className="text-[#F5F1EB] font-semibold mb-2">Bundle claimed</h4>
+                  <p className="text-sm text-[#8A8480] leading-relaxed">
                     Check your inbox — we&apos;ll send your {venueName} bundle redemption
                     code within 24 hours.
                   </p>

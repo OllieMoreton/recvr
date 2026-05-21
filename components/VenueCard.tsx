@@ -16,8 +16,8 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
     <Link
       href={`/venues/${venue.slug}`}
       className={`group block rounded-2xl overflow-hidden bg-recvr-surface border transition-all duration-200
-        border-recvr-border hover:border-cyan-500/50 hover:scale-[1.02]
-        ${variant === 'featured' ? 'ring-1 ring-recvr-cyan/30' : ''}`}
+        border-recvr-border hover:border-recvr-copper/50 hover:scale-[1.02]
+        ${variant === 'featured' ? 'ring-1 ring-recvr-copper/30' : ''}`}
     >
       {/* Hero image */}
       <div className="aspect-video w-full overflow-hidden relative">
@@ -47,8 +47,8 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
         </h3>
         {venue.is_featured && (
           <div className="flex items-center gap-1.5 mt-1 mb-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#06B6D4]" />
-            <span className="text-xs font-mono text-[#06B6D4] uppercase tracking-widest">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#C4813A]" />
+            <span className="text-xs font-mono text-[#C4813A] uppercase tracking-widest">
               Founding Partner
             </span>
           </div>
@@ -89,9 +89,9 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
             <span
               className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-mono border"
               style={{
-                color: '#06B6D4',
-                borderColor: 'rgba(6,182,212,0.3)',
-                backgroundColor: 'rgba(6,182,212,0.08)',
+                color: '#C4813A',
+                borderColor: 'rgba(196,129,58,0.3)',
+                backgroundColor: 'rgba(196,129,58,0.08)',
               }}
             >
               Bundle available

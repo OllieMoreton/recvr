@@ -10,7 +10,7 @@ export default function OGImage() {
     (
       <div
         style={{
-          background: '#080A0F',
+          background: '#0A0A0A',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -31,7 +31,7 @@ export default function OGImage() {
             width: 800,
             height: 400,
             background:
-              'radial-gradient(ellipse at center, rgba(6,182,212,0.15) 0%, transparent 70%)',
+              'radial-gradient(ellipse at center, rgba(196,129,58,0.15) 0%, transparent 70%)',
             borderRadius: '50%',
           }}
         />
@@ -42,7 +42,7 @@ export default function OGImage() {
             fontSize: 28,
             fontWeight: 700,
             letterSpacing: '0.3em',
-            color: '#06B6D4',
+            color: '#C4813A',
             textTransform: 'uppercase',
             marginBottom: 32,
           }}
@@ -55,7 +55,7 @@ export default function OGImage() {
           style={{
             fontSize: 64,
             fontWeight: 700,
-            color: '#F8FAFC',
+            color: '#F5F1EB',
             textAlign: 'center',
             lineHeight: 1.1,
             maxWidth: 900,
@@ -63,14 +63,14 @@ export default function OGImage() {
           }}
         >
           Recover smarter.{' '}
-          <span style={{ color: '#06B6D4' }}>Perform better.</span>
+          <span style={{ color: '#C4813A' }}>Perform better.</span>
         </div>
 
         {/* Sub */}
         <div
           style={{
             fontSize: 24,
-            color: '#94A3B8',
+            color: '#8A8480',
             textAlign: 'center',
             maxWidth: 700,
           }}

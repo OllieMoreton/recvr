@@ -102,16 +102,16 @@ export default function ForTeamsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#080A0F] text-[#F8FAFC]">
+    <main className="min-h-screen bg-[#0A0A0A] text-[#F5F1EB]">
 
       {/* ─── HERO ─── */}
       <section
         className="relative pt-32 pb-24 px-6 text-center overflow-hidden"
         style={{
           background: `
-            radial-gradient(ellipse at 50% 0%, rgba(6,182,212,0.10) 0%, transparent 60%),
+            radial-gradient(ellipse at 50% 0%, rgba(196,129,58,0.10) 0%, transparent 60%),
             radial-gradient(ellipse at 80% 80%, rgba(59,130,246,0.05) 0%, transparent 50%),
-            #080A0F
+            #0A0A0A
           `,
         }}
       >
@@ -131,19 +131,19 @@ export default function ForTeamsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#1E2433] text-xs font-mono text-[#06B6D4] uppercase tracking-widest mb-6">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#1F1F1F] text-xs font-mono text-[#C4813A] uppercase tracking-widest mb-6">
               RECVR for Teams
             </span>
 
             <h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F8FAFC] mb-6 leading-[1.05]"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F1EB] mb-6 leading-[1.05]"
               style={{ letterSpacing: '-0.02em' }}
             >
               Recovery intelligence<br />
-              <span className="text-[#06B6D4]">for your whole team.</span>
+              <span className="text-[#C4813A]">for your whole team.</span>
             </h1>
 
-            <p className="text-lg text-[#94A3B8] max-w-xl mx-auto mb-10 leading-relaxed">
+            <p className="text-lg text-[#8A8480] max-w-xl mx-auto mb-10 leading-relaxed">
               Give every athlete a personalised weekly recovery programme.
               Built for coaches who want to do more than just say &quot;rest up.&quot;
             </p>
@@ -151,13 +151,13 @@ export default function ForTeamsPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="#get-started"
-                className="px-8 py-3.5 rounded-full bg-[#06B6D4] text-[#080A0F] font-semibold text-sm hover:bg-cyan-400 transition-colors"
+                className="px-8 py-3.5 rounded-full bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors"
               >
                 Talk to us →
               </a>
               <Link
                 href="/protocol"
-                className="px-8 py-3.5 rounded-full border border-[#1E2433] text-[#F8FAFC] text-sm hover:border-[#06B6D4]/50 transition-colors"
+                className="px-8 py-3.5 rounded-full border border-[#1F1F1F] text-[#F5F1EB] text-sm hover:border-[#C4813A]/50 transition-colors"
               >
                 Try the protocol engine
               </Link>
@@ -167,10 +167,10 @@ export default function ForTeamsPage() {
       </section>
 
       {/* ─── TEAM TYPES STRIP ─── */}
-      <section className="border-y border-[#1E2433] py-6 px-6 overflow-hidden">
+      <section className="border-y border-[#1F1F1F] py-6 px-6 overflow-hidden">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-xs font-mono text-[#94A3B8] uppercase tracking-widest">
+            <span className="text-xs font-mono text-[#8A8480] uppercase tracking-widest">
               Built for
             </span>
           </div>
@@ -178,10 +178,10 @@ export default function ForTeamsPage() {
             {TEAM_TYPES.map((type) => (
               <div
                 key={type.label}
-                className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#1E2433] bg-[#0F1117]"
+                className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#1F1F1F] bg-[#111111]"
               >
                 <span>{type.icon}</span>
-                <span className="text-sm text-[#94A3B8]">{type.label}</span>
+                <span className="text-sm text-[#8A8480]">{type.label}</span>
               </div>
             ))}
           </div>
@@ -198,7 +198,7 @@ export default function ForTeamsPage() {
             >
               Everything your coaching staff needs
             </h2>
-            <p className="text-[#94A3B8] max-w-lg mx-auto">
+            <p className="text-[#8A8480] max-w-lg mx-auto">
               One flat monthly plan. Every feature included. No per-athlete fees.
             </p>
           </div>
@@ -211,22 +211,22 @@ export default function ForTeamsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="p-6 rounded-2xl border border-[#1E2433] bg-[#0F1117] hover:border-[#06B6D4]/30 transition-colors"
+                className="p-6 rounded-2xl border border-[#1F1F1F] bg-[#111111] hover:border-[#C4813A]/30 transition-colors"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-9 h-9 rounded-lg bg-[#06B6D4]/10 flex items-center justify-center">
-                    <feature.icon size={18} className="text-[#06B6D4]" />
+                  <div className="w-9 h-9 rounded-lg bg-[#C4813A]/10 flex items-center justify-center">
+                    <feature.icon size={18} className="text-[#C4813A]" />
                   </div>
                   {feature.badge && (
-                    <span className="text-xs font-mono text-[#94A3B8] border border-[#1E2433] px-2 py-0.5 rounded-full">
+                    <span className="text-xs font-mono text-[#8A8480] border border-[#1F1F1F] px-2 py-0.5 rounded-full">
                       {feature.badge}
                     </span>
                   )}
                 </div>
-                <h3 className="text-sm font-semibold text-[#F8FAFC] mb-2">
+                <h3 className="text-sm font-semibold text-[#F5F1EB] mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-xs text-[#94A3B8] leading-relaxed">
+                <p className="text-xs text-[#8A8480] leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>
@@ -236,14 +236,14 @@ export default function ForTeamsPage() {
       </section>
 
       {/* ─── TESTIMONIAL ─── */}
-      <section className="py-16 px-6 border-y border-[#1E2433]">
+      <section className="py-16 px-6 border-y border-[#1F1F1F]">
         <div className="max-w-2xl mx-auto text-center">
-          <blockquote className="text-lg text-[#F8FAFC] leading-relaxed mb-6 italic">
+          <blockquote className="text-lg text-[#F5F1EB] leading-relaxed mb-6 italic">
             &ldquo;{TESTIMONIAL.quote}&rdquo;
           </blockquote>
           <div>
-            <div className="text-sm font-semibold text-[#F8FAFC]">{TESTIMONIAL.name}</div>
-            <div className="text-xs text-[#94A3B8] mt-0.5">{TESTIMONIAL.role}</div>
+            <div className="text-sm font-semibold text-[#F5F1EB]">{TESTIMONIAL.name}</div>
+            <div className="text-xs text-[#8A8480] mt-0.5">{TESTIMONIAL.role}</div>
           </div>
         </div>
       </section>
@@ -258,7 +258,7 @@ export default function ForTeamsPage() {
             >
               Simple, flat pricing
             </h2>
-            <p className="text-[#94A3B8]">
+            <p className="text-[#8A8480]">
               One plan. Your whole team. Cancel any time.
             </p>
           </div>
@@ -266,22 +266,22 @@ export default function ForTeamsPage() {
           <div
             className="rounded-2xl p-8 border"
             style={{
-              background: 'linear-gradient(135deg, #0F1117 0%, #0D1420 100%)',
-              borderColor: 'rgba(6,182,212,0.3)',
-              boxShadow: '0 0 40px rgba(6,182,212,0.06)',
+              background: 'linear-gradient(135deg, #111111 0%, #0D1420 100%)',
+              borderColor: 'rgba(196,129,58,0.3)',
+              boxShadow: '0 0 40px rgba(196,129,58,0.06)',
             }}
           >
             {/* Price */}
             <div className="mb-8">
               <div className="flex items-end gap-2 mb-1">
-                <span className="text-5xl font-bold font-mono text-[#F8FAFC]">£199</span>
-                <span className="text-[#94A3B8] mb-2">/month</span>
+                <span className="text-5xl font-bold font-mono text-[#F5F1EB]">£199</span>
+                <span className="text-[#8A8480] mb-2">/month</span>
               </div>
-              <div className="text-sm text-[#94A3B8]">
+              <div className="text-sm text-[#8A8480]">
                 Per club or team. Unlimited athletes.
               </div>
-              <div className="mt-2 inline-flex items-center gap-1.5 text-xs font-mono text-[#06B6D4]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#06B6D4] inline-block" />
+              <div className="mt-2 inline-flex items-center gap-1.5 text-xs font-mono text-[#C4813A]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C4813A] inline-block" />
                 Founding partner pricing — locked for 12 months
               </div>
             </div>
@@ -290,8 +290,8 @@ export default function ForTeamsPage() {
             <div className="space-y-3 mb-8">
               {PLAN_INCLUDES.map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <Check size={15} className="text-[#06B6D4] mt-0.5 shrink-0" />
-                  <span className="text-sm text-[#94A3B8]">{item}</span>
+                  <Check size={15} className="text-[#C4813A] mt-0.5 shrink-0" />
+                  <span className="text-sm text-[#8A8480]">{item}</span>
                 </div>
               ))}
             </div>
@@ -299,12 +299,12 @@ export default function ForTeamsPage() {
             {/* CTA */}
             <a
               href="#get-started"
-              className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[#06B6D4] text-[#080A0F] font-semibold text-sm hover:bg-cyan-400 transition-colors"
+              className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors"
             >
               Get started <ArrowRight size={16} />
             </a>
 
-            <p className="text-xs text-[#94A3B8] text-center mt-3">
+            <p className="text-xs text-[#8A8480] text-center mt-3">
               No setup fees. No contracts. Talk to us first.
             </p>
           </div>
@@ -312,7 +312,7 @@ export default function ForTeamsPage() {
       </section>
 
       {/* ─── CONTACT / EMAIL CAPTURE ─── */}
-      <section id="get-started" className="py-24 px-6 border-t border-[#1E2433]">
+      <section id="get-started" className="py-24 px-6 border-t border-[#1F1F1F]">
         <div className="max-w-lg mx-auto text-center">
           <h2
             className="text-3xl font-bold tracking-tight mb-4"
@@ -320,7 +320,7 @@ export default function ForTeamsPage() {
           >
             Talk to us
           </h2>
-          <p className="text-[#94A3B8] mb-8">
+          <p className="text-[#8A8480] mb-8">
             We onboard teams personally. Drop your email and we&apos;ll reach out
             within one business day.
           </p>
@@ -333,15 +333,15 @@ export default function ForTeamsPage() {
                 placeholder="coach@yourclub.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 rounded-xl text-sm text-[#F8FAFC] placeholder:text-[#94A3B8] outline-none transition-colors"
-                style={{ background: '#0F1117', border: '1px solid #1E2433' }}
-                onFocus={(e) => (e.target.style.borderColor = '#06B6D4')}
-                onBlur={(e) => (e.target.style.borderColor = '#1E2433')}
+                className="flex-1 px-4 py-3 rounded-xl text-sm text-[#F5F1EB] placeholder:text-[#8A8480] outline-none transition-colors"
+                style={{ background: '#111111', border: '1px solid #1F1F1F' }}
+                onFocus={(e) => (e.target.style.borderColor = '#C4813A')}
+                onBlur={(e) => (e.target.style.borderColor = '#1F1F1F')}
               />
               <button
                 type="submit"
                 disabled={loading || !email}
-                className="px-6 py-3 rounded-xl bg-[#06B6D4] text-[#080A0F] font-semibold text-sm hover:bg-cyan-400 transition-colors disabled:opacity-40 whitespace-nowrap"
+                className="px-6 py-3 rounded-xl bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors disabled:opacity-40 whitespace-nowrap"
               >
                 {loading ? 'Sending...' : 'Get in touch →'}
               </button>
@@ -352,11 +352,11 @@ export default function ForTeamsPage() {
               animate={{ opacity: 1, y: 0 }}
               className="flex flex-col items-center gap-3"
             >
-              <div className="w-12 h-12 rounded-full bg-[#06B6D4]/10 flex items-center justify-center">
-                <Check size={20} className="text-[#06B6D4]" />
+              <div className="w-12 h-12 rounded-full bg-[#C4813A]/10 flex items-center justify-center">
+                <Check size={20} className="text-[#C4813A]" />
               </div>
-              <p className="text-[#F8FAFC] font-medium">We&apos;ll be in touch soon.</p>
-              <p className="text-sm text-[#94A3B8]">
+              <p className="text-[#F5F1EB] font-medium">We&apos;ll be in touch soon.</p>
+              <p className="text-sm text-[#8A8480]">
                 Expect a reply within one business day.
               </p>
             </motion.div>

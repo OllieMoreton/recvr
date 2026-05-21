@@ -67,7 +67,7 @@ export default function ShareModal({ isOpen, onClose, protocol, formData }: Shar
     try {
       const html2canvas = (await import('html2canvas')).default
       const canvas = await html2canvas(cardRef.current, {
-        backgroundColor: '#080A0F',
+        backgroundColor: '#0A0A0A',
         scale: 2,
         useCORS: true,
         logging: false,
@@ -120,20 +120,20 @@ export default function ShareModal({ isOpen, onClose, protocol, formData }: Shar
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
             <div
-              className="bg-[#0F1117] border border-[#1E2433] rounded-2xl p-6 w-full max-w-2xl"
+              className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6 w-full max-w-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-[#F8FAFC]">Share your programme</h3>
-                  <p className="text-sm text-[#94A3B8] mt-0.5">
+                  <h3 className="text-lg font-semibold text-[#F5F1EB]">Share your programme</h3>
+                  <p className="text-sm text-[#8A8480] mt-0.5">
                     Download your recovery card or copy a link
                   </p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-lg hover:bg-[#1E2433] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+                  className="p-2 rounded-lg hover:bg-[#1F1F1F] text-[#8A8480] hover:text-[#F5F1EB] transition-colors"
                 >
                   <X size={18} />
                 </button>
@@ -158,7 +158,7 @@ export default function ShareModal({ isOpen, onClose, protocol, formData }: Shar
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={handleCopyLink}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[#1E2433] text-[#F8FAFC] text-sm font-medium hover:border-[#06B6D4]/50 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[#1F1F1F] text-[#F5F1EB] text-sm font-medium hover:border-[#C4813A]/50 transition-colors"
                 >
                   {copied
                     ? <Check size={16} className="text-[#10B981]" />
@@ -169,7 +169,7 @@ export default function ShareModal({ isOpen, onClose, protocol, formData }: Shar
                 <button
                   onClick={handleDownload}
                   disabled={downloading}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[#1E2433] text-[#F8FAFC] text-sm font-medium hover:border-[#06B6D4]/50 transition-colors disabled:opacity-50"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[#1F1F1F] text-[#F5F1EB] text-sm font-medium hover:border-[#C4813A]/50 transition-colors disabled:opacity-50"
                 >
                   <Download size={16} />
                   {downloading ? 'Generating...' : 'Download card'}
@@ -178,7 +178,7 @@ export default function ShareModal({ isOpen, onClose, protocol, formData }: Shar
                 {canNativeShare && (
                   <button
                     onClick={handleNativeShare}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#06B6D4] text-[#080A0F] text-sm font-semibold hover:bg-cyan-400 transition-colors"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#C4813A] text-[#0A0A0A] text-sm font-semibold hover:bg-recvr-copper-light transition-colors"
                   >
                     Share →
                   </button>

@@ -15,7 +15,7 @@ export const MODALITIES: Record<Modality, ModalityConfig> = {
     description: 'Whole-body cold exposure at -110°C for 3 minutes.',
     icon: 'Snowflake',
     colour: 'bg-cyan-500/20',
-    textColour: 'text-cyan-400',
+    textColour: 'text-recvr-copper',
     benefit: 'Reduces inflammation',
   },
   infrared_sauna: {

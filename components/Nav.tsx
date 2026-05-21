@@ -14,7 +14,7 @@ export default function Nav() {
         {/* Logo mark + wordmark */}
         <Link href="/" className="flex items-center gap-2.5">
           <img src="/logo-mark.svg" alt="" width={24} height={24} />
-          <span className="font-bold text-lg tracking-tight text-[#F8FAFC]">RECVR</span>
+          <span className="font-bold text-lg tracking-tight text-[#F5F1EB]">RECVR</span>
         </Link>
 
         {/* Right side */}
@@ -39,7 +39,7 @@ export default function Nav() {
           </Link>
           <button
             onClick={scrollToEmailCapture}
-            className="text-sm font-medium bg-recvr-cyan text-recvr-bg px-4 py-2 rounded-full hover:bg-cyan-400 transition-colors duration-200"
+            className="text-sm font-medium bg-recvr-cyan text-recvr-bg px-4 py-2 rounded-full hover:bg-recvr-copper-light transition-colors duration-200"
           >
             Get early access
           </button>

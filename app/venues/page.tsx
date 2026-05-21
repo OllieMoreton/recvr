@@ -72,7 +72,7 @@ export default async function VenuesPage({ searchParams }: PageProps) {
           <p className="text-recvr-muted text-lg">
             Find the best recovery services near you
           </p>
-          <p className="text-sm text-[#94A3B8] mt-2">
+          <p className="text-sm text-[#8A8480] mt-2">
             Founding partner venues offer preferred availability to RECVR members.
           </p>
         </div>

@@ -61,7 +61,7 @@ export default function HowItWorks() {
                 className="flex flex-col items-start"
               >
                 {/* Icon */}
-                <div className="bg-recvr-cyan/10 text-recvr-cyan p-4 rounded-2xl mb-5">
+                <div className="bg-recvr-copper/10 text-recvr-cyan p-4 rounded-2xl mb-5">
                   <Icon className="w-6 h-6" />
                 </div>
 

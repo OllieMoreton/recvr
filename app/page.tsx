@@ -63,27 +63,27 @@ export default async function Home() {
         <EmailCapture />
 
         {/* For Teams teaser */}
-        <section className="py-16 px-6 border-t border-[#1E2433]">
+        <section className="py-16 px-6 border-t border-[#1F1F1F]">
           <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-2xl border border-[#1E2433] bg-[#0F1117]">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-2xl border border-[#1F1F1F] bg-[#111111]">
               <div>
-                <span className="text-xs font-mono text-[#06B6D4] uppercase tracking-widest">
+                <span className="text-xs font-mono text-[#C4813A] uppercase tracking-widest">
                   RECVR for Teams
                 </span>
                 <h3
-                  className="text-xl font-bold text-[#F8FAFC] mt-2 mb-2"
+                  className="text-xl font-bold text-[#F5F1EB] mt-2 mb-2"
                   style={{ letterSpacing: '-0.02em' }}
                 >
                   Running a club or coaching a team?
                 </h3>
-                <p className="text-sm text-[#94A3B8] max-w-md">
+                <p className="text-sm text-[#8A8480] max-w-md">
                   Give every athlete personalised recovery programmes.
                   £199/month. Unlimited athletes.
                 </p>
               </div>
               <Link
                 href="/for-teams"
-                className="flex items-center gap-2 px-6 py-3 rounded-full border border-[#06B6D4]/40 text-[#06B6D4] text-sm font-medium hover:bg-[#06B6D4]/10 transition-colors whitespace-nowrap shrink-0"
+                className="flex items-center gap-2 px-6 py-3 rounded-full border border-[#C4813A]/40 text-[#C4813A] text-sm font-medium hover:bg-[#C4813A]/10 transition-colors whitespace-nowrap shrink-0"
               >
                 Learn more <ChevronRight size={16} />
               </Link>
