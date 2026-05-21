@@ -6,18 +6,18 @@ import { motion, useInView } from 'framer-motion'
 const STEPS = [
   {
     number: '01',
-    title: 'Tell us about your week',
-    description: 'Each week, answer 6 quick questions about your sport, training load, and how your body feels right now.',
+    title: 'Sync or share',
+    description: 'Connect your wearable (coming soon), or answer a few quick questions about your training load and how your body feels today.',
   },
   {
     number: '02',
     title: 'Get your protocol',
-    description: 'RECVR maps your training context to evidence-based recovery science and builds your personalised 7-day plan.',
+    description: 'RECVR maps your biological data to evidence-based recovery science, building a dynamic protocol tailored to exactly what your body needs.',
   },
   {
     number: '03',
-    title: 'Book and recover',
-    description: 'Protocols link directly to vetted venues near you. Come back next week — we\'ll adapt to how you\'ve been training.',
+    title: 'Recover anywhere',
+    description: 'Book seamlessly at vetted premium venues near you, or follow our guided zero-cost, at-home protocols when you\'re on the move.',
   },
 ]
 
