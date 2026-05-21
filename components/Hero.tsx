@@ -125,13 +125,7 @@ export default function Hero() {
           style={{ color: '#8A8480' }}
         >
           <div className="flex items-center gap-2">
-            <span className="font-mono text-recvr-copper font-semibold">12</span>
-            <span>vetted venues</span>
-          </div>
-          <div className="w-px h-4 bg-recvr-border" />
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-recvr-copper font-semibold">10</span>
-            <span>modalities covered</span>
+            <span>Vetted venues</span>
           </div>
           <div className="w-px h-4 bg-recvr-border" />
           <div className="flex items-center gap-2">
