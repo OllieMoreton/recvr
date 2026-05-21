@@ -3,18 +3,15 @@
 import Link from 'next/link'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import {
-  Snowflake, Flame, Droplets, Waves, Sun, Thermometer,
-} from 'lucide-react'
 import { MODALITIES } from '@/lib/modalities'
 
 const FEATURED_MODALITIES = [
-  { key: 'cryotherapy', Icon: Snowflake },
-  { key: 'infrared_sauna', Icon: Flame },
-  { key: 'iv_therapy', Icon: Droplets },
-  { key: 'float_tank', Icon: Waves },
-  { key: 'red_light', Icon: Sun },
-  { key: 'cold_plunge', Icon: Thermometer },
+  { key: 'cryotherapy',   tag: 'COLD'     },
+  { key: 'infrared_sauna', tag: 'THERMAL' },
+  { key: 'iv_therapy',    tag: 'INFUSION' },
+  { key: 'float_tank',    tag: 'FLOAT'    },
+  { key: 'red_light',     tag: 'LIGHT'    },
+  { key: 'cold_plunge',   tag: 'PLUNGE'   },
 ] as const
 
 const ease = [0.16, 1, 0.3, 1] as const
@@ -54,7 +51,7 @@ export default function ModalityGrid() {
 
         {/* Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {FEATURED_MODALITIES.map(({ key, Icon }, i) => {
+          {FEATURED_MODALITIES.map(({ key, tag }, i) => {
             const config = MODALITIES[key]
             return (
               <motion.div
@@ -67,10 +64,10 @@ export default function ModalityGrid() {
                   href={`/venues?modality=${key}`}
                   className="group flex flex-col items-start bg-recvr-surface border border-recvr-border rounded-2xl p-5 hover:border-recvr-copper/40 transition-colors duration-200"
                 >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${config.colour}`}>
-                    <Icon className={`w-5 h-5 ${config.textColour}`} />
-                  </div>
-                  <p className={`text-sm font-semibold mb-1 ${config.textColour}`}>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-recvr-copper mb-3">
+                    {tag}
+                  </p>
+                  <p className="text-sm font-semibold text-recvr-text mb-1">
                     {config.label}
                   </p>
                   <p className="text-recvr-muted text-xs leading-relaxed">

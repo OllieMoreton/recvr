@@ -4,6 +4,7 @@ import Ticker from '@/components/Ticker'
 import ProtocolSection from '@/components/ProtocolSection'
 import HowItWorks from '@/components/HowItWorks'
 import ModalityGrid from '@/components/ModalityGrid'
+import ProtocolPreview from '@/components/ProtocolPreview'
 import EmailCapture from '@/components/EmailCapture'
 import Footer from '@/components/Footer'
 import VenueCard from '@/components/VenueCard'
@@ -61,6 +62,9 @@ export default async function Home() {
 
         {/* Modality grid */}
         <ModalityGrid />
+
+        {/* Protocol preview */}
+        <ProtocolPreview />
 
         {/* Featured venues */}
         {featuredVenues.length > 0 && (

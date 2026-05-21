@@ -3,10 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import {
-  Users, Zap, MapPin, BarChart3, Shield, Clock,
-  Check, ArrowRight,
-} from 'lucide-react'
+import { Check, ArrowRight } from 'lucide-react'
 
 const TEAM_TYPES = [
   { icon: '🏃', label: 'Running clubs' },
@@ -19,38 +16,38 @@ const TEAM_TYPES = [
 
 const FEATURES = [
   {
-    icon: Zap,
+    tag: 'PROTOCOLS',
     title: 'Unlimited protocol generation',
     description:
       'Generate personalised recovery programmes for every athlete on your roster. No caps, no per-seat pricing.',
   },
   {
-    icon: Users,
+    tag: 'DASHBOARD',
     title: 'Coach dashboard',
     description:
       'One view across your whole team. See who needs recovery support before the next session.',
     badge: 'Coming Q3',
   },
   {
-    icon: MapPin,
+    tag: 'VENUES',
     title: 'Venue partnerships',
     description:
       'Your athletes get preferred access and bundle pricing at RECVR partner venues near you.',
   },
   {
-    icon: BarChart3,
+    tag: 'PLANNING',
     title: 'Training block protocols',
     description:
       'Build recovery programmes around your season calendar. Base phase, race build, taper — all covered.',
   },
   {
-    icon: Shield,
+    tag: 'SCIENCE',
     title: 'Evidence-based guidance',
     description:
       'Every recommendation is grounded in exercise physiology. Give your athletes a reason behind every session.',
   },
   {
-    icon: Clock,
+    tag: 'ADAPTIVE',
     title: 'Weekly programme updates',
     description:
       "Athletes check in weekly and their protocol adapts. The system learns what works for each person.",
@@ -214,9 +211,9 @@ export default function ForTeamsPage() {
                 className="p-6 rounded-2xl border border-[#1F1F1F] bg-[#111111] hover:border-[#C4813A]/30 transition-colors"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-9 h-9 rounded-lg bg-[#C4813A]/10 flex items-center justify-center">
-                    <feature.icon size={18} className="text-[#C4813A]" />
-                  </div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#C4813A]">
+                    {feature.tag}
+                  </p>
                   {feature.badge && (
                     <span className="text-xs font-mono text-[#8A8480] border border-[#1F1F1F] px-2 py-0.5 rounded-full">
                       {feature.badge}
@@ -266,7 +263,7 @@ export default function ForTeamsPage() {
           <div
             className="rounded-2xl p-8 border"
             style={{
-              background: 'linear-gradient(135deg, #111111 0%, #0D1420 100%)',
+              background: '#1A1008',
               borderColor: 'rgba(196,129,58,0.3)',
               boxShadow: '0 0 40px rgba(196,129,58,0.06)',
             }}
