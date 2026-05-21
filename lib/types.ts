@@ -57,6 +57,8 @@ export interface ProtocolItem {
   duration_minutes: number
   price_from: number
   reason: string
+  timing_note?: string
+  session_note?: string
   not_instead_of: string
   venue_modality_match: Modality
   matched_venue?: Venue
@@ -64,6 +66,7 @@ export interface ProtocolItem {
 
 export interface Protocol {
   summary: string
+  priority_pick?: string
   protocol: ProtocolItem[]
 }
 
@@ -73,6 +76,7 @@ export interface ProtocolFormData {
   issues: string[]
   goal: string
   city: string
+  lastTrainedHard: string
   hasEvent: boolean
   eventDate?: string  // ISO date string e.g. "2026-08-15"
 }

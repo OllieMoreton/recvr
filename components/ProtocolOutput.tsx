@@ -119,9 +119,33 @@ function ProtocolItemRow({
       </div>
 
       {/* Physiological reason */}
-      <p className="text-[15px] text-recvr-text-secondary leading-relaxed max-w-[600px]">
+      <p className="text-[15px] text-recvr-text-secondary leading-relaxed max-w-[600px] mb-4">
         {item.reason}
       </p>
+
+      {/* Timing note */}
+      {item.timing_note && (
+        <div className="flex items-start gap-3 mb-2">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-recvr-copper mt-0.5 shrink-0 w-[64px]">
+            When
+          </span>
+          <p className="text-[12px] text-recvr-text-secondary leading-relaxed">
+            {item.timing_note}
+          </p>
+        </div>
+      )}
+
+      {/* Session note */}
+      {item.session_note && (
+        <div className="flex items-start gap-3 mb-3">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-recvr-copper mt-0.5 shrink-0 w-[64px]">
+            At venue
+          </span>
+          <p className="text-[12px] text-recvr-text-secondary leading-relaxed">
+            {item.session_note}
+          </p>
+        </div>
+      )}
 
       {/* Not-instead-of — subtle footnote */}
       {item.not_instead_of && (
@@ -289,9 +313,21 @@ export default function ProtocolOutput({
               <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-4">
                 This Week — 7-Day Recovery Protocol
               </p>
-              <p className="font-tiempos font-light italic text-[22px] md:text-[24px] leading-snug text-recvr-text">
+              <p className="font-tiempos font-light italic text-[22px] md:text-[24px] leading-snug text-recvr-text mb-4">
                 {displayedProtocol.summary}
               </p>
+
+              {/* Priority pick */}
+              {displayedProtocol.priority_pick && (
+                <div
+                  className="border-l-2 pl-4 py-1"
+                  style={{ borderColor: 'rgba(196,129,58,0.5)' }}
+                >
+                  <p className="text-[13px] text-recvr-text-secondary leading-relaxed italic">
+                    {displayedProtocol.priority_pick}
+                  </p>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
 

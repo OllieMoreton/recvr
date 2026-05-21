@@ -73,9 +73,16 @@ const STEPS = [
     multi: false,
     options: ['London', 'Manchester', 'Bristol', 'Edinburgh', 'Other UK'],
   },
+  {
+    id: 6,
+    question: 'When did you last train hard?',
+    field: 'lastTrainedHard' as const,
+    multi: false,
+    options: ['Today', 'Yesterday', '2 days ago', '3+ days ago'],
+  },
 ]
 
-const TOTAL_STEPS = 6
+const TOTAL_STEPS = 7
 
 const slideVariants = {
   enter: { opacity: 0, x: 20 },
@@ -100,6 +107,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
     issues: [],
     goal: '',
     city: '',
+    lastTrainedHard: '',
     hasEvent: false,
   })
 
@@ -108,7 +116,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
 
   // ─── Steps 1–5 helpers ─────────────────────────────────────────────────────
 
-  const step = currentStep <= 5 ? STEPS[currentStep - 1] : null
+  const step = currentStep <= 6 ? STEPS[currentStep - 1] : null
 
   const getValue = (field: (typeof STEPS)[number]['field']): string | string[] =>
     formData[field]
@@ -137,13 +145,13 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
   // ─── Validation ────────────────────────────────────────────────────────────
 
   const hasSelection = (): boolean => {
-    if (currentStep === 6) return hasEventSelected
+    if (currentStep === 7) return hasEventSelected
     if (!step) return false
     const value = getValue(step.field)
     return Array.isArray(value) ? value.length > 0 : value !== ''
   }
 
-  // Step 6 submit button text
+  // Step 7 submit button text
   const submitLabel = (): string => {
     if (isLoading) return 'Building...'
     if (formData.hasEvent && formData.eventDate) return 'Build my race programme →'
@@ -202,8 +210,8 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
       {/* Step content */}
       <div className="min-h-[240px] sm:min-h-[280px]">
         <AnimatePresence mode="wait">
-          {/* Steps 1–5 — pill selection */}
-          {currentStep <= 5 && step && (
+          {/* Steps 1–6 — pill selection */}
+          {currentStep <= 6 && step && (
             <motion.div
               key={currentStep}
               variants={slideVariants}
@@ -243,16 +251,16 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
             </motion.div>
           )}
 
-          {/* Step 6 — Race countdown */}
-          {currentStep === 6 && (
+          {/* Step 7 — Race countdown */}
+          {currentStep === 7 && (
             <motion.div
-              key={6}
+              key={7}
               variants={slideVariants}
               initial="enter"
               animate="center"
               exit="exit"
               transition={{ duration: 0.2, ease: 'easeInOut' }}
-              onAnimationComplete={(def) => { if (def === 'center') setDisplayedStep(6) }}
+              onAnimationComplete={(def) => { if (def === 'center') setDisplayedStep(7) }}
             >
               <h2 className="text-xl font-semibold text-recvr-text mb-1">
                 Do you have a race or event coming up?
