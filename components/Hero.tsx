@@ -21,18 +21,21 @@ export default function Hero() {
         `,
       }}
     >
-      {/* Large typographic background — RECVR at 4% opacity */}
+      {/* Large typographic background — atmosphere only */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-end pointer-events-none select-none overflow-hidden"
+        className="absolute inset-0 pointer-events-none select-none overflow-hidden"
       >
         <span
-          className="font-mono font-bold text-recvr-copper leading-none pr-[2vw]"
+          className="absolute font-mono font-bold text-recvr-copper leading-none"
           style={{
             fontSize: 'clamp(180px, 32vw, 480px)',
-            opacity: 0.04,
+            opacity: 0.06,
             letterSpacing: '-0.04em',
-            transform: 'translateY(-4%)',
+            top: '50%',
+            left: '55vw',
+            transform: 'translateY(-54%)',
+            whiteSpace: 'nowrap',
           }}
         >
           RECVR
@@ -82,7 +85,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...easeOut, delay: 0.45 }}
             className="font-sohne text-[18px] leading-relaxed max-w-[500px] mb-8"
-            style={{ color: '#C8BFB0' }}
+            style={{ color: '#C8BFB0', fontFamily: "'DM Serif Text', Georgia, serif" }}
           >
             Tell us about your training week. We&apos;ll generate a personalised
             7-day recovery protocol matched to real UK venues you can book today.
@@ -103,7 +106,10 @@ export default function Hero() {
             </button>
             <Link
               href="/venues"
-              className="w-full sm:w-auto border border-recvr-border text-recvr-text px-8 py-4 rounded-full hover:border-recvr-copper/50 hover:text-recvr-copper transition-all duration-200 text-center"
+              className="w-full sm:w-auto text-recvr-text px-8 py-4 rounded-full transition-all duration-200 text-center hover:text-recvr-copper"
+              style={{ border: '1px solid rgba(184, 115, 51, 0.4)' }}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(184, 115, 51, 1)')}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(184, 115, 51, 0.4)')}
             >
               Browse venues →
             </Link>

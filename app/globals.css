@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -152,5 +153,8 @@
   }
   html {
     @apply font-sans;
+  }
+  p {
+    font-family: 'DM Serif Text', var(--font-sohne), Georgia, serif;
   }
 }
