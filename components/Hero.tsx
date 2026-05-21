@@ -14,9 +14,7 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{
         background: `
-          radial-gradient(ellipse at 50% 0%, rgba(196, 129, 58, 0.10) 0%, transparent 65%),
-          radial-gradient(ellipse at 85% 85%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
-          radial-gradient(ellipse at 15% 70%, rgba(196, 129, 58, 0.04) 0%, transparent 40%),
+          radial-gradient(ellipse 80% 50% at 20% -10%, rgba(196, 129, 58, 0.05) 0%, transparent 60%),
           #0A0A0A
         `,
       }}
@@ -39,19 +37,21 @@ export default function Hero() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         {/* Eyebrow */}
-        <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-4">
-          AI Recovery Protocols
-        </p>
+        <div className="mb-6">
+          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper">
+            AI Recovery Protocols
+          </p>
+        </div>
 
         {/* Headline */}
-        <h1 className="font-tiempos font-normal text-[48px] md:text-[72px] leading-none tracking-[-0.03em] text-recvr-text mb-6">
+        <h1 className="font-tiempos font-light text-[48px] md:text-[64px] leading-none tracking-[-0.03em] text-recvr-text mb-6">
           Recover by design.
         </h1>
 
         {/* Subheadline */}
-        <p className="font-sohne text-[18px] leading-relaxed text-recvr-text-secondary max-w-[480px] mx-auto mb-10">
-          Tell us about your week. We&apos;ll build a personalised recovery
-          protocol matched to UK venues you can book today.
+        <p className="font-sohne text-[16px] md:text-[18px] leading-relaxed text-recvr-text-secondary max-w-[500px] mx-auto mb-8">
+          Tell us about your training week. We&apos;ll generate a personalised
+          7-day recovery protocol matched to real UK venues you can book today.
         </p>
 
         {/* CTAs */}
