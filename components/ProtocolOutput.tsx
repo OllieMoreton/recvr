@@ -12,6 +12,7 @@ import { MODALITIES } from '@/lib/modalities'
 import { getModalityConfig } from '@/lib/modality-config'
 import { supabase } from '@/lib/supabase'
 import WeeklyCheckin from './WeeklyCheckin'
+import RecoveryScore from './RecoveryScore'
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Snowflake, Flame, Droplets, Waves, Sun, Thermometer,
@@ -258,17 +259,29 @@ export default function ProtocolOutput({
 }) {
   const [displayedProtocol, setDisplayedProtocol] = useState<Protocol>(protocol)
   const [weekNumber, setWeekNumber] = useState(1)
+  const [lastResponse, setLastResponse] = useState<string | undefined>(undefined)
+  const [currentIssues, setCurrentIssues] = useState<string[]>(formData.issues)
   const { hasEvent, eventDate } = formData
 
-  const handleNewProtocol = (newProtocol: Protocol) => {
+  const handleNewProtocol = (newProtocol: Protocol, response?: string, newIssues?: string[]) => {
     setDisplayedProtocol(newProtocol)
     setWeekNumber((w) => w + 1)
-    // Scroll back to top of output
+    if (response) setLastResponse(response)
+    if (newIssues && newIssues.length > 0) setCurrentIssues(newIssues)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
     <div className="max-w-2xl mx-auto">
+      {/* Recovery Readiness Score */}
+      <RecoveryScore
+        input={{
+          trainingLoad: formData.trainingLoad,
+          issues: currentIssues,
+          previousResponse: lastResponse,
+        }}
+      />
+
       {/* Journey progress */}
       <JourneyProgress weekNumber={weekNumber} />
 
@@ -339,6 +352,7 @@ export default function ProtocolOutput({
           formData={formData}
           currentProtocol={displayedProtocol}
           weekNumber={weekNumber}
+          currentIssues={currentIssues}
           onNewProtocol={handleNewProtocol}
         />
       )}
