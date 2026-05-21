@@ -20,6 +20,9 @@ export default function ProtocolPage() {
         <p className="text-recvr-muted text-lg">
           Tell us about this week&apos;s training. We&apos;ll build your recovery protocol and match it to real venues near you.
         </p>
+        <p className="font-mono text-xs text-recvr-text-secondary mt-4">
+          Built on exercise physiology research covering lactate clearance, parasympathetic recovery, tissue repair sequencing, and CNS stress management.
+        </p>
       </div>
 
       <ProtocolSection />

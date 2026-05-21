@@ -66,6 +66,9 @@ export default async function Home() {
           <section style={{ paddingTop: '120px', paddingBottom: '120px' }} className="px-12">
             <div className="max-w-[1400px] mx-auto">
               <div className="text-center mb-12">
+                <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-3">
+                  The protocol is the product. Venues are the delivery.
+                </p>
                 <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
                   Venues
                 </p>

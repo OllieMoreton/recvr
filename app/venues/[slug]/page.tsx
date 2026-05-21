@@ -166,7 +166,7 @@ export default async function VenueProfilePage({
                       fill="#C4813A"/>
               </svg>
               <span className="text-xs font-mono text-recvr-copper uppercase tracking-widest">
-                Founding Partner
+                RECVR Listed
               </span>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="5" stroke="#C4813A" strokeWidth="1"/>

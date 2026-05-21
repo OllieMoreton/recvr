@@ -47,16 +47,6 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
           {venue.name}
         </h3>
 
-        {/* Founding Partner badge */}
-        {venue.is_featured && (
-          <div className="flex items-center gap-1.5 mt-1 mb-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-recvr-copper" />
-            <span className="text-xs font-mono text-recvr-copper uppercase tracking-widest">
-              Founding Partner
-            </span>
-          </div>
-        )}
-
         {/* City + price */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-1 text-recvr-muted text-sm">
