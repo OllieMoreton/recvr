@@ -53,7 +53,7 @@ export default function Hero() {
       />
 
       {/* Content — left-offset */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-12">
         <div className="max-w-[700px]">
 
           {/* Eyebrow */}
@@ -73,8 +73,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...easeOut, delay: 0.3 }}
-            className="font-tiempos font-extrabold leading-none tracking-[-0.03em] text-recvr-text mb-6"
-            style={{ fontSize: 'clamp(56px, 8vw, 96px)' }}
+            className="font-tiempos leading-none tracking-[-0.03em] text-recvr-text mb-6"
+            style={{ fontSize: 'clamp(40px, 5.5vw, 72px)', fontWeight: 600 }}
           >
             Recover by design.
           </motion.h1>

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Serif_Text, Geist_Mono } from 'next/font/google'
+import { Cormorant_Garamond, DM_Serif_Text, Geist_Mono } from 'next/font/google'
 import Nav from '@/components/Nav'
 import './globals.css'
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '700', '800'],
+  weight: ['300', '400', '500', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-tiempos',
   display: 'swap',
@@ -61,7 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${dmSerif.variable} ${geistMono.variable} dark antialiased`}
+      className={`${cormorant.variable} ${dmSerif.variable} ${geistMono.variable} dark antialiased`}
     >
       <body className="min-h-screen bg-recvr-void text-recvr-text">
         <Nav />

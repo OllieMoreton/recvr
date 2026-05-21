@@ -11,8 +11,8 @@ export default function ProtocolPreview() {
   const inView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section ref={ref} className="py-24 px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto">
+    <section ref={ref} className="py-24 px-12">
+      <div className="max-w-[1400px] mx-auto">
 
         {/* Section header */}
         <motion.div
@@ -26,7 +26,7 @@ export default function ProtocolPreview() {
           </p>
           <h2
             className="font-tiempos font-bold text-recvr-text leading-tight"
-            style={{ fontSize: 'clamp(28px, 4vw, 44px)' }}
+            style={{ fontSize: 'clamp(48px, 6vw, 88px)', fontWeight: 600 }}
           >
             Your protocol. Every detail reasoned.
           </h2>
@@ -40,7 +40,7 @@ export default function ProtocolPreview() {
           className="max-w-[720px] bg-recvr-surface border border-recvr-border rounded-lg p-8 lg:p-10"
         >
           {/* Protocol summary — Playfair italic */}
-          <p className="font-tiempos font-normal italic text-[20px] md:text-[22px] leading-snug text-recvr-text mb-8">
+          <p className="font-tiempos font-normal italic text-[22px] md:text-[24px] leading-snug text-recvr-text mb-8">
             You&apos;ve been running high volume through a heavy training block. This week, priority is parasympathetic recovery and connective tissue repair.
           </p>
 

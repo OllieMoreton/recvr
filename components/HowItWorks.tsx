@@ -30,10 +30,10 @@ export default function HowItWorks() {
   return (
     <section
       ref={ref}
-      className="py-24 px-6 lg:px-12"
+      className="py-24 px-12"
       style={{ background: '#0D0B09' }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
 
         {/* Section eyebrow */}
         <motion.p
@@ -57,7 +57,7 @@ export default function HowItWorks() {
               {/* Step number — large, copper, Playfair */}
               <div
                 className="font-tiempos font-bold text-recvr-copper leading-none shrink-0 select-none"
-                style={{ fontSize: 'clamp(80px, 10vw, 140px)', width: '15%', minWidth: '80px' }}
+                style={{ fontSize: 'clamp(86px, 10.8vw, 151px)', width: '15%', minWidth: '86px' }}
               >
                 {step.number}
               </div>
@@ -66,7 +66,7 @@ export default function HowItWorks() {
               <div className="pt-2 lg:pt-4">
                 <h3
                   className="font-tiempos font-bold text-recvr-text leading-tight mb-4"
-                  style={{ fontSize: 'clamp(24px, 3vw, 36px)' }}
+                  style={{ fontSize: 'clamp(26px, 3.24vw, 39px)' }}
                 >
                   {step.title}
                 </h3>

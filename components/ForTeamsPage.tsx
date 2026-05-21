@@ -133,7 +133,8 @@ export default function ForTeamsPage() {
             </span>
 
             <h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F1EB] mb-6 leading-[1.05]"
+              className="font-bold tracking-tight text-[#F5F1EB] mb-6 leading-[1.05]"
+              style={{ fontSize: 'clamp(52px, 8.64vw, 78px)' }}
               style={{ letterSpacing: '-0.02em' }}
             >
               Recovery intelligence<br />
@@ -190,8 +191,8 @@ export default function ForTeamsPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2
-              className="text-3xl md:text-4xl font-bold tracking-tight mb-4"
-              style={{ letterSpacing: '-0.02em' }}
+              className="font-bold tracking-tight mb-4"
+              style={{ letterSpacing: '-0.02em', fontSize: 'clamp(32px, 4.32vw, 39px)' }}
             >
               Everything your coaching staff needs
             </h2>
@@ -250,8 +251,8 @@ export default function ForTeamsPage() {
         <div className="max-w-lg mx-auto">
           <div className="text-center mb-12">
             <h2
-              className="text-3xl md:text-4xl font-bold tracking-tight mb-4"
-              style={{ letterSpacing: '-0.02em' }}
+              className="font-bold tracking-tight mb-4"
+              style={{ letterSpacing: '-0.02em', fontSize: 'clamp(32px, 4.32vw, 39px)' }}
             >
               Simple, flat pricing
             </h2>
@@ -312,8 +313,8 @@ export default function ForTeamsPage() {
       <section id="get-started" className="py-24 px-6 border-t border-[#1F1F1F]">
         <div className="max-w-lg mx-auto text-center">
           <h2
-            className="text-3xl font-bold tracking-tight mb-4"
-            style={{ letterSpacing: '-0.02em' }}
+            className="font-bold tracking-tight mb-4"
+            style={{ letterSpacing: '-0.02em', fontSize: 'clamp(32px, 4.32vw, 39px)' }}
           >
             Talk to us
           </h2>

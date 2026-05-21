@@ -38,12 +38,12 @@ export default function EmailCapture() {
         minHeight: '400px',
       }}
     >
-      <div className="max-w-7xl mx-auto w-full py-20">
+      <div className="max-w-[1400px] mx-auto w-full py-20">
         {status === 'done' ? (
           <div>
             <h2
               className="font-tiempos font-extrabold text-recvr-bg leading-none tracking-[-0.03em] mb-6"
-              style={{ fontSize: 'clamp(64px, 10vw, 120px)' }}
+              style={{ fontSize: 'clamp(48px, 6vw, 88px)', fontWeight: 600 }}
             >
               You&apos;re in.
             </h2>
@@ -56,7 +56,7 @@ export default function EmailCapture() {
             {/* Statement headline */}
             <h2
               className="font-tiempos font-extrabold text-recvr-bg leading-none tracking-[-0.03em] mb-10"
-              style={{ fontSize: 'clamp(64px, 10vw, 120px)' }}
+              style={{ fontSize: 'clamp(48px, 6vw, 88px)', fontWeight: 600 }}
             >
               Be first.
             </h2>

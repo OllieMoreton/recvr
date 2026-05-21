@@ -68,13 +68,13 @@ export default async function Home() {
 
         {/* Featured venues */}
         {featuredVenues.length > 0 && (
-          <section className="py-24 px-4">
-            <div className="max-w-5xl mx-auto">
+          <section className="py-24 px-12">
+            <div className="max-w-[1400px] mx-auto">
               <div className="text-center mb-12">
                 <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
                   Partners
                 </p>
-                <h2 className="text-3xl sm:text-4xl font-bold text-recvr-text">
+                <h2 className="font-tiempos text-recvr-text" style={{ fontSize: 'clamp(48px, 6vw, 88px)', fontWeight: 600 }}>
                   Founding venue partners
                 </h2>
               </div>
@@ -91,8 +91,8 @@ export default async function Home() {
         <EmailCapture />
 
         {/* For Teams teaser */}
-        <section className="py-16 px-6 border-t border-[#1F1F1F]">
-          <div className="max-w-4xl mx-auto">
+        <section className="py-16 px-12 border-t border-[#1F1F1F]">
+          <div className="max-w-[1400px] mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-2xl border border-[#1F1F1F] bg-[#111111]">
               <div>
                 <span className="text-xs font-mono text-[#C4813A] uppercase tracking-widest">
