@@ -134,8 +134,7 @@ export default function ForTeamsPage() {
 
             <h1
               className="font-bold tracking-tight text-[#F5F1EB] mb-6 leading-[1.05]"
-              style={{ fontSize: 'clamp(52px, 8.64vw, 78px)' }}
-              style={{ letterSpacing: '-0.02em' }}
+              style={{ fontSize: 'clamp(52px, 8.64vw, 78px)', letterSpacing: '-0.02em' }}
             >
               Recovery intelligence<br />
               <span className="text-[#C4813A]">for your whole team.</span>
