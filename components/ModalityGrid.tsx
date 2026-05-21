@@ -6,12 +6,12 @@ import { motion, useInView } from 'framer-motion'
 import { MODALITIES } from '@/lib/modalities'
 
 const FEATURED_MODALITIES = [
-  { key: 'cryotherapy',   tag: 'COLD'     },
-  { key: 'infrared_sauna', tag: 'THERMAL' },
-  { key: 'iv_therapy',    tag: 'INFUSION' },
-  { key: 'float_tank',    tag: 'FLOAT'    },
-  { key: 'red_light',     tag: 'LIGHT'    },
-  { key: 'cold_plunge',   tag: 'PLUNGE'   },
+  { key: 'cryotherapy',    tag: 'COLD'     },
+  { key: 'infrared_sauna', tag: 'THERMAL'  },
+  { key: 'sports_massage', tag: 'MANUAL'   },
+  { key: 'float_tank',     tag: 'FLOAT'    },
+  { key: 'red_light',      tag: 'LIGHT'    },
+  { key: 'cold_plunge',    tag: 'PLUNGE'   },
 ] as const
 
 const ease = [0.16, 1, 0.3, 1] as const

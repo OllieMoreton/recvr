@@ -4,9 +4,8 @@ const ITEMS = [
   'Cold Plunge',
   'Float Tank',
   'Red Light Therapy',
-  'IV Therapy',
-  'Contrast Therapy',
   'Sports Massage',
+  'Contrast Therapy',
   'Hyperbaric Oxygen',
   'Compression Therapy',
 ]

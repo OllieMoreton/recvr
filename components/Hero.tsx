@@ -69,7 +69,7 @@ function ProtocolScreen() {
           Reduces inflammatory markers and accelerates lactate clearance after heavy load.
         </p>
         <p className="text-[7px] italic" style={{ color: 'rgba(138,132,128,0.55)' }}>
-          Not instead of: Sleep.
+          Not instead of an ice bath — the temperature precision matters.
         </p>
       </div>
 
@@ -277,13 +277,13 @@ export default function Hero() {
           >
             <button
               onClick={scrollToProtocol}
-              className="w-full sm:w-auto bg-recvr-copper text-recvr-bg font-semibold px-8 py-4 rounded-full hover:bg-recvr-copper-light transition-all duration-200"
+              className="w-full sm:w-auto bg-recvr-copper text-recvr-bg font-semibold px-8 py-4 rounded-md hover:bg-recvr-copper-light transition-all duration-200 text-sm"
             >
               Start my programme →
             </button>
             <Link
               href="/venues"
-              className="w-full sm:w-auto text-recvr-text px-8 py-4 rounded-full transition-all duration-200 text-center hover:text-recvr-copper"
+              className="w-full sm:w-auto text-recvr-text px-8 py-4 rounded-md transition-all duration-200 text-center text-sm hover:text-recvr-copper"
               style={{ border: '1px solid rgba(184, 115, 51, 0.4)' }}
               onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(184, 115, 51, 1)')}
               onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(184, 115, 51, 0.4)')}

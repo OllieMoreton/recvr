@@ -6,7 +6,7 @@ import { createServerClient } from '@/lib/supabase'
 export const metadata: Metadata = {
   title: 'Recovery Venues',
   description:
-    'Find the best cryotherapy, infrared sauna, IV therapy, float tanks, cold plunge and more across London, Manchester, Edinburgh and Bristol.',
+    'Find the best cryotherapy, infrared sauna, float tanks, cold plunge and more across London, Manchester, Edinburgh and Bristol.',
   openGraph: {
     title: 'Recovery Venues — RECVR',
     description: 'Find vetted recovery venues near you. Filter by city and modality.',
@@ -58,59 +58,109 @@ export default async function VenuesPage({ searchParams }: PageProps) {
   const hasFilters = !!city || !!modality
 
   return (
-    <main className="min-h-screen pt-24 pb-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-10">
-          <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
+    <main className="min-h-screen" style={{ background: '#0A0A0A' }}>
+
+      {/* ─── Header ────────────────────────────────────────────────────────── */}
+      <section
+        className="relative overflow-hidden pt-36 pb-20 px-12"
+        style={{
+          background: `
+            radial-gradient(ellipse 60% 50% at 20% 60%, rgba(196,129,58,0.10) 0%, transparent 60%),
+            #0A0A0A
+          `,
+        }}
+      >
+        {/* Subtle dot grid */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle, rgba(30,36,51,0.5) 1px, transparent 1px)`,
+            backgroundSize: '32px 32px',
+            maskImage: 'radial-gradient(ellipse at 20% 60%, black 20%, transparent 65%)',
+          }}
+        />
+
+        <div className="relative max-w-[1400px] mx-auto">
+          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-6">
             Directory
           </p>
-          <h1 className="text-4xl font-bold text-recvr-text mb-2"
-              style={{ letterSpacing: '-0.02em' }}>
+          <h1
+            className="font-tiempos text-recvr-text leading-none mb-6"
+            style={{ fontSize: 'clamp(48px, 6.5vw, 84px)', fontWeight: 600, letterSpacing: '-0.02em' }}
+          >
             Recovery venues
           </h1>
-          <p className="text-recvr-muted text-lg">
+          <p
+            className="max-w-xl leading-relaxed mb-2"
+            style={{
+              color: '#C8BFB0',
+              fontSize: '18px',
+              fontFamily: "'DM Serif Text', Georgia, serif",
+              fontWeight: 300,
+            }}
+          >
             Every RECVR protocol links directly to venues near you. Book in one click.
           </p>
-          <p className="text-sm text-[#8A8480] mt-2">
-            Founding partner venues offer preferred availability to RECVR members.
+          <p
+            className="font-mono text-[11px] text-recvr-text-secondary"
+            style={{ letterSpacing: '0.05em' }}
+          >
+            Partner venues offer preferred availability to RECVR members.
           </p>
         </div>
+      </section>
 
-        {/* Filters — client component, wrapped in Suspense for useSearchParams */}
-        <div className="mb-8">
-          <Suspense fallback={<div className="h-16 animate-pulse bg-recvr-surface rounded-xl" />}>
-            <VenueFilters cities={cities} />
-          </Suspense>
-        </div>
+      {/* Copper rule */}
+      <div style={{ height: '1px', background: 'rgba(184, 115, 51, 0.08)' }} />
 
-        {/* Results */}
-        {venues.length > 0 ? (
-          <>
-            <p className="text-recvr-muted text-sm mb-6">
+      {/* ─── Filters + Results ─────────────────────────────────────────────── */}
+      <section className="px-12 py-12" style={{ background: '#0D0B09' }}>
+        <div className="max-w-[1400px] mx-auto">
+
+          {/* Filters */}
+          <div className="mb-10">
+            <Suspense fallback={<div className="h-16 animate-pulse bg-recvr-surface rounded" />}>
+              <VenueFilters cities={cities} />
+            </Suspense>
+          </div>
+
+          {/* Results count */}
+          {venues.length > 0 && (
+            <p className="font-mono text-[11px] uppercase tracking-widest text-recvr-text-secondary mb-8">
               {venues.length} venue{venues.length !== 1 ? 's' : ''} found
             </p>
+          )}
+
+          {/* Grid */}
+          {venues.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {venues.map((venue) => (
                 <VenueCard key={venue.id} venue={venue} variant={venue.is_featured ? 'featured' : 'default'} />
               ))}
             </div>
-          </>
-        ) : (
-          <div className="text-center py-24">
-            <p className="text-recvr-muted text-lg mb-2">No venues found</p>
-            <p className="text-recvr-muted/60 text-sm mb-6">Try adjusting your filters</p>
-            {hasFilters && (
-              <Link
-                href="/venues"
-                className="inline-block px-5 py-2 rounded-xl border border-recvr-border text-recvr-muted text-sm hover:border-recvr-cyan hover:text-recvr-text transition-colors"
+          ) : (
+            <div className="text-center py-32">
+              <p
+                className="font-tiempos font-light italic text-[24px] text-recvr-text mb-3"
               >
-                Clear filters
-              </Link>
-            )}
-          </div>
-        )}
-      </div>
+                No venues found
+              </p>
+              <p className="text-recvr-text-secondary text-sm mb-8">
+                Try adjusting your filters
+              </p>
+              {hasFilters && (
+                <Link
+                  href="/venues"
+                  className="inline-block px-6 py-3 rounded-md border border-recvr-border text-recvr-muted text-sm hover:border-recvr-copper/50 hover:text-recvr-text transition-colors"
+                >
+                  Clear filters
+                </Link>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+
     </main>
   )
 }

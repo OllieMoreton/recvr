@@ -71,7 +71,7 @@ function ProtocolItemRow({
     >
       {/* Day label */}
       <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-copper mb-3">
-        Day {item.day}
+        {item.day_label ?? `Day ${item.day}`}
       </p>
 
       {/* Modality + duration + price — single row */}
@@ -149,9 +149,14 @@ function ProtocolItemRow({
 
       {/* Not-instead-of — subtle footnote */}
       {item.not_instead_of && (
-        <p className="mt-3 text-[12px] text-recvr-text-muted italic leading-relaxed max-w-[560px]">
-          Not instead of: {item.not_instead_of}
-        </p>
+        <div className="flex items-start gap-3 mt-3">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-recvr-text-muted mt-0.5 shrink-0 w-[64px]">
+            Not instead
+          </span>
+          <p className="text-[12px] text-recvr-text-muted italic leading-relaxed max-w-[500px]">
+            {item.not_instead_of}
+          </p>
+        </div>
       )}
     </div>
   )

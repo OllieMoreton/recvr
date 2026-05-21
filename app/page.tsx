@@ -9,7 +9,6 @@ import EmailCapture from '@/components/EmailCapture'
 import Footer from '@/components/Footer'
 import VenueCard from '@/components/VenueCard'
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
 import type { Venue } from '@/lib/types'
 
 async function getFeaturedVenues(): Promise<Venue[]> {
@@ -117,29 +116,44 @@ export default async function Home() {
         <Divider />
 
         {/* For Teams teaser */}
-        <section className="py-16 px-12">
+        <section className="px-12" style={{ paddingTop: '80px', paddingBottom: '80px', background: '#0D0B09' }}>
           <div className="max-w-[1400px] mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-2xl border border-[#1F1F1F] bg-[#111111]">
+            <div
+              className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-16 items-center py-10"
+              style={{ borderTop: '1px solid rgba(184,115,51,0.15)', borderBottom: '1px solid rgba(184,115,51,0.08)' }}
+            >
               <div>
-                <span className="text-xs font-mono text-[#C4813A] uppercase tracking-widest">
+                <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-4">
                   RECVR for Teams
-                </span>
+                </p>
                 <h3
-                  className="text-xl font-bold text-[#F5F1EB] mt-2 mb-2"
-                  style={{ letterSpacing: '-0.02em' }}
+                  className="font-tiempos text-recvr-text mb-3"
+                  style={{ fontSize: 'clamp(28px, 3vw, 40px)', fontWeight: 600, letterSpacing: '-0.02em' }}
                 >
                   Running a club or coaching a team?
                 </h3>
-                <p className="text-sm text-[#8A8480] max-w-md">
+                <p
+                  className="text-recvr-text-secondary max-w-lg"
+                  style={{ fontSize: '16px', fontFamily: "'DM Serif Text', Georgia, serif", fontWeight: 300, lineHeight: 1.7 }}
+                >
                   Give every athlete a personalised weekly recovery programme.
-                  £199/month. Unlimited athletes.
+                  One plan. Unlimited athletes. £199/month.
                 </p>
               </div>
               <Link
                 href="/for-teams"
-                className="flex items-center gap-2 px-6 py-3 rounded-full border border-[#C4813A]/40 text-[#C4813A] text-sm font-medium hover:bg-[#C4813A]/10 transition-colors whitespace-nowrap shrink-0"
+                className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-semibold transition-colors duration-200"
+                style={{ background: 'rgba(196,129,58,0.1)', border: '1px solid rgba(196,129,58,0.3)', color: '#C4813A' }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(196,129,58,0.18)'
+                  ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,129,58,0.6)'
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(196,129,58,0.1)'
+                  ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,129,58,0.3)'
+                }}
               >
-                Learn more <ChevronRight size={16} />
+                Learn more →
               </Link>
             </div>
           </div>

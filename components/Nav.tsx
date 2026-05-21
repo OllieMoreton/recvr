@@ -24,7 +24,7 @@ export default function Nav() {
         borderBottom: `1px solid ${scrolled ? 'rgba(196, 129, 58, 0.12)' : 'transparent'}`,
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-12 h-full flex items-center justify-between">
 
         {/* Logo lockup */}
         <Link href="/" className="flex items-center gap-2.5">
@@ -59,7 +59,7 @@ export default function Nav() {
           </Link>
           <button
             onClick={scrollToEmailCapture}
-            className="text-sm font-semibold bg-recvr-copper text-recvr-bg px-4 py-2 rounded-full hover:bg-recvr-copper-light transition-colors duration-200"
+            className="text-sm font-semibold bg-recvr-copper text-recvr-bg px-5 py-2 rounded-md hover:bg-recvr-copper-light transition-colors duration-200"
           >
             Get early access
           </button>

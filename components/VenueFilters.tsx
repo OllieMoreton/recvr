@@ -7,7 +7,7 @@ import { getModalityConfig } from '@/lib/modality-config'
 const MODALITY_FILTERS = [
   'cryotherapy',
   'infrared_sauna',
-  'iv_therapy',
+  'sports_massage',
   'float_tank',
   'red_light',
   'cold_plunge',
