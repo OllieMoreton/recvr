@@ -23,9 +23,9 @@ const FEATURES = [
   },
   {
     tag: 'VENUES',
-    title: 'Venue partnerships',
+    title: 'Venue access & at-home methods',
     description:
-      'Your athletes get preferred access and bundle pricing at RECVR partner venues near you.',
+      'Athletes get preferred pricing at RECVR partner venues for premium modalities, alongside guided, zero-cost at-home protocols (like breathwork and active mobility) for every budget.',
   },
   {
     tag: 'PLANNING',
@@ -35,21 +35,21 @@ const FEATURES = [
   },
   {
     tag: 'SCIENCE',
-    title: 'Evidence-based guidance',
+    title: 'Evidence-based & safety-first',
     description:
-      'Every recommendation is grounded in exercise physiology. Give your athletes a reason behind every session.',
+      'Every recommendation links to peer-reviewed physiology. Built-in guardrails distinguish between normal training fatigue and acute injury risk, keeping your athletes safe.',
   },
   {
     tag: 'ADAPTIVE',
-    title: 'Weekly programme updates',
+    title: 'Dynamic, frictionless updates',
     description:
-      'Athletes check in weekly and their protocol adapts. The system learns what works for each person.',
+      'Athletes connect their wearables (coming soon) or log a quick check-in. The system monitors their strain and adapts their protocol automatically. No nagging required.',
   },
   {
     tag: 'DASHBOARD',
-    title: 'Coach dashboard',
+    title: 'Coach telemetry dashboard (Q3 2026)',
     description:
-      'One view across your whole team. See who needs recovery support before the next session.',
+      'A real-time biological view of your entire roster. See aggregated team recovery scores, spot overtraining trends, and know exactly who to push and who to rest.',
     badge: 'Q3 2026',
   },
 ]
