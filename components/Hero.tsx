@@ -85,7 +85,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...easeOut, delay: 0.45 }}
             className="font-sohne text-[18px] leading-relaxed max-w-[500px] mb-8"
-            style={{ color: '#C8BFB0', fontFamily: "'DM Serif Text', Georgia, serif" }}
+            style={{ color: '#C8BFB0', fontFamily: "'DM Serif Text', Georgia, serif", fontWeight: 300 }}
           >
             Every serious athlete has a training plan. RECVR gives you the recovery to match.
             Tell us about your week and we&apos;ll build your protocol — matched to real venues you can book today.
