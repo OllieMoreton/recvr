@@ -2,16 +2,17 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
+import { getModalityConfig } from '@/lib/modality-config'
 
 const CITIES = ['London', 'Manchester', 'Bristol', 'Edinburgh']
 
 const MODALITY_FILTERS = [
-  { key: 'cryotherapy', label: 'Cryotherapy' },
-  { key: 'infrared_sauna', label: 'Infrared Sauna' },
-  { key: 'iv_therapy', label: 'IV Therapy' },
-  { key: 'float_tank', label: 'Float Tank' },
-  { key: 'red_light', label: 'Red Light' },
-  { key: 'cold_plunge', label: 'Cold Plunge' },
+  'cryotherapy',
+  'infrared_sauna',
+  'iv_therapy',
+  'float_tank',
+  'red_light',
+  'cold_plunge',
 ]
 
 export default function VenueFilters() {
@@ -34,22 +35,23 @@ export default function VenueFilters() {
     [router, searchParams]
   )
 
-  const pill = (active: boolean) =>
-    `px-4 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer ${
+  const cityPill = (active: boolean) =>
+    `px-4 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
       active
         ? 'bg-recvr-cyan text-recvr-bg border-recvr-cyan'
         : 'border-recvr-border text-recvr-muted hover:border-recvr-cyan/50 hover:text-recvr-text'
     }`
 
-  const scrollRow = 'flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden'
+  const scrollRow =
+    'flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden'
 
   return (
     <div className="space-y-3">
-      {/* City filters — horizontal scroll on mobile */}
+      {/* City filters */}
       <div className={scrollRow}>
         <button
           onClick={() => setFilter('city', '')}
-          className={`${pill(!activeCity)} whitespace-nowrap shrink-0`}
+          className={cityPill(!activeCity)}
         >
           All cities
         </button>
@@ -57,30 +59,51 @@ export default function VenueFilters() {
           <button
             key={city}
             onClick={() => setFilter('city', activeCity === city ? '' : city)}
-            className={`${pill(activeCity === city)} whitespace-nowrap shrink-0`}
+            className={cityPill(activeCity === city)}
           >
             {city}
           </button>
         ))}
       </div>
 
-      {/* Modality filters — horizontal scroll on mobile */}
+      {/* Modality filters — colour-coded */}
       <div className={scrollRow}>
         <button
           onClick={() => setFilter('modality', '')}
-          className={`${pill(!activeModality)} whitespace-nowrap shrink-0`}
+          className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+            !activeModality
+              ? 'bg-recvr-cyan text-recvr-bg border-recvr-cyan'
+              : 'border-recvr-border text-recvr-muted hover:border-recvr-cyan/50 hover:text-recvr-text'
+          }`}
         >
           All modalities
         </button>
-        {MODALITY_FILTERS.map(({ key, label }) => (
-          <button
-            key={key}
-            onClick={() => setFilter('modality', activeModality === key ? '' : key)}
-            className={`${pill(activeModality === key)} whitespace-nowrap shrink-0`}
-          >
-            {label}
-          </button>
-        ))}
+        {MODALITY_FILTERS.map((key) => {
+          const config = getModalityConfig(key)
+          const isActive = activeModality === key
+          return (
+            <button
+              key={key}
+              onClick={() => setFilter('modality', isActive ? '' : key)}
+              style={
+                isActive
+                  ? {
+                      color: config.color,
+                      backgroundColor: config.bg,
+                      borderColor: `${config.color}50`,
+                    }
+                  : undefined
+              }
+              className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                isActive
+                  ? ''
+                  : 'border-recvr-border text-recvr-muted hover:border-recvr-cyan/50 hover:text-recvr-text'
+              }`}
+            >
+              {config.label}
+            </button>
+          )
+        })}
       </div>
     </div>
   )

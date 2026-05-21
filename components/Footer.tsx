@@ -13,7 +13,7 @@ export default function Footer() {
               RECVR
             </p>
             <p className="text-recvr-muted text-sm leading-relaxed">
-              The AI recovery protocol platform for serious athletes.
+              The AI recovery coach for serious athletes.
             </p>
           </div>
 
@@ -41,10 +41,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:venues@recvr.co"
+                  href="mailto:venues@recvr.uk"
                   className="text-recvr-muted text-sm hover:text-recvr-text transition-colors"
                 >
-                  For venues
+                  venues@recvr.uk
                 </a>
               </li>
             </ul>
@@ -81,7 +81,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-recvr-border pt-6">
           <p className="text-recvr-muted text-xs text-center">
-            © 2025 RECVR. All rights reserved.
+            © 2026 RECVR. All rights reserved.
           </p>
         </div>
       </div>

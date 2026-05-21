@@ -13,8 +13,8 @@ const STEPS = [
   },
   {
     icon: Brain,
-    title: 'Get your AI recovery protocol',
-    description: 'Our engine maps your context to evidence-based recovery science.',
+    title: 'Get your AI recovery programme',
+    description: 'Your coach maps your context to evidence-based recovery science.',
     number: '02',
   },
   {

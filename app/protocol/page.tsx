@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ProtocolSection from '@/components/ProtocolSection'
 
 export const metadata: Metadata = {
-  title: 'Start your recovery programme — RECVR',
+  title: 'Start your recovery programme',
   description:
     'Tell us how you\'re training and we\'ll build you a personalised weekly recovery programme with venue recommendations.',
 }

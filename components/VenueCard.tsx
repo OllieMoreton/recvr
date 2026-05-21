@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MapPin, Star } from 'lucide-react'
 import type { Venue } from '@/lib/types'
-import { MODALITIES } from '@/lib/modalities'
+import { getModalityConfig } from '@/lib/modality-config'
 
 interface VenueCardProps {
   venue: Venue
@@ -61,12 +61,16 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
         {/* Modality pills */}
         <div className="flex flex-wrap gap-1.5 mt-3">
           {venue.modalities.slice(0, 4).map((mod) => {
-            const config = MODALITIES[mod]
-            if (!config) return null
+            const config = getModalityConfig(mod)
             return (
               <span
                 key={mod}
-                className={`text-xs px-2 py-0.5 rounded-full font-medium ${config.colour} ${config.textColour}`}
+                style={{
+                  color: config.color,
+                  backgroundColor: config.bg,
+                  borderColor: `${config.color}30`,
+                }}
+                className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border"
               >
                 {config.label}
               </span>
@@ -81,11 +85,11 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
 
         {/* Bottom row */}
         <div className="flex items-center gap-3 mt-4 pt-4 border-t border-recvr-border">
-          <span className="text-recvr-cyan text-sm font-medium">{priceDisplay}</span>
+          <span className="text-recvr-cyan text-sm font-medium font-mono">{priceDisplay}</span>
           {venue.rating > 0 && (
             <div className="flex items-center gap-1 text-recvr-muted text-sm">
               <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-              <span>{venue.rating.toFixed(1)}</span>
+              <span className="font-mono">{venue.rating.toFixed(1)}</span>
             </div>
           )}
           <span className="ml-auto text-recvr-cyan text-sm group-hover:underline underline-offset-2">

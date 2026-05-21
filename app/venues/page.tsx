@@ -55,7 +55,8 @@ export default async function VenuesPage({ searchParams }: PageProps) {
           <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
             Directory
           </p>
-          <h1 className="text-3xl sm:text-4xl font-bold text-recvr-text mb-2">
+          <h1 className="text-4xl font-bold text-recvr-text mb-2"
+              style={{ letterSpacing: '-0.02em' }}>
             Recovery venues
           </h1>
           <p className="text-recvr-muted text-lg">

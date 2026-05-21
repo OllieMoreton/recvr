@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import type { Protocol, ProtocolItem, Venue, Modality, ProtocolFormData } from '@/lib/types'
 import { MODALITIES } from '@/lib/modalities'
+import { getModalityConfig } from '@/lib/modality-config'
 import { supabase } from '@/lib/supabase'
 import WeeklyCheckin from './WeeklyCheckin'
 
@@ -71,6 +72,7 @@ function VenueCard({ venue }: { venue: Venue }) {
 function ProtocolCard({ item, index, city, isLast }: { item: ProtocolItem; index: number; city: string; isLast: boolean }) {
   const [venue, setVenue] = useState<Venue | null>(null)
   const config = MODALITIES[item.modality_key]
+  const colorConfig = getModalityConfig(item.modality_key)
 
   useEffect(() => {
     fetchVenueMatch(item.venue_modality_match, city).then(setVenue)
@@ -85,8 +87,13 @@ function ProtocolCard({ item, index, city, isLast }: { item: ProtocolItem; index
     >
       {/* Timeline spine */}
       <div className="flex flex-col items-center">
-        <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${config?.colour ?? 'bg-recvr-border'}`}>
-          <ModalityIcon modalityKey={item.modality_key} className={`w-5 h-5 ${config?.textColour ?? 'text-recvr-muted'}`} />
+        <div
+          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+          style={{ backgroundColor: colorConfig.bg }}
+        >
+          <div style={{ color: colorConfig.color }}>
+            <ModalityIcon modalityKey={item.modality_key} className="w-5 h-5" />
+          </div>
         </div>
         {/* connector line — hidden for last item */}
         {!isLast && <div className="w-px flex-1 bg-recvr-border mt-2" />}

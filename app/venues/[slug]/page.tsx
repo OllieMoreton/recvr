@@ -4,7 +4,6 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import {
   ArrowLeft,
-  ShieldCheck,
   CheckCircle,
   Star,
   Globe,
@@ -18,6 +17,7 @@ import {
 } from 'lucide-react'
 import { createServerClient } from '@/lib/supabase'
 import { MODALITIES } from '@/lib/modalities'
+import { getModalityConfig } from '@/lib/modality-config'
 import type { Venue, Modality } from '@/lib/types'
 
 // ─── Icon map ────────────────────────────────────────────────────────────────
@@ -55,9 +55,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const venue = await getVenue(slug)
-  if (!venue) return { title: 'Venue not found — RECVR' }
+  if (!venue) return { title: 'Venue not found' }
   return {
-    title: `${venue.name} — RECVR`,
+    title: venue.name,   // layout template appends "— RECVR"
     description: venue.description,
     openGraph: {
       title: `${venue.name} — RECVR`,
@@ -83,7 +83,6 @@ export default async function VenueProfilePage({
     <main className="min-h-screen pb-24">
       {/* ── 1. HERO HEADER ─────────────────────────────────────────────── */}
       <div className="relative h-72 md:h-96 w-full overflow-hidden">
-        {/* Background */}
         {venue.hero_image ? (
           <Image
             src={venue.hero_image}
@@ -101,7 +100,7 @@ export default async function VenueProfilePage({
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-        {/* Back link — top left */}
+        {/* Back link */}
         <Link
           href="/venues"
           className="absolute top-6 left-4 md:left-8 flex items-center gap-1.5 text-white/80 hover:text-white transition-colors text-sm"
@@ -110,9 +109,10 @@ export default async function VenueProfilePage({
           Back to venues
         </Link>
 
-        {/* Venue name — bottom left */}
+        {/* Venue name */}
         <div className="absolute bottom-6 left-4 md:left-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-1">
+          <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-1"
+              style={{ letterSpacing: '-0.02em' }}>
             {venue.name}
           </h1>
           <div className="flex items-center gap-1.5 text-white/70 text-sm">
@@ -129,21 +129,32 @@ export default async function VenueProfilePage({
           {/* LEFT COLUMN ──────────────────────────────────────────────── */}
           <div className="lg:col-span-2 space-y-8">
 
-            {/* Founding Partner badge */}
-            {venue.is_featured && (
+            {/* Single consolidated badge */}
+            {venue.is_featured ? (
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#06B6D4]/30 bg-[#06B6D4]/10 mb-4">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#06B6D4]" />
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5L6 1Z"
+                        fill="#06B6D4"/>
+                </svg>
                 <span className="text-xs font-mono text-[#06B6D4] uppercase tracking-widest">
-                  RECVR Founding Partner
+                  Founding Partner
                 </span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <circle cx="6" cy="6" r="5" stroke="#06B6D4" strokeWidth="1"/>
+                  <path d="M3.5 6L5 7.5L8.5 4" stroke="#06B6D4" strokeWidth="1.2"
+                        strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
-            )}
-
-            {/* Verified badge */}
-            {venue.is_verified && (
-              <div className="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-500/20">
-                <ShieldCheck className="w-4 h-4" />
-                RECVR Verified
+            ) : (
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-[#1E2433] mb-4">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="4" stroke="#94A3B8" strokeWidth="1"/>
+                  <path d="M2.5 5L4 6.5L7.5 3" stroke="#94A3B8" strokeWidth="1"
+                        strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span className="text-xs font-mono text-[#94A3B8] uppercase tracking-widest">
+                  Verified
+                </span>
               </div>
             )}
 
@@ -157,28 +168,35 @@ export default async function VenueProfilePage({
             {/* Services offered */}
             {venue.modalities && venue.modalities.length > 0 && (
               <section>
-                <h2 className="text-recvr-text font-semibold text-lg mb-4">
+                <h2 className="text-recvr-text font-bold text-lg mb-4"
+                    style={{ letterSpacing: '-0.02em' }}>
                   Services offered
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {venue.modalities.map((mod: Modality) => {
-                    const config = MODALITIES[mod]
-                    if (!config) return null
-                    const Icon = ICON_MAP[config.icon] ?? CircleDot
+                    const modalityMeta = MODALITIES[mod]
+                    const colorConfig = getModalityConfig(mod)
+                    if (!modalityMeta) return null
+                    const Icon = ICON_MAP[modalityMeta.icon] ?? CircleDot
                     return (
                       <div
                         key={mod}
                         className="flex items-start gap-3 bg-recvr-surface border border-recvr-border rounded-xl p-4"
                       >
-                        <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${config.colour}`}>
-                          <Icon className={`w-4.5 h-4.5 ${config.textColour}`} />
+                        <div
+                          className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                          style={{ backgroundColor: colorConfig.bg }}
+                        >
+                          <div style={{ color: colorConfig.color }}>
+                            <Icon className="w-4 h-4" />
+                          </div>
                         </div>
                         <div>
-                          <p className={`text-sm font-semibold ${config.textColour}`}>
-                            {config.label}
+                          <p className="text-sm font-semibold" style={{ color: colorConfig.color }}>
+                            {colorConfig.label}
                           </p>
                           <p className="text-recvr-muted text-xs leading-relaxed mt-0.5">
-                            {config.description}
+                            {modalityMeta.description}
                           </p>
                         </div>
                       </div>
@@ -191,7 +209,8 @@ export default async function VenueProfilePage({
             {/* Amenities */}
             {venue.amenities && venue.amenities.length > 0 && (
               <section>
-                <h2 className="text-recvr-text font-semibold text-lg mb-4">
+                <h2 className="text-recvr-text font-bold text-lg mb-4"
+                    style={{ letterSpacing: '-0.02em' }}>
                   Amenities
                 </h2>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -215,9 +234,9 @@ export default async function VenueProfilePage({
                 <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-1">
                   Price guide
                 </p>
-                <p className="text-recvr-text text-xl font-semibold">
+                <p className="text-recvr-text text-xl font-semibold font-mono">
                   From £{(venue.price_from / 100).toFixed(0)}
-                  <span className="text-recvr-muted text-sm font-normal"> per session</span>
+                  <span className="text-recvr-muted text-sm font-normal font-sans"> per session</span>
                 </p>
                 {venue.price_range && (
                   <p className="text-recvr-muted text-sm mt-0.5">{venue.price_range}</p>
@@ -227,15 +246,16 @@ export default async function VenueProfilePage({
               {venue.rating > 0 && (
                 <div className="flex items-center gap-2 text-recvr-muted text-sm">
                   <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  <span className="text-recvr-text font-medium">{venue.rating.toFixed(1)}</span>
+                  <span className="text-recvr-text font-medium font-mono">{venue.rating.toFixed(1)}</span>
                   {venue.review_count > 0 && (
                     <span>({venue.review_count} reviews)</span>
                   )}
                 </div>
               )}
 
+              {/* Preferential access callout for founding partners */}
               {venue.is_featured && (
-                <div className="rounded-xl border border-[#06B6D4]/20 bg-[#06B6D4]/5 p-4 mb-4">
+                <div className="rounded-xl border border-[#06B6D4]/20 bg-[#06B6D4]/5 p-4">
                   <p className="text-sm text-[#06B6D4] font-medium mb-1">RECVR member access</p>
                   <p className="text-xs text-[#94A3B8] leading-relaxed">
                     As a founding partner venue, {venue.name} prioritises RECVR-referred bookings.
@@ -292,20 +312,29 @@ export default async function VenueProfilePage({
           </div>
         </div>
 
-        {/* ── MAP ──────────────────────────────────────────────────────── */}
-        <div className="mt-10">
-          <h2 className="text-recvr-text font-semibold text-lg mb-4">Location</h2>
-          <iframe
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(venue.postcode || venue.city)}&output=embed`}
-            className="w-full h-56 sm:h-64 rounded-2xl border border-recvr-border"
-          style={{ maxWidth: '100%' }}
-            loading="lazy"
-            title={`Map for ${venue.name}`}
-          />
-        </div>
+        {/* ── MAP — dark-themed iframe ──────────────────────────────────── */}
+        {venue.postcode && (
+          <div className="mt-8">
+            <h2 className="text-lg font-bold text-[#F8FAFC] mb-4"
+                style={{ letterSpacing: '-0.02em' }}>
+              Location
+            </h2>
+            <div className="rounded-xl overflow-hidden border border-[#1E2433]" style={{ height: '280px' }}>
+              <iframe
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com/maps?q=${encodeURIComponent(venue.postcode + ', UK')}&output=embed`}
+              />
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* ── 3. BOTTOM CTA ────────────────────────────────────────────────── */}
+      {/* ── 3. BOTTOM CTA ─────────────────────────────────────────────────── */}
       <div className="border-t border-recvr-border mt-4 py-8 text-center">
         <p className="text-recvr-muted text-sm mb-2">
           Looking for other recovery options?

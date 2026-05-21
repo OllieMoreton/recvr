@@ -11,12 +11,10 @@ export default function Nav() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-16 bg-recvr-bg/80 backdrop-blur-md border-b border-recvr-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-        {/* Wordmark */}
-        <Link
-          href="/"
-          className="font-bold text-recvr-cyan tracking-widest uppercase text-lg"
-        >
-          RECVR
+        {/* Logo mark + wordmark */}
+        <Link href="/" className="flex items-center gap-2.5">
+          <img src="/logo-mark.svg" alt="" width={24} height={24} />
+          <span className="font-bold text-lg tracking-tight text-[#F8FAFC]">RECVR</span>
         </Link>
 
         {/* Right side */}
