@@ -3,15 +3,15 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Check, ArrowRight } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 const TEAM_TYPES = [
-  { icon: '🏃', label: 'Running clubs' },
-  { icon: '🚴', label: 'Cycling teams' },
-  { icon: '🏋️', label: 'CrossFit boxes' },
-  { icon: '🏊', label: 'Triathlon clubs' },
-  { icon: '⚽', label: 'Sports teams' },
-  { icon: '🥊', label: 'Fight gyms' },
+  'Running clubs',
+  'Cycling teams',
+  'CrossFit boxes',
+  'Triathlon clubs',
+  'Sports teams',
+  'Fight gyms',
 ]
 
 const FEATURES = [
@@ -20,13 +20,6 @@ const FEATURES = [
     title: 'Unlimited protocol generation',
     description:
       'Generate personalised recovery programmes for every athlete on your roster. No caps, no per-seat pricing.',
-  },
-  {
-    tag: 'DASHBOARD',
-    title: 'Coach dashboard',
-    description:
-      'One view across your whole team. See who needs recovery support before the next session.',
-    badge: 'Coming Q3',
   },
   {
     tag: 'VENUES',
@@ -50,7 +43,14 @@ const FEATURES = [
     tag: 'ADAPTIVE',
     title: 'Weekly programme updates',
     description:
-      "Athletes check in weekly and their protocol adapts. The system learns what works for each person.",
+      'Athletes check in weekly and their protocol adapts. The system learns what works for each person.',
+  },
+  {
+    tag: 'DASHBOARD',
+    title: 'Coach dashboard',
+    description:
+      'One view across your whole team. See who needs recovery support before the next session.',
+    badge: 'Q3 2026',
   },
 ]
 
@@ -64,6 +64,9 @@ const PLAN_INCLUDES = [
   'Coach dashboard (Q3 2026)',
 ]
 
+const Divider = () => (
+  <div style={{ height: '1px', background: 'rgba(184, 115, 51, 0.08)' }} />
+)
 
 export default function ForTeamsPage() {
   const [email, setEmail] = useState('')
@@ -97,58 +100,70 @@ export default function ForTeamsPage() {
 
       {/* ─── HERO ─── */}
       <section
-        className="relative pt-32 pb-24 px-6 text-center overflow-hidden"
+        className="relative pt-32 pb-24 px-12 overflow-hidden"
         style={{
           background: `
-            radial-gradient(ellipse at 50% 0%, rgba(196,129,58,0.10) 0%, transparent 60%),
-            radial-gradient(ellipse at 80% 80%, rgba(59,130,246,0.05) 0%, transparent 50%),
+            radial-gradient(ellipse 70% 50% at 30% 20%, rgba(196,129,58,0.12) 0%, transparent 60%),
             #0A0A0A
           `,
         }}
       >
-        {/* Dot grid */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: `radial-gradient(circle, rgba(30,36,51,0.8) 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle, rgba(30,36,51,0.6) 1px, transparent 1px)`,
             backgroundSize: '32px 32px',
-            maskImage: 'radial-gradient(ellipse at 50% 50%, black 30%, transparent 75%)',
+            maskImage: 'radial-gradient(ellipse at 30% 50%, black 20%, transparent 70%)',
           }}
         />
 
-        <div className="relative max-w-3xl mx-auto">
+        <div className="relative max-w-[1400px] mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#1F1F1F] text-xs font-mono text-[#C4813A] uppercase tracking-widest mb-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-8">
               RECVR for Teams
-            </span>
+            </p>
 
             <h1
-              className="font-bold tracking-tight text-[#F5F1EB] mb-6 leading-[1.05]"
-              style={{ fontSize: 'clamp(52px, 8.64vw, 78px)', letterSpacing: '-0.02em' }}
+              className="font-tiempos text-[#F5F1EB] leading-none mb-8"
+              style={{
+                fontSize: 'clamp(52px, 8.64vw, 88px)',
+                fontWeight: 600,
+                letterSpacing: '-0.02em',
+                maxWidth: '820px',
+              }}
             >
               Recovery intelligence<br />
-              <span className="text-[#C4813A]">for your whole team.</span>
+              <span style={{ color: '#C4813A' }}>for your whole team.</span>
             </h1>
 
-            <p className="text-lg text-[#8A8480] max-w-xl mx-auto mb-10 leading-relaxed">
+            <p
+              className="mb-10 max-w-xl leading-relaxed"
+              style={{
+                color: '#C8BFB0',
+                fontSize: '18px',
+                fontFamily: "'DM Serif Text', Georgia, serif",
+                fontWeight: 300,
+              }}
+            >
               Give every athlete a personalised weekly recovery programme.
               Built for coaches who want to do more than just say &quot;rest up.&quot;
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-start gap-4">
               <a
                 href="#get-started"
-                className="px-8 py-3.5 rounded-full bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors"
+                className="px-8 py-4 bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors rounded-md"
               >
                 Talk to us →
               </a>
               <Link
                 href="/protocol"
-                className="px-8 py-3.5 rounded-full border border-[#1F1F1F] text-[#F5F1EB] text-sm hover:border-[#C4813A]/50 transition-colors"
+                className="px-8 py-4 text-[#F5F1EB] text-sm hover:border-[#C4813A]/80 hover:text-[#C4813A] transition-colors rounded-md"
+                style={{ border: '1px solid rgba(184, 115, 51, 0.4)' }}
               >
                 Try the protocol engine
               </Link>
@@ -157,66 +172,84 @@ export default function ForTeamsPage() {
         </div>
       </section>
 
+      <Divider />
+
       {/* ─── TEAM TYPES STRIP ─── */}
-      <section className="border-y border-[#1F1F1F] py-6 px-6 overflow-hidden">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-xs font-mono text-[#8A8480] uppercase tracking-widest">
-              Built for
+      <section className="py-5 px-12">
+        <div className="max-w-[1400px] mx-auto flex items-center gap-4 flex-wrap">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[#8A8480] mr-2">
+            Built for
+          </span>
+          {TEAM_TYPES.map((type, i) => (
+            <span key={type} className="flex items-center gap-4">
+              <span className="font-mono text-[11px] uppercase tracking-widest text-[#8A8480]">
+                {type}
+              </span>
+              {i < TEAM_TYPES.length - 1 && (
+                <span style={{ color: 'rgba(196,129,58,0.3)' }}>·</span>
+              )}
             </span>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {TEAM_TYPES.map((type) => (
-              <div
-                key={type.label}
-                className="px-4 py-2 rounded-full border border-[#1F1F1F] bg-[#111111]"
-              >
-                <span className="font-mono text-[11px] uppercase tracking-widest text-[#8A8480]">{type.label}</span>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* ─── FEATURES GRID ─── */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+      <Divider />
+
+      {/* ─── FEATURES ─── */}
+      <section className="py-24 px-12" style={{ background: '#0D0B09' }}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-16">
+            <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-4">
+              What&apos;s included
+            </p>
             <h2
-              className="font-bold tracking-tight mb-4"
-              style={{ letterSpacing: '-0.02em', fontSize: 'clamp(32px, 4.32vw, 39px)' }}
+              className="font-tiempos text-[#F5F1EB]"
+              style={{
+                fontSize: 'clamp(32px, 4.32vw, 52px)',
+                fontWeight: 600,
+                letterSpacing: '-0.02em',
+                maxWidth: '600px',
+              }}
             >
               Everything your coaching staff needs
             </h2>
-            <p className="text-[#8A8480] max-w-lg mx-auto">
-              One flat monthly plan. Every feature included. No per-athlete fees.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div>
             {FEATURES.map((feature, i) => (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="p-6 rounded-2xl border border-[#1F1F1F] bg-[#111111] hover:border-[#C4813A]/30 transition-colors"
+                transition={{ delay: i * 0.06, duration: 0.5 }}
+                className="grid grid-cols-1 md:grid-cols-[140px_1fr_1fr] gap-4 md:gap-8 items-start py-8"
+                style={{ borderTop: '1px solid rgba(184,115,51,0.08)' }}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#C4813A]">
-                    {feature.tag}
-                  </p>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-recvr-copper pt-1">
+                  {feature.tag}
+                </span>
+                <h3
+                  className="font-tiempos text-[#F5F1EB]"
+                  style={{ fontSize: '22px', fontWeight: 500, letterSpacing: '-0.01em' }}
+                >
+                  {feature.title}
                   {feature.badge && (
-                    <span className="text-xs font-mono text-[#8A8480] border border-[#1F1F1F] px-2 py-0.5 rounded-full">
+                    <span
+                      className="ml-3 font-mono text-[9px] uppercase tracking-widest text-[#8A8480] border border-[#2A2A2A] px-2 py-0.5 rounded-sm align-middle"
+                    >
                       {feature.badge}
                     </span>
                   )}
-                </div>
-                <h3 className="text-sm font-semibold text-[#F5F1EB] mb-2">
-                  {feature.title}
                 </h3>
-                <p className="text-xs text-[#8A8480] leading-relaxed">
+                <p
+                  className="text-[#8A8480] leading-relaxed"
+                  style={{
+                    fontSize: '15px',
+                    fontFamily: "'DM Serif Text', Georgia, serif",
+                    fontWeight: 300,
+                  }}
+                >
                   {feature.description}
                 </p>
               </motion.div>
@@ -225,119 +258,176 @@ export default function ForTeamsPage() {
         </div>
       </section>
 
+      <Divider />
+
       {/* ─── PRICING ─── */}
-      <section className="py-24 px-6">
-        <div className="max-w-lg mx-auto">
-          <div className="text-center mb-12">
+      <section className="py-24 px-12">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          {/* Left — price */}
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-4">
+              Pricing
+            </p>
             <h2
-              className="font-bold tracking-tight mb-4"
-              style={{ letterSpacing: '-0.02em', fontSize: 'clamp(32px, 4.32vw, 39px)' }}
+              className="font-tiempos text-[#F5F1EB] mb-6"
+              style={{
+                fontSize: 'clamp(32px, 4.32vw, 52px)',
+                fontWeight: 600,
+                letterSpacing: '-0.02em',
+              }}
             >
               Simple, flat pricing
             </h2>
-            <p className="text-[#8A8480]">
+            <p
+              className="text-[#8A8480] leading-relaxed mb-10"
+              style={{
+                fontSize: '17px',
+                fontFamily: "'DM Serif Text', Georgia, serif",
+                fontWeight: 300,
+              }}
+            >
               One plan. Your whole team. Cancel any time.
+              No per-athlete fees, no setup costs, no contracts.
             </p>
+
+            <div className="flex items-end gap-2 mb-1">
+              <span
+                className="font-mono text-[#F5F1EB]"
+                style={{ fontSize: '72px', fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}
+              >
+                £199
+              </span>
+              <span className="text-[#8A8480] mb-3 font-mono text-sm">/month</span>
+            </div>
+            <p className="text-[#8A8480] text-sm font-mono mb-4">
+              Per club or team. Unlimited athletes.
+            </p>
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#C4813A]" />
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[#C4813A]">
+                Founding partner pricing — locked for 12 months
+              </span>
+            </div>
           </div>
 
+          {/* Right — includes */}
           <div
-            className="rounded-2xl p-8 border"
-            style={{
-              background: '#1A1008',
-              borderColor: 'rgba(196,129,58,0.3)',
-              boxShadow: '0 0 40px rgba(196,129,58,0.06)',
-            }}
+            className="rounded-md p-8"
+            style={{ background: '#0D0B09', border: '1px solid rgba(196,129,58,0.2)' }}
           >
-            {/* Price */}
-            <div className="mb-8">
-              <div className="flex items-end gap-2 mb-1">
-                <span className="text-5xl font-bold font-mono text-[#F5F1EB]">£199</span>
-                <span className="text-[#8A8480] mb-2">/month</span>
-              </div>
-              <div className="text-sm text-[#8A8480]">
-                Per club or team. Unlimited athletes.
-              </div>
-              <div className="mt-2 inline-flex items-center gap-1.5 text-xs font-mono text-[#C4813A]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C4813A] inline-block" />
-                Founding partner pricing — locked for 12 months
-              </div>
-            </div>
-
-            {/* Includes list */}
-            <div className="space-y-3 mb-8">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-recvr-copper mb-6">
+              Plan includes
+            </p>
+            <div className="space-y-4 mb-8">
               {PLAN_INCLUDES.map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <Check size={15} className="text-[#C4813A] mt-0.5 shrink-0" />
-                  <span className="text-sm text-[#8A8480]">{item}</span>
+                  <Check size={14} className="text-[#C4813A] mt-1 shrink-0" />
+                  <span
+                    className="text-[#8A8480] leading-relaxed"
+                    style={{
+                      fontSize: '14px',
+                      fontFamily: "'DM Serif Text', Georgia, serif",
+                      fontWeight: 300,
+                    }}
+                  >
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
-
-            {/* CTA */}
             <a
               href="#get-started"
-              className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors"
+              className="block w-full py-4 text-center bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors rounded-md"
             >
-              Get started <ArrowRight size={16} />
+              Get started →
             </a>
-
-            <p className="text-xs text-[#8A8480] text-center mt-3">
-              No setup fees. No contracts. Talk to us first.
+            <p className="text-[11px] text-[#8A8480] text-center mt-3 font-mono">
+              No setup fees · No contracts · Talk to us first
             </p>
           </div>
         </div>
       </section>
 
-      {/* ─── CONTACT / EMAIL CAPTURE ─── */}
-      <section id="get-started" className="py-24 px-6 border-t border-[#1F1F1F]">
-        <div className="max-w-lg mx-auto text-center">
-          <h2
-            className="font-bold tracking-tight mb-4"
-            style={{ letterSpacing: '-0.02em', fontSize: 'clamp(32px, 4.32vw, 39px)' }}
-          >
-            Talk to us
-          </h2>
-          <p className="text-[#8A8480] mb-8">
-            We onboard teams personally. Drop your email and we&apos;ll reach out
-            within one business day.
-          </p>
+      <Divider />
 
-          {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                required
-                placeholder="coach@yourclub.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 rounded-xl text-sm text-[#F5F1EB] placeholder:text-[#8A8480] outline-none transition-colors"
-                style={{ background: '#111111', border: '1px solid #1F1F1F' }}
-                onFocus={(e) => (e.target.style.borderColor = '#C4813A')}
-                onBlur={(e) => (e.target.style.borderColor = '#1F1F1F')}
-              />
-              <button
-                type="submit"
-                disabled={loading || !email}
-                className="px-6 py-3 rounded-xl bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors disabled:opacity-40 whitespace-nowrap"
-              >
-                {loading ? 'Sending...' : 'Get in touch →'}
-              </button>
-            </form>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex flex-col items-center gap-3"
+      {/* ─── CONTACT ─── */}
+      <section id="get-started" className="py-24 px-12">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-4">
+              Get started
+            </p>
+            <h2
+              className="font-tiempos text-[#F5F1EB] mb-6"
+              style={{
+                fontSize: 'clamp(32px, 4.32vw, 52px)',
+                fontWeight: 600,
+                letterSpacing: '-0.02em',
+              }}
             >
-              <div className="w-12 h-12 rounded-full bg-[#C4813A]/10 flex items-center justify-center">
-                <Check size={20} className="text-[#C4813A]" />
-              </div>
-              <p className="text-[#F5F1EB] font-medium">We&apos;ll be in touch soon.</p>
-              <p className="text-sm text-[#8A8480]">
-                Expect a reply within one business day.
-              </p>
-            </motion.div>
-          )}
+              Talk to us
+            </h2>
+            <p
+              className="text-[#8A8480] leading-relaxed"
+              style={{
+                fontSize: '17px',
+                fontFamily: "'DM Serif Text', Georgia, serif",
+                fontWeight: 300,
+              }}
+            >
+              We onboard teams personally. Drop your email and we&apos;ll reach out
+              within one business day.
+            </p>
+          </div>
+
+          <div className="pt-2">
+            {!submitted ? (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                <input
+                  type="email"
+                  required
+                  placeholder="coach@yourclub.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-3.5 text-[14px] text-[#F5F1EB] placeholder:text-[#8A8480] outline-none transition-colors rounded-md"
+                  style={{
+                    background: '#0D0B09',
+                    border: '1px solid rgba(184,115,51,0.2)',
+                  }}
+                  onFocus={(e) => (e.target.style.borderColor = '#C4813A')}
+                  onBlur={(e) => (e.target.style.borderColor = 'rgba(184,115,51,0.2)')}
+                />
+                <button
+                  type="submit"
+                  disabled={loading || !email}
+                  className="px-8 py-4 bg-[#C4813A] text-[#0A0A0A] font-semibold text-sm hover:bg-recvr-copper-light transition-colors disabled:opacity-40 rounded-md"
+                >
+                  {loading ? 'Sending...' : 'Get in touch →'}
+                </button>
+              </form>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="py-8"
+              >
+                <p className="font-mono text-[11px] uppercase tracking-widest text-recvr-copper mb-3">
+                  Message received
+                </p>
+                <p
+                  className="text-[#F5F1EB] text-xl mb-2"
+                  style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
+                >
+                  We&apos;ll be in touch soon.
+                </p>
+                <p className="text-[#8A8480] text-sm">
+                  Expect a reply within one business day.
+                </p>
+              </motion.div>
+            )}
+          </div>
         </div>
       </section>
 
