@@ -46,10 +46,10 @@ export default function ProtocolPreview() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease, delay: 0.1 }}
-          className="max-w-[720px] bg-recvr-surface border border-recvr-border rounded-lg p-8 lg:p-10"
+          className="w-full bg-recvr-surface border border-recvr-border rounded-lg p-8 lg:p-10"
         >
-          {/* Protocol summary — Playfair italic */}
-          <p className="font-tiempos font-normal italic text-[22px] md:text-[24px] leading-snug text-recvr-text mb-8">
+          {/* Protocol summary — Cormorant italic */}
+          <p className="font-tiempos font-normal italic text-[22px] md:text-[24px] leading-snug text-recvr-text mb-8 max-w-[800px]">
             You&apos;ve been running high volume through a heavy training block. This week, priority is parasympathetic recovery and connective tissue repair.
           </p>
 

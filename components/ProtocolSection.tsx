@@ -80,9 +80,9 @@ export default function ProtocolSection() {
     <section
       id="protocol-section"
       className="px-4"
-      style={{ background: '#0D0B09', paddingTop: '140px', paddingBottom: '140px' }}
+      style={{ background: '#0D0B09', paddingTop: '60px', paddingBottom: '60px' }}
     >
-      <div className="max-w-[720px] mx-auto">
+      <div className="max-w-[860px] mx-auto">
       <AnimatePresence mode="wait">
         {stage === 'form' && (
           <motion.div

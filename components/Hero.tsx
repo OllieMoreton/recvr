@@ -29,7 +29,7 @@ export default function Hero() {
         <span
           className="absolute font-mono font-bold text-recvr-copper leading-none"
           style={{
-            fontSize: 'clamp(180px, 32vw, 480px)',
+            fontSize: 'clamp(80px, 12vw, 170px)',
             opacity: 0.06,
             letterSpacing: '-0.04em',
             top: '50%',

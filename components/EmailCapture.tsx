@@ -43,7 +43,7 @@ export default function EmailCapture() {
           <div>
             <h2
               className="font-tiempos font-extrabold text-recvr-bg leading-none tracking-[-0.03em] mb-6"
-              style={{ fontSize: 'clamp(48px, 6vw, 88px)', fontWeight: 600 }}
+              style={{ fontSize: 'clamp(80px, 10vw, 140px)', fontWeight: 600 }}
             >
               You&apos;re in.
             </h2>
@@ -56,7 +56,7 @@ export default function EmailCapture() {
             {/* Statement headline */}
             <h2
               className="font-tiempos font-extrabold text-recvr-bg leading-none tracking-[-0.03em] mb-10"
-              style={{ fontSize: 'clamp(48px, 6vw, 88px)', fontWeight: 600 }}
+              style={{ fontSize: 'clamp(80px, 10vw, 140px)', fontWeight: 600 }}
             >
               Be first.
             </h2>
@@ -77,7 +77,7 @@ export default function EmailCapture() {
                   background: 'rgba(10,10,10,0.15)',
                   border: '1px solid rgba(10,10,10,0.25)',
                   color: '#0A0A0A',
-                  fontFamily: 'inherit',
+                  fontFamily: "'DM Serif Text', Georgia, serif",
                 }}
                 onFocus={(e) => (e.target.style.background = 'rgba(10,10,10,0.22)')}
                 onBlur={(e) => (e.target.style.background = 'rgba(10,10,10,0.15)')}
@@ -89,8 +89,9 @@ export default function EmailCapture() {
                 style={{
                   background: '#0A0A0A',
                   color: '#C4813A',
-                  fontFamily: 'var(--font-geist-mono)',
-                  letterSpacing: '0.04em',
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontWeight: 600,
+                  fontSize: '18px',
                 }}
               >
                 {status === 'loading' ? 'Joining...' : 'Join the waitlist →'}

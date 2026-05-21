@@ -175,10 +175,9 @@ export default function ForTeamsPage() {
             {TEAM_TYPES.map((type) => (
               <div
                 key={type.label}
-                className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#1F1F1F] bg-[#111111]"
+                className="px-4 py-2 rounded-full border border-[#1F1F1F] bg-[#111111]"
               >
-                <span>{type.icon}</span>
-                <span className="text-sm text-[#8A8480]">{type.label}</span>
+                <span className="font-mono text-[11px] uppercase tracking-widest text-[#8A8480]">{type.label}</span>
               </div>
             ))}
           </div>

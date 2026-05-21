@@ -62,8 +62,8 @@ export default function ModalityGrid() {
               >
                 <Link
                   href={`/venues?modality=${key}`}
-                  className="group flex flex-col items-start bg-recvr-surface border border-recvr-border rounded-2xl hover:border-recvr-copper/40 transition-colors duration-200"
-                  style={{ padding: '28px' }}
+                  className="group flex flex-col items-start bg-recvr-surface border border-recvr-border hover:border-recvr-copper/40 transition-colors duration-200"
+                  style={{ borderRadius: '4px', padding: '28px' }}
                 >
                   <p className="font-mono text-[11px] uppercase tracking-widest text-recvr-copper mb-3">
                     {tag}

@@ -44,7 +44,7 @@ export default function LoadingProtocol({ city }: { city?: string }) {
       <div className="flex justify-center mb-10">
         <div className="relative h-px w-[200px] bg-recvr-border/40 overflow-hidden">
           <motion.div
-            className="absolute inset-y-0 left-0 bg-recvr-copper origin-left"
+            className="absolute inset-y-0 left-0 origin-left"
             animate={{ scaleX: [0, 1, 1, 0] }}
             transition={{
               duration: 2.4,
@@ -52,7 +52,7 @@ export default function LoadingProtocol({ city }: { city?: string }) {
               repeat: Infinity,
               ease: 'easeInOut',
             }}
-            style={{ width: '100%' }}
+            style={{ width: '100%', background: '#B87333' }}
           />
         </div>
       </div>
