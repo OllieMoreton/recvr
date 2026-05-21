@@ -32,6 +32,14 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link
+                  href="/for-teams"
+                  className="text-recvr-muted text-sm hover:text-recvr-text transition-colors"
+                >
+                  For teams
+                </Link>
+              </li>
+              <li>
                 <a
                   href="/#protocol-section"
                   className="text-recvr-muted text-sm hover:text-recvr-text transition-colors"

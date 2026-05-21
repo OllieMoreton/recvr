@@ -6,6 +6,8 @@ import ModalityGrid from '@/components/ModalityGrid'
 import EmailCapture from '@/components/EmailCapture'
 import Footer from '@/components/Footer'
 import VenueCard from '@/components/VenueCard'
+import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
 import type { Venue } from '@/lib/types'
 
 async function getFeaturedVenues(): Promise<Venue[]> {
@@ -59,6 +61,35 @@ export default async function Home() {
 
         {/* Email capture */}
         <EmailCapture />
+
+        {/* For Teams teaser */}
+        <section className="py-16 px-6 border-t border-[#1E2433]">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-2xl border border-[#1E2433] bg-[#0F1117]">
+              <div>
+                <span className="text-xs font-mono text-[#06B6D4] uppercase tracking-widest">
+                  RECVR for Teams
+                </span>
+                <h3
+                  className="text-xl font-bold text-[#F8FAFC] mt-2 mb-2"
+                  style={{ letterSpacing: '-0.02em' }}
+                >
+                  Running a club or coaching a team?
+                </h3>
+                <p className="text-sm text-[#94A3B8] max-w-md">
+                  Give every athlete personalised recovery programmes.
+                  £199/month. Unlimited athletes.
+                </p>
+              </div>
+              <Link
+                href="/for-teams"
+                className="flex items-center gap-2 px-6 py-3 rounded-full border border-[#06B6D4]/40 text-[#06B6D4] text-sm font-medium hover:bg-[#06B6D4]/10 transition-colors whitespace-nowrap shrink-0"
+              >
+                Learn more <ChevronRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer outside main so it sits flush at page bottom */}

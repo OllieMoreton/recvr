@@ -31,6 +31,12 @@ export default function Nav() {
           >
             Venues
           </Link>
+          <Link
+            href="/for-teams"
+            className="hidden sm:block text-sm text-recvr-muted hover:text-recvr-text transition-colors duration-200"
+          >
+            For teams
+          </Link>
           <button
             onClick={scrollToEmailCapture}
             className="text-sm font-medium bg-recvr-cyan text-recvr-bg px-4 py-2 rounded-full hover:bg-cyan-400 transition-colors duration-200"
