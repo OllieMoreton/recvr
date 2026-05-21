@@ -22,53 +22,48 @@ async function getFeaturedVenues(): Promise<Venue[]> {
   return (data as Venue[]) ?? []
 }
 
+const Divider = () => (
+  <div
+    aria-hidden="true"
+    className="w-full"
+    style={{ height: '1px', background: 'rgba(184, 115, 51, 0.08)' }}
+  />
+)
+
 export default async function Home() {
   const featuredVenues = await getFeaturedVenues()
 
   return (
     <>
       <main>
-        {/* Hero */}
+        {/* 1. Hero — full atmosphere */}
         <Hero />
 
-        {/* Copper section divider */}
-        <div
-          aria-hidden="true"
-          className="w-full"
-          style={{
-            height: '2px',
-            background: 'linear-gradient(90deg, transparent 0%, rgba(196,129,58,0.08) 25%, rgba(196,129,58,0.08) 75%, transparent 100%)',
-          }}
-        />
+        <Divider />
 
-        {/* Modality ticker */}
+        {/* 2. Ticker — quiet, full-width motion */}
         <Ticker />
 
-        {/* Copper section divider */}
-        <div
-          aria-hidden="true"
-          className="w-full"
-          style={{
-            height: '2px',
-            background: 'linear-gradient(90deg, transparent 0%, rgba(196,129,58,0.08) 25%, rgba(196,129,58,0.08) 75%, transparent 100%)',
-          }}
-        />
+        {/* No divider between ticker and how it works — let them flow */}
 
-        {/* Protocol form */}
-        <ProtocolSection />
-
-        {/* How it works */}
+        {/* 3. How it works — warm #0D0B09, editorial rows */}
         <HowItWorks />
 
-        {/* Modality grid */}
-        <ModalityGrid />
+        <Divider />
 
-        {/* Protocol preview */}
+        {/* 4. Protocol preview — framed with copper borders, 120px padding */}
         <ProtocolPreview />
 
-        {/* Featured venues */}
+        <Divider />
+
+        {/* 5. Modalities — back to base #0A0A0A, 100px padding */}
+        <ModalityGrid />
+
+        <Divider />
+
+        {/* 6. Founding venue partners — 120px padding, heaviest content */}
         {featuredVenues.length > 0 && (
-          <section className="py-24 px-12">
+          <section style={{ paddingTop: '120px', paddingBottom: '120px' }} className="px-12">
             <div className="max-w-[1400px] mx-auto">
               <div className="text-center mb-12">
                 <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
@@ -87,11 +82,20 @@ export default async function Home() {
           </section>
         )}
 
-        {/* Email capture */}
+        <Divider />
+
+        {/* 7. Protocol form — considered pause, #0D0B09, 720px, 140px padding */}
+        <ProtocolSection />
+
+        <Divider />
+
+        {/* 8. CTA — loudest moment after hero, full-bleed #B87333, 480px min-height */}
         <EmailCapture />
 
+        <Divider />
+
         {/* For Teams teaser */}
-        <section className="py-16 px-12 border-t border-[#1F1F1F]">
+        <section className="py-16 px-12">
           <div className="max-w-[1400px] mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-2xl border border-[#1F1F1F] bg-[#111111]">
               <div>

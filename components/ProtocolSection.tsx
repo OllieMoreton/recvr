@@ -77,7 +77,12 @@ export default function ProtocolSection() {
   }
 
   return (
-    <section id="protocol-section" className="py-24 px-4">
+    <section
+      id="protocol-section"
+      className="px-4"
+      style={{ background: '#0D0B09', paddingTop: '140px', paddingBottom: '140px' }}
+    >
+      <div className="max-w-[720px] mx-auto">
       <AnimatePresence mode="wait">
         {stage === 'form' && (
           <motion.div
@@ -139,6 +144,7 @@ export default function ProtocolSection() {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </section>
   )
 }

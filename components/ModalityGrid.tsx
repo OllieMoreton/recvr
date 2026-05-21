@@ -21,7 +21,7 @@ export default function ModalityGrid() {
   const inView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section className="relative py-24 px-12 bg-recvr-surface/40 overflow-hidden">
+    <section className="relative px-12 overflow-hidden" style={{ background: '#0A0A0A', paddingTop: '100px', paddingBottom: '100px' }}>
       {/* SVG noise texture overlay — 3% opacity */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ opacity: 0.03 }}>
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">

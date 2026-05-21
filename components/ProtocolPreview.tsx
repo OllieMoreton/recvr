@@ -11,7 +11,16 @@ export default function ProtocolPreview() {
   const inView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section ref={ref} className="py-24 px-12">
+    <section
+      ref={ref}
+      className="px-12"
+      style={{
+        paddingTop: '120px',
+        paddingBottom: '120px',
+        borderTop: '1px solid rgba(184, 115, 51, 0.15)',
+        borderBottom: '1px solid rgba(184, 115, 51, 0.15)',
+      }}
+    >
       <div className="max-w-[1400px] mx-auto">
 
         {/* Section header */}

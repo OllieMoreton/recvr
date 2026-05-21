@@ -30,8 +30,8 @@ export default function HowItWorks() {
   return (
     <section
       ref={ref}
-      className="py-24 px-12"
-      style={{ background: '#0D0B09' }}
+      className="px-12"
+      style={{ background: '#0D0B09', paddingTop: '100px', paddingBottom: '100px' }}
     >
       <div className="max-w-[1400px] mx-auto">
 

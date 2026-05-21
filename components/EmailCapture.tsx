@@ -32,10 +32,10 @@ export default function EmailCapture() {
   return (
     <section
       id="early-access"
-      className="w-full px-6 lg:px-12 flex items-center"
+      className="w-full px-12 flex items-center"
       style={{
-        backgroundColor: '#C4813A',
-        minHeight: '400px',
+        backgroundColor: '#B87333',
+        minHeight: '480px',
       }}
     >
       <div className="max-w-[1400px] mx-auto w-full py-20">
