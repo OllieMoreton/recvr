@@ -92,6 +92,8 @@ function getTomorrow(): string {
 
 export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFormProps) {
   const [currentStep, setCurrentStep] = useState(1)
+  // Tracks which step is fully visible — lags behind currentStep by one animation frame
+  const [displayedStep, setDisplayedStep] = useState(1)
   const [formData, setFormData] = useState<ProtocolFormData>({
     sport: [],
     trainingLoad: '',
@@ -184,7 +186,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
       {/* Progress bar */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm text-recvr-muted">Step {currentStep} of {TOTAL_STEPS}</span>
+          <span className="text-sm text-recvr-muted">Step {displayedStep} of {TOTAL_STEPS}</span>
         </div>
         <div className="flex gap-1.5">
           {Array.from({ length: TOTAL_STEPS }, (_, i) => i + 1).map((s) => (
@@ -209,6 +211,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
               animate="center"
               exit="exit"
               transition={{ duration: 0.2, ease: 'easeInOut' }}
+              onAnimationComplete={(def) => { if (def === 'center') setDisplayedStep(currentStep) }}
             >
               <h2 className="text-xl font-semibold text-recvr-text mb-6">
                 {step.question}
@@ -249,6 +252,7 @@ export default function ProtocolForm({ onSubmit, isLoading = false }: ProtocolFo
               animate="center"
               exit="exit"
               transition={{ duration: 0.2, ease: 'easeInOut' }}
+              onAnimationComplete={(def) => { if (def === 'center') setDisplayedStep(6) }}
             >
               <h2 className="text-xl font-semibold text-recvr-text mb-1">
                 Do you have a race or event coming up?

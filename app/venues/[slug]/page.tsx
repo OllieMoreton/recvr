@@ -382,16 +382,14 @@ export default async function VenueProfilePage({
             <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-text-secondary mb-4">
               Location
             </p>
-            <div className="w-full h-64 rounded-lg overflow-hidden border border-recvr-border">
+            <div className="relative w-full h-64 rounded-lg overflow-hidden border border-recvr-border">
               <iframe
                 title={`${venue.name} location`}
-                src={`https://www.google.com/maps?q=${encodeURIComponent(venue.postcode + ', UK')}&output=embed`}
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(venue.postcode + ', UK')}&output=embed&z=15`}
                 width="100%"
                 height="100%"
-                style={{
-                  border: 0,
-                  filter: 'invert(90%) hue-rotate(180deg)',
-                }}
+                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.85)' }}
+                allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
