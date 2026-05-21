@@ -59,6 +59,16 @@ function VenueCard({ venue }: { venue: Venue }) {
             )}
           </div>
           <p className="text-recvr-muted text-xs">{venue.city} · from £{(venue.price_from / 100).toFixed(0)}</p>
+          {venue.bundles && venue.bundles.length > 0 && (
+            <div className="mt-1">
+              <span className="text-xs font-mono" style={{ color: '#06B6D4' }}>
+                Bundle available — save up to £{Math.max(...venue.bundles.map((b) => b.saving))}{' '}→{' '}
+                <a href={`/venues/${venue.slug}`} className="underline underline-offset-2">
+                  View venue
+                </a>
+              </span>
+            </div>
+          )}
         </div>
       </div>
       <a

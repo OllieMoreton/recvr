@@ -83,6 +83,22 @@ export default function VenueCard({ venue, variant = 'default' }: VenueCardProps
           )}
         </div>
 
+        {/* Bundle badge */}
+        {venue.bundles && venue.bundles.length > 0 && (
+          <div className="mt-3">
+            <span
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-mono border"
+              style={{
+                color: '#06B6D4',
+                borderColor: 'rgba(6,182,212,0.3)',
+                backgroundColor: 'rgba(6,182,212,0.08)',
+              }}
+            >
+              Bundle available
+            </span>
+          </div>
+        )}
+
         {/* Bottom row */}
         <div className="flex items-center gap-3 mt-4 pt-4 border-t border-recvr-border">
           <span className="text-recvr-cyan text-sm font-medium font-mono">{priceDisplay}</span>

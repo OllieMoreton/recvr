@@ -19,6 +19,7 @@ import { createServerClient } from '@/lib/supabase'
 import { MODALITIES } from '@/lib/modalities'
 import { getModalityConfig } from '@/lib/modality-config'
 import type { Venue, Modality } from '@/lib/types'
+import VenueBundles from '@/components/VenueBundles'
 
 // ─── Icon map ────────────────────────────────────────────────────────────────
 
@@ -263,6 +264,13 @@ export default async function VenueProfilePage({
                   </p>
                 </div>
               )}
+
+              {/* RECVR Bundles — client component owns modal state */}
+              <VenueBundles
+                bundles={venue.bundles ?? []}
+                venueName={venue.name}
+                venueSlug={venue.slug}
+              />
 
               <a
                 href={venue.booking_url || venue.website || '#'}

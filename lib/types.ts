@@ -1,3 +1,15 @@
+export interface VenueBundle {
+  id: string
+  title: string
+  sessions: number
+  modality: Modality
+  price_bundle: number
+  price_direct: number
+  saving: number
+  validity_days: number
+  description: string
+}
+
 export type Modality =
   | 'cryotherapy'
   | 'infrared_sauna'
@@ -34,6 +46,7 @@ export interface Venue {
   lat: number
   lng: number
   created_at: string
+  bundles?: VenueBundle[]
 }
 
 export interface ProtocolItem {
