@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Snowflake, Flame, Droplets, Waves, Sun, Thermometer,
   ArrowLeftRight, Wind, CircleDot, HandMetal,
-  ExternalLink, Clock, MapPin, CheckCircle2,
+  ExternalLink, Clock, MapPin, CheckCircle2, Share2,
 } from 'lucide-react'
 import type { Protocol, ProtocolItem, Venue, Modality, ProtocolFormData } from '@/lib/types'
 import { MODALITIES } from '@/lib/modalities'
@@ -13,6 +13,7 @@ import { getModalityConfig } from '@/lib/modality-config'
 import { supabase } from '@/lib/supabase'
 import WeeklyCheckin from './WeeklyCheckin'
 import RecoveryScore from './RecoveryScore'
+import ShareModal from './ShareModal'
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Snowflake, Flame, Droplets, Waves, Sun, Thermometer,
@@ -261,6 +262,7 @@ export default function ProtocolOutput({
   const [weekNumber, setWeekNumber] = useState(1)
   const [lastResponse, setLastResponse] = useState<string | undefined>(undefined)
   const [currentIssues, setCurrentIssues] = useState<string[]>(formData.issues)
+  const [shareOpen, setShareOpen] = useState(false)
   const { hasEvent, eventDate } = formData
 
   const handleNewProtocol = (newProtocol: Protocol, response?: string, newIssues?: string[]) => {
@@ -343,6 +345,22 @@ export default function ProtocolOutput({
         </motion.div>
       </AnimatePresence>
 
+      {/* Share button */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="mt-2 mb-6 flex justify-center"
+      >
+        <button
+          onClick={() => setShareOpen(true)}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-recvr-border text-recvr-muted hover:border-recvr-cyan/50 hover:text-recvr-text transition-colors text-sm"
+        >
+          <Share2 className="w-4 h-4" />
+          Share this programme
+        </button>
+      </motion.div>
+
       {/* Email capture */}
       <EmailCapture summary={displayedProtocol.summary} city={city} />
 
@@ -366,6 +384,14 @@ export default function ProtocolOutput({
           Start a new programme
         </button>
       </div>
+
+      {/* Share modal */}
+      <ShareModal
+        isOpen={shareOpen}
+        onClose={() => setShareOpen(false)}
+        protocol={displayedProtocol}
+        formData={formData}
+      />
     </div>
   )
 }
