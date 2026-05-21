@@ -209,7 +209,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex items-start overflow-hidden pt-[18vh]"
+      className="relative flex items-start overflow-hidden pt-[18vh] pb-24"
       style={{
         background: `
           radial-gradient(ellipse 70% 60% at 38% 35%, rgba(196, 129, 58, 0.18) 0%, transparent 65%),
