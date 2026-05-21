@@ -51,7 +51,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
     >
-      <body className="min-h-screen bg-recvr-bg text-recvr-text">
+      <body className="min-h-screen bg-recvr-void text-recvr-text">
         <Nav />
         <div className="pt-16">{children}</div>
       </body>
