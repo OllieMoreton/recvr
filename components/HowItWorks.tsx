@@ -2,84 +2,95 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Zap, Brain, CalendarCheck } from 'lucide-react'
 
 const STEPS = [
   {
-    icon: Zap,
+    number: '01',
     title: 'Tell us how you\'re training',
     description: 'Answer 5 quick questions about your sport, load, and goals.',
-    number: '01',
   },
   {
-    icon: Brain,
+    number: '02',
     title: 'Get your AI recovery programme',
     description: 'Your coach maps your context to evidence-based recovery science.',
-    number: '02',
   },
   {
-    icon: CalendarCheck,
+    number: '03',
     title: 'Book in one click',
     description: 'Protocols link directly to vetted venues near you.',
-    number: '03',
   },
 ]
 
+const ease = [0.16, 1, 0.3, 1] as const
+
 export default function HowItWorks() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const inView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-5xl mx-auto">
-        {/* Heading */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 16 }}
+    <section
+      ref={ref}
+      className="py-24 px-6 lg:px-12"
+      style={{ background: '#0D0B09' }}
+    >
+      <div className="max-w-7xl mx-auto">
+
+        {/* Section eyebrow */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5, ease }}
+          className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper mb-16"
         >
-          <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
-            The process
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-recvr-text">
-            How it works
-          </h2>
-        </motion.div>
+          The process
+        </motion.p>
 
-        {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {STEPS.map((step, i) => {
-            const Icon = step.icon
-            return (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 24 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
-                className="flex flex-col items-start"
+        {/* Editorial rows */}
+        {STEPS.map((step, i) => (
+          <div key={step.number}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, ease, delay: i * 0.1 }}
+              className="flex items-start gap-8 lg:gap-16 py-20"
+            >
+              {/* Step number — large, copper, Playfair */}
+              <div
+                className="font-tiempos font-bold text-recvr-copper leading-none shrink-0 select-none"
+                style={{ fontSize: 'clamp(80px, 10vw, 140px)', width: '15%', minWidth: '80px' }}
               >
-                {/* Icon */}
-                <div className="bg-recvr-copper/10 text-recvr-cyan p-4 rounded-2xl mb-5">
-                  <Icon className="w-6 h-6" />
-                </div>
+                {step.number}
+              </div>
 
-                {/* Step number */}
-                <p className="text-recvr-muted/40 text-xs font-mono tracking-widest uppercase mb-2">
-                  {step.number}
-                </p>
-
-                <h3 className="text-recvr-text font-semibold text-lg leading-snug mb-2">
+              {/* Title + description */}
+              <div className="pt-2 lg:pt-4">
+                <h3
+                  className="font-tiempos font-bold text-recvr-text leading-tight mb-4"
+                  style={{ fontSize: 'clamp(24px, 3vw, 36px)' }}
+                >
                   {step.title}
                 </h3>
-                <p className="text-recvr-muted text-sm leading-relaxed">
+                <p
+                  className="font-sohne text-recvr-text-secondary leading-relaxed"
+                  style={{ fontSize: '16px', maxWidth: '480px' }}
+                >
                   {step.description}
                 </p>
-              </motion.div>
-            )
-          })}
-        </div>
+              </div>
+            </motion.div>
+
+            {/* Copper rule between rows — not after last */}
+            {i < STEPS.length - 1 && (
+              <motion.div
+                initial={{ scaleX: 0, originX: 0 }}
+                animate={inView ? { scaleX: 1 } : {}}
+                transition={{ duration: 0.6, ease, delay: i * 0.1 + 0.2 }}
+                className="w-full h-px"
+                style={{ background: 'rgba(196, 129, 58, 0.25)' }}
+              />
+            )}
+          </div>
+        ))}
       </div>
     </section>
   )

@@ -29,6 +29,16 @@ export default async function Home() {
         {/* Hero */}
         <Hero />
 
+        {/* Copper section divider — Hero → How It Works */}
+        <div
+          aria-hidden="true"
+          className="w-full"
+          style={{
+            height: '2px',
+            background: 'linear-gradient(90deg, transparent 0%, rgba(196,129,58,0.08) 25%, rgba(196,129,58,0.08) 75%, transparent 100%)',
+          }}
+        />
+
         {/* Protocol form */}
         <ProtocolSection />
 

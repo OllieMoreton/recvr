@@ -144,7 +144,7 @@
   }
   body {
     @apply bg-recvr-void text-recvr-text;
-    font-family: var(--font-sohne), Inter, system-ui, sans-serif;
+    font-family: var(--font-sohne), 'DM Serif Text', Georgia, serif;
     color: #F5F1EB;
     background: #0A0A0A;
     -webkit-font-smoothing: antialiased;

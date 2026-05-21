@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { CheckCircle2 } from 'lucide-react'
 
 export default function EmailCapture() {
   const [email, setEmail] = useState('')
@@ -31,56 +30,80 @@ export default function EmailCapture() {
   }
 
   return (
-    <section id="early-access" className="py-24 px-4">
-      <div className="max-w-3xl mx-auto">
-        <div className="bg-recvr-surface border border-recvr-border rounded-3xl p-10 sm:p-12 text-center">
-          {status === 'done' ? (
-            <div className="flex flex-col items-center gap-4 py-4">
-              <CheckCircle2 className="w-12 h-12 text-recvr-cyan" />
-              <p className="text-recvr-text text-2xl font-bold">You&apos;re in.</p>
-              <p className="text-recvr-muted text-base">We&apos;ll be in touch.</p>
-            </div>
-          ) : (
-            <>
-              <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-4">
-                Early access
-              </p>
-              <h2 className="text-4xl font-bold text-recvr-text mb-3">
-                Be first.
-              </h2>
-              <p className="text-recvr-muted text-lg mb-8 max-w-lg mx-auto">
-                Join athletes already on the RECVR waitlist. Early access only.
-              </p>
+    <section
+      id="early-access"
+      className="w-full px-6 lg:px-12 flex items-center"
+      style={{
+        backgroundColor: '#C4813A',
+        minHeight: '400px',
+      }}
+    >
+      <div className="max-w-7xl mx-auto w-full py-20">
+        {status === 'done' ? (
+          <div>
+            <h2
+              className="font-tiempos font-extrabold text-recvr-bg leading-none tracking-[-0.03em] mb-6"
+              style={{ fontSize: 'clamp(64px, 10vw, 120px)' }}
+            >
+              You&apos;re in.
+            </h2>
+            <p className="font-mono text-[11px] uppercase tracking-widest" style={{ color: 'rgba(10,10,10,0.6)' }}>
+              We&apos;ll be in touch.
+            </p>
+          </div>
+        ) : (
+          <>
+            {/* Statement headline */}
+            <h2
+              className="font-tiempos font-extrabold text-recvr-bg leading-none tracking-[-0.03em] mb-10"
+              style={{ fontSize: 'clamp(64px, 10vw, 120px)' }}
+            >
+              Be first.
+            </h2>
 
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+            {/* Form */}
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col sm:flex-row gap-3 max-w-[520px]"
+            >
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                required
+                className="flex-1 px-5 py-3.5 text-[15px] rounded-md outline-none transition-all"
+                style={{
+                  background: 'rgba(10,10,10,0.15)',
+                  border: '1px solid rgba(10,10,10,0.25)',
+                  color: '#0A0A0A',
+                  fontFamily: 'inherit',
+                }}
+                onFocus={(e) => (e.target.style.background = 'rgba(10,10,10,0.22)')}
+                onBlur={(e) => (e.target.style.background = 'rgba(10,10,10,0.15)')}
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="px-7 py-3.5 rounded-md text-[14px] font-semibold shrink-0 transition-all duration-150 disabled:opacity-60"
+                style={{
+                  background: '#0A0A0A',
+                  color: '#C4813A',
+                  fontFamily: 'var(--font-geist-mono)',
+                  letterSpacing: '0.04em',
+                }}
               >
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  required
-                  className="flex-1 bg-recvr-bg border border-recvr-border text-recvr-text placeholder:text-recvr-muted/50 rounded-full px-5 py-3 text-sm focus:outline-none focus:border-recvr-cyan transition-colors"
-                />
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="bg-recvr-cyan text-recvr-bg font-semibold rounded-full px-6 py-3 text-sm hover:bg-recvr-copper-light transition-colors disabled:opacity-60 shrink-0"
-                >
-                  {status === 'loading' ? 'Joining...' : 'Join the waitlist →'}
-                </button>
-              </form>
+                {status === 'loading' ? 'Joining...' : 'Join the waitlist →'}
+              </button>
+            </form>
 
-              {status === 'error' && (
-                <p className="text-red-400 text-xs mt-3">
-                  Something went wrong. Please try again.
-                </p>
-              )}
-            </>
-          )}
-        </div>
+            {status === 'error' && (
+              <p className="mt-3 text-[12px]" style={{ color: 'rgba(10,10,10,0.7)' }}>
+                Something went wrong. Please try again.
+              </p>
+            )}
+          </>
+        )}
       </div>
     </section>
   )

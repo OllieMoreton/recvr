@@ -1,19 +1,20 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter, Geist_Mono } from 'next/font/google'
+import { Playfair_Display, DM_Serif_Text, Geist_Mono } from 'next/font/google'
 import Nav from '@/components/Nav'
 import './globals.css'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '700', '800'],
   style: ['normal', 'italic'],
   variable: '--font-tiempos',
   display: 'swap',
 })
 
-const inter = Inter({
+const dmSerif = DM_Serif_Text({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: '400',
+  style: ['normal', 'italic'],
   variable: '--font-sohne',
   display: 'swap',
 })
@@ -60,11 +61,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${geistMono.variable} dark antialiased`}
+      className={`${playfair.variable} ${dmSerif.variable} ${geistMono.variable} dark antialiased`}
     >
       <body className="min-h-screen bg-recvr-void text-recvr-text">
         <Nav />
-        <div className="pt-16">{children}</div>
+        <div className="pt-[72px]">{children}</div>
       </body>
     </html>
   )

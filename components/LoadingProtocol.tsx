@@ -14,56 +14,51 @@ const MESSAGES = [
 
 export default function LoadingProtocol({ city }: { city?: string }) {
   const [messageIndex, setMessageIndex] = useState(0)
-  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    const messageInterval = setInterval(() => {
+    const interval = setInterval(() => {
       setMessageIndex((i) => Math.min(i + 1, MESSAGES.length - 1))
     }, 1800)
-
-    const progressInterval = setInterval(() => {
-      setProgress((p) => Math.min(p + 1.2, 92))
-    }, 100)
-
-    return () => {
-      clearInterval(messageInterval)
-      clearInterval(progressInterval)
-    }
+    return () => clearInterval(interval)
   }, [])
 
-  const displayMessage = city && messageIndex === 4
-    ? `Matching venues in ${city}...`
-    : MESSAGES[messageIndex]
+  const displayMessage =
+    city && messageIndex === 4
+      ? `Matching venues in ${city}...`
+      : MESSAGES[messageIndex]
 
   return (
-    <div className="max-w-2xl mx-auto text-center py-16 px-4">
-      {/* Animated orb */}
-      <div className="relative w-24 h-24 mx-auto mb-10">
-        <motion.div
-          className="absolute inset-0 rounded-full bg-recvr-copper/20"
-          animate={{ scale: [1, 1.4, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute inset-3 rounded-full bg-recvr-copper/30"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
-        />
-        <div className="absolute inset-6 rounded-full bg-recvr-cyan flex items-center justify-center">
+    <div className="max-w-lg mx-auto text-center py-20 px-4">
+
+      {/* RECVR wordmark */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0 }}
+        className="font-mono text-[11px] uppercase tracking-[0.18em] text-recvr-copper mb-12"
+      >
+        RECVR
+      </motion.p>
+
+      {/* Drawing line */}
+      <div className="flex justify-center mb-10">
+        <div className="relative h-px w-[200px] bg-recvr-border/40 overflow-hidden">
           <motion.div
-            className="w-3 h-3 rounded-full bg-recvr-bg"
-            animate={{ scale: [1, 0.6, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute inset-y-0 left-0 bg-recvr-copper origin-left"
+            animate={{ scaleX: [0, 1, 1, 0] }}
+            transition={{
+              duration: 2.4,
+              times: [0, 0.5, 0.72, 1],
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            style={{ width: '100%' }}
           />
         </div>
       </div>
 
-      <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-6">
-        Building your programme
-      </p>
-
-      {/* Rotating message */}
-      <div className="h-7 mb-8 overflow-hidden">
+      {/* Rotating trust messages */}
+      <div className="h-7 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.p
             key={messageIndex}
@@ -76,15 +71,6 @@ export default function LoadingProtocol({ city }: { city?: string }) {
             {displayMessage}
           </motion.p>
         </AnimatePresence>
-      </div>
-
-      {/* Progress bar */}
-      <div className="w-full max-w-xs mx-auto h-0.5 bg-recvr-border rounded-full overflow-hidden">
-        <motion.div
-          className="h-full bg-gradient-to-r from-recvr-cyan to-recvr-blue rounded-full"
-          style={{ width: `${progress}%` }}
-          transition={{ duration: 0.1 }}
-        />
       </div>
     </div>
   )
