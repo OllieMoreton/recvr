@@ -64,12 +64,6 @@ const PLAN_INCLUDES = [
   'Coach dashboard (Q3 2026)',
 ]
 
-const TESTIMONIAL = {
-  quote:
-    "We used to spend 20 minutes per athlete recommending recovery. RECVR does it in 30 seconds and the physiological reasoning is better than anything I was writing manually.",
-  name: 'James T.',
-  role: 'Head Coach, London Triathlon Club',
-}
 
 export default function ForTeamsPage() {
   const [email, setEmail] = useState('')
@@ -227,19 +221,6 @@ export default function ForTeamsPage() {
                 </p>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TESTIMONIAL ─── */}
-      <section className="py-16 px-6 border-y border-[#1F1F1F]">
-        <div className="max-w-2xl mx-auto text-center">
-          <blockquote className="text-lg text-[#F5F1EB] leading-relaxed mb-6 italic">
-            &ldquo;{TESTIMONIAL.quote}&rdquo;
-          </blockquote>
-          <div>
-            <div className="text-sm font-semibold text-[#F5F1EB]">{TESTIMONIAL.name}</div>
-            <div className="text-xs text-[#8A8480] mt-0.5">{TESTIMONIAL.role}</div>
           </div>
         </div>
       </section>
