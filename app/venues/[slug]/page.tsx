@@ -312,10 +312,10 @@ export default async function VenueProfilePage({
               {/* Founding partner callout */}
               {venue.is_featured && (
                 <div className="rounded-xl border border-recvr-copper/20 bg-recvr-copper/5 p-4">
-                  <p className="text-sm text-recvr-copper font-medium mb-1">RECVR member access</p>
+                  <p className="text-sm text-recvr-copper font-medium mb-1">RECVR listed</p>
                   <p className="text-xs text-recvr-text-secondary leading-relaxed">
-                    As a founding partner, {venue.name} prioritises RECVR-referred bookings.
-                    Mention RECVR when booking for preferred availability.
+                    Featured on RECVR. This venue is part of the RECVR recovery network.
+                    Reference your protocol when booking for context on your recommended treatment.
                   </p>
                 </div>
               )}

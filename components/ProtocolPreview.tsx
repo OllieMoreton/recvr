@@ -39,6 +39,9 @@ export default function ProtocolPreview() {
           >
             Your protocol. Every detail reasoned.
           </h2>
+          <p className="text-recvr-text-secondary mt-4" style={{ fontSize: '17px', lineHeight: 1.8, maxWidth: '620px' }}>
+            A new protocol every training week, built around what your body actually needs right now — not a generic plan.
+          </p>
         </motion.div>
 
         {/* Preview card */}

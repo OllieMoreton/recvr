@@ -64,7 +64,7 @@ export default function Hero() {
             className="mb-6"
           >
             <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-recvr-copper">
-              AI Recovery Protocols
+              Your Weekly Recovery Protocol
             </p>
           </motion.div>
 
@@ -87,8 +87,8 @@ export default function Hero() {
             className="font-sohne text-[18px] leading-relaxed max-w-[500px] mb-8"
             style={{ color: '#C8BFB0', fontFamily: "'DM Serif Text', Georgia, serif" }}
           >
-            Tell us about your training week. We&apos;ll generate a personalised
-            7-day recovery protocol matched to real UK venues you can book today.
+            Every serious athlete has a training plan. RECVR gives you the recovery to match.
+            Tell us about your week and we&apos;ll build your protocol — matched to real venues you can book today.
           </motion.p>
 
           {/* CTAs */}
@@ -135,8 +135,7 @@ export default function Hero() {
           </div>
           <div className="w-px h-4 bg-recvr-border" />
           <div className="flex items-center gap-2">
-            <span className="font-mono text-recvr-copper font-semibold">4</span>
-            <span>UK cities</span>
+            <span>Adapts every training week</span>
           </div>
         </motion.div>
       </div>

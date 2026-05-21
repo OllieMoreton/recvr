@@ -67,11 +67,14 @@ export default async function Home() {
             <div className="max-w-[1400px] mx-auto">
               <div className="text-center mb-12">
                 <p className="text-recvr-muted text-xs font-mono tracking-widest uppercase mb-3">
-                  Partners
+                  Venues
                 </p>
                 <h2 className="font-tiempos text-recvr-text" style={{ fontSize: 'clamp(48px, 6vw, 88px)', fontWeight: 600 }}>
-                  Founding venue partners
+                  Featured venues
                 </h2>
+                <p className="text-recvr-text-secondary mt-4 mx-auto" style={{ fontSize: '17px', lineHeight: 1.8, maxWidth: '560px' }}>
+                  A curated selection of the UK&apos;s best recovery venues, vetted by the RECVR team.
+                </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {featuredVenues.map((venue) => (
@@ -84,7 +87,23 @@ export default async function Home() {
 
         <Divider />
 
-        {/* 7. Protocol form — considered pause, #0D0B09, 720px, 140px padding */}
+        {/* 7. Protocol form — considered pause, #0D0B09, 720px, 60px padding */}
+        <div
+          className="text-center px-12"
+          style={{ background: '#0D0B09', paddingTop: '60px' }}
+        >
+          <div className="max-w-[860px] mx-auto">
+            <h2
+              className="font-tiempos text-recvr-text mb-3"
+              style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 600 }}
+            >
+              This week&apos;s protocol starts here.
+            </h2>
+            <p className="text-recvr-text-secondary" style={{ fontSize: '17px', lineHeight: 1.8 }}>
+              Takes 90 seconds. Updates every training week.
+            </p>
+          </div>
+        </div>
         <ProtocolSection />
 
         <Divider />
@@ -109,7 +128,7 @@ export default async function Home() {
                   Running a club or coaching a team?
                 </h3>
                 <p className="text-sm text-[#8A8480] max-w-md">
-                  Give every athlete personalised recovery programmes.
+                  Give every athlete a personalised weekly recovery programme.
                   £199/month. Unlimited athletes.
                 </p>
               </div>

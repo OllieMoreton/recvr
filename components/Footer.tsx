@@ -13,7 +13,7 @@ export default function Footer() {
               RECVR
             </p>
             <p className="text-recvr-muted text-sm leading-relaxed">
-              The AI recovery coach for serious athletes.
+              The weekly recovery system for serious athletes.
             </p>
           </div>
 

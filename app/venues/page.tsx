@@ -70,7 +70,7 @@ export default async function VenuesPage({ searchParams }: PageProps) {
             Recovery venues
           </h1>
           <p className="text-recvr-muted text-lg">
-            Find the best recovery services near you
+            Every RECVR protocol links directly to venues near you. Book in one click.
           </p>
           <p className="text-sm text-[#8A8480] mt-2">
             Founding partner venues offer preferred availability to RECVR members.

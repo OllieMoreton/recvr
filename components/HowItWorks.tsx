@@ -6,18 +6,18 @@ import { motion, useInView } from 'framer-motion'
 const STEPS = [
   {
     number: '01',
-    title: 'Tell us how you\'re training',
-    description: 'Answer 5 quick questions about your sport, load, and goals.',
+    title: 'Tell us about your week',
+    description: 'Each week, answer 6 quick questions about your sport, training load, and how your body feels right now.',
   },
   {
     number: '02',
-    title: 'Get your AI recovery programme',
-    description: 'Your coach maps your context to evidence-based recovery science.',
+    title: 'Get your protocol',
+    description: 'RECVR maps your training context to evidence-based recovery science and builds your personalised 7-day plan.',
   },
   {
     number: '03',
-    title: 'Book in one click',
-    description: 'Protocols link directly to vetted venues near you.',
+    title: 'Book and recover',
+    description: 'Protocols link directly to vetted venues near you. Come back next week — we\'ll adapt to how you\'ve been training.',
   },
 ]
 
