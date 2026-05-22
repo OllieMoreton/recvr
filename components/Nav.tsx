@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import RecvrLogo from './RecvrLogo'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -22,14 +23,8 @@ export default function Nav() {
       <div className="max-w-[1400px] mx-auto px-12 h-full flex items-center justify-between">
 
         {/* Logo lockup */}
-        <Link href="/" className="flex items-center gap-2.5">
-          <img src="/logo-mark.svg" alt="" width={22} height={22} />
-          <div className="flex flex-col leading-none">
-            <span className="font-bold text-base tracking-tight text-recvr-text">RECVR</span>
-            <span className="font-mono text-[8px] uppercase tracking-widest text-recvr-copper" style={{ letterSpacing: '0.12em' }}>
-              Recovery Intelligence
-            </span>
-          </div>
+        <Link href="/" aria-label="RECVR home">
+          <RecvrLogo size="md" />
         </Link>
 
         {/* Right side */}

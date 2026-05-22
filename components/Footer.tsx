@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import RecvrLogo from './RecvrLogo'
 
 export default function Footer() {
   return (
@@ -10,12 +11,9 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <p
-              className="font-tiempos text-recvr-text mb-3"
-              style={{ fontSize: '22px', fontWeight: 600, letterSpacing: '-0.01em' }}
-            >
-              RECVR
-            </p>
+            <div className="mb-3">
+              <RecvrLogo size="md" />
+            </div>
             <p
               className="text-recvr-text-secondary leading-relaxed max-w-[280px]"
               style={{ fontSize: '14px', fontFamily: "'DM Serif Text', Georgia, serif", fontWeight: 300 }}

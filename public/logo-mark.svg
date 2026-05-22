@@ -1,5 +1,17 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M16 2L28.7 9.5V24.5L16 30L3.3 24.5V9.5L16 2Z" stroke="#C4813A" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
-  <path d="M10 17C10 13.134 12.686 10 16 10C19.314 10 22 13.134 22 17" stroke="#C4813A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-  <circle cx="16" cy="17" r="2" fill="#C4813A"/>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <polygon
+    points="476.0,256.0 390.0,107.1 218.0,107.1 132.0,256.0 218.0,404.9 390.0,404.9"
+    fill="none"
+    stroke="#C4813A"
+    stroke-width="16"
+    stroke-linejoin="round"
+  />
+  <polyline
+    points="90,256 150,256 185,236 210,256 230,111 250,356 268,256 295,216 320,256 420,256"
+    fill="none"
+    stroke="#C4813A"
+    stroke-width="14"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 </svg>
