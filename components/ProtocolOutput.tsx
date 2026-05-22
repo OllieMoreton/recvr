@@ -395,21 +395,13 @@ export default function ProtocolOutput({
           </div>
 
           {/* Monday reminder CTA */}
-          <div className="border border-recvr-border rounded-xl px-6 py-5 mb-8 flex items-start justify-between gap-4 flex-wrap">
-            <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-copper mb-1">
-                Next week
-              </p>
-              <p className="text-[14px] text-recvr-text-secondary leading-relaxed">
-                Come back on Monday to unlock your Week 2 protocol — adapted to how this week's training went.
-              </p>
-            </div>
-            <a
-              href="/"
-              className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-recvr-border text-recvr-text-secondary hover:border-recvr-copper/50 hover:text-recvr-text transition-colors text-[13px] font-mono"
-            >
-              Set a reminder →
-            </a>
+          <div className="border border-recvr-border rounded-xl px-6 py-5 mb-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-recvr-copper mb-1">
+              Next week
+            </p>
+            <p className="text-[14px] text-recvr-text-secondary leading-relaxed">
+              Come back on Monday to unlock your Week 2 protocol — adapted to how this week&apos;s training went.
+            </p>
           </div>
 
           {/* Reset */}

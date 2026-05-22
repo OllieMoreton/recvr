@@ -47,7 +47,7 @@ const FEATURES = [
   },
   {
     tag: 'DASHBOARD',
-    title: 'Coach telemetry dashboard (Q3 2026)',
+    title: 'Coach telemetry dashboard',
     description:
       'A real-time biological view of your entire roster. See aggregated team recovery scores, spot overtraining trends, and know exactly who to push and who to rest.',
     badge: 'Q3 2026',
@@ -61,7 +61,7 @@ const PLAN_INCLUDES = [
   'RECVR partner venue bundle access',
   'Shareable protocols for athlete self-service',
   'Priority email support',
-  'Coach dashboard (Q3 2026)',
+  'Coach telemetry dashboard (Q3 2026)',
 ]
 
 const Divider = () => (
