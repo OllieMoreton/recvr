@@ -85,23 +85,24 @@ export default function ModalityGrid() {
             )
           })}
 
-          {/* At-home card */}
+          {/* At-home card — full width */}
           <motion.div
+            className="col-span-2 sm:col-span-3"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, ease, delay: FEATURED_MODALITIES.length * 0.1 }}
           >
             <div
-              className="flex flex-col items-start bg-recvr-surface border border-recvr-border"
+              className="flex flex-col sm:flex-row sm:items-center sm:gap-12 bg-recvr-surface border border-recvr-border"
               style={{ borderRadius: '4px', padding: '28px' }}
             >
-              <p className="font-mono text-[11px] uppercase tracking-widest text-recvr-copper mb-3">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-recvr-copper mb-3 sm:mb-0 sm:shrink-0">
                 {AT_HOME_CARD.tag}
               </p>
-              <p className="font-tiempos font-semibold text-recvr-text mb-1" style={{ fontSize: '20px' }}>
+              <p className="font-tiempos font-semibold text-recvr-text sm:shrink-0" style={{ fontSize: '20px' }}>
                 {AT_HOME_CARD.title}
               </p>
-              <p className="text-recvr-muted" style={{ fontSize: '15px', lineHeight: 1.7 }}>
+              <p className="text-recvr-muted mt-1 sm:mt-0 sm:border-l sm:border-recvr-border sm:pl-12" style={{ fontSize: '15px', lineHeight: 1.7 }}>
                 {AT_HOME_CARD.benefit}
               </p>
             </div>
